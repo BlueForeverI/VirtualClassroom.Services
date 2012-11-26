@@ -37,11 +37,23 @@ namespace VirtualClassroom.Services.POCO_Classes
 
         internal static Subject FromSubjectEntity(SubjectEntity entity)
         {
+            List<Lesson> lessons = new List<Lesson>();
+            if(entity.Lessons != null)
+            {
+                lessons = (from l in entity.Lessons select Lesson.FromLessonEntity(l)).ToList();
+            }
+
+            List<Class> classes = new List<Class>();
+            if(entity.Classes != null)
+            {
+                classes = (from c in entity.Classes select Class.FromClassEntity(c)).ToList();
+            }
+
             Subject subject = new Subject(
                 entity.Id,
                 entity.Name,
-                (from l in entity.Lessons select Lesson.FromLessonEntity(l)).ToList(),
-                (from c in entity.Classes select Class.FromClassEntity(c)).ToList(),
+                lessons,
+                classes,
                 Teacher.FromTeacherEntity(entity.Teacher)
             );
 
@@ -50,12 +62,25 @@ namespace VirtualClassroom.Services.POCO_Classes
 
         internal static SubjectEntity ToSubjectEntity(Subject subject)
         {
+            EntityCollection<LessonEntity> lessonEntities = new EntityCollection<LessonEntity>();
+            if(subject.Lessons != null)
+            {
+                lessonEntities = (EntityCollection<LessonEntity>)
+                    (from l in subject.Lessons select Lesson.ToLessonEntity(l));
+            }
+
+            EntityCollection<ClassEntity> classEntities = new EntityCollection<ClassEntity>();
+            if(subject.Classes != null)
+            {
+                classEntities = (EntityCollection<ClassEntity>)
+                    (from c in subject.Classes select Class.ToClassEntity(c));
+            }
+
             SubjectEntity entity = new SubjectEntity();
             entity.Id = subject.Id;
             entity.Name = subject.Name;
-            entity.Lessons =
-                (EntityCollection<LessonEntity>) (from l in subject.Lessons select Lesson.ToLessonEntity(l));
-            entity.Classes = (EntityCollection<ClassEntity>) (from c in subject.Classes select Class.ToClassEntity(c));
+            entity.Lessons = lessonEntities;
+            entity.Classes = classEntities;
             entity.Teacher = Teacher.ToTeacherEntity(subject.Teacher);
 
             return entity;

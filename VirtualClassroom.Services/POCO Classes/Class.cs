@@ -37,12 +37,24 @@ namespace VirtualClassroom.Services.POCO_Classes
 
         internal static Class FromClassEntity(ClassEntity entity)
         {
+            List<Student> students = new List<Student>();
+            if(entity.Students != null)
+            {
+                students = (from s in entity.Students select Student.FromStudentEntity(s)).ToList();
+            }
+
+            List<Subject> subjects = new List<Subject>();
+            if(entity.Subjects != null)
+            {
+                subjects = (from s in entity.Subjects select Subject.FromSubjectEntity(s)).ToList();
+            }
+
             Class cl = new Class(
                 entity.Id,
                 entity.Number,
                 entity.Letter.First(),
-                (from s in entity.Students select Student.FromStudentEntity(s)).ToList(),
-                (from s in entity.Subjects select Subject.FromSubjectEntity(s)).ToList()
+                students,
+                subjects
             );
 
             return cl;
@@ -50,14 +62,26 @@ namespace VirtualClassroom.Services.POCO_Classes
 
         internal static ClassEntity ToClassEntity(Class cl)
         {
+            EntityCollection<StudentEntity> studentEntities = new EntityCollection<StudentEntity>();
+            if(cl.Students != null)
+            {
+                studentEntities = (EntityCollection<StudentEntity>)
+                    (from s in cl.Students select Student.ToStudentEntity(s));
+            }
+
+            EntityCollection<SubjectEntity> subjectEntities = new EntityCollection<SubjectEntity>();
+            if(cl.Subjects != null)
+            {
+                subjectEntities =  (EntityCollection<SubjectEntity>) 
+                    (from s in cl.Subjects select Subject.ToSubjectEntity(s));
+            }
+
             ClassEntity entity = new ClassEntity();
             entity.Id = cl.Id;
             entity.Number = cl.Number;
             entity.Letter = cl.Letter.ToString();
-            entity.Students =
-                (EntityCollection<StudentEntity>) (from s in cl.Students select Student.ToStudentEntity(s));
-            entity.Subjects =
-                (EntityCollection<SubjectEntity>) (from s in cl.Subjects select Subject.ToSubjectEntity(s));
+            entity.Students = studentEntities;
+            entity.Subjects = subjectEntities;
 
             return entity;
         }

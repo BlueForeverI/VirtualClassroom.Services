@@ -45,13 +45,19 @@ namespace VirtualClassroom.Services.POCO_Classes
 
         internal static Lesson FromLessonEntity(LessonEntity entity)
         {
+            List<Homework> homeworks = new List<Homework>();
+            if(entity.Homeworks != null)
+            {
+                homeworks = (from h in entity.Homeworks select Homework.FromHomeworkEntity(h)).ToList();
+            }
+
             Lesson lesson = new Lesson(
                 entity.Id,
                 entity.Name,
                 entity.Date,
                 entity.HomeworkDueDate,
                 entity.HomeworkContent,
-                (from h in entity.Homeworks select Homework.FromHomeworkEntity(h)).ToList(),
+                homeworks,
                 Subject.FromSubjectEntity(entity.Subject)
             );
 
@@ -60,14 +66,20 @@ namespace VirtualClassroom.Services.POCO_Classes
 
         internal static LessonEntity ToLessonEntity(Lesson lesson)
         {
+            EntityCollection<HomeworkEntity> homeworkEntities = new EntityCollection<HomeworkEntity>();
+            if(lesson.Homeworks != null)
+            {
+                homeworkEntities = (EntityCollection<HomeworkEntity>)
+                    (from h in lesson.Homeworks select Homework.ToHomeworkEntity(h));
+            }
+
             LessonEntity entity = new LessonEntity();
             entity.Id = lesson.Id;
             entity.Name = lesson.Name;
             entity.Date = lesson.Date;
             entity.HomeworkDueDate = lesson.HomeworkDueDate;
             entity.HomeworkContent = lesson.HomeworkContent;
-            entity.Homeworks =
-                (EntityCollection<HomeworkEntity>) (from h in lesson.Homeworks select Homework.ToHomeworkEntity(h));
+            entity.Homeworks = homeworkEntities;
             entity.Subject = Subject.ToSubjectEntity(lesson.Subject);
 
             return entity;

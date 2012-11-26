@@ -41,13 +41,22 @@ namespace VirtualClassroom.Services.POCO_Classes
 
         internal static Homework FromHomeworkEntity(HomeworkEntity entity)
         {
+            Mark mark = null;
+            if(entity.Marks != null)
+            {
+                if(entity.Marks.Count > 0)
+                {
+                    mark = Mark.FromMarkEntity(entity.Marks.First());
+                }
+            }
+
             Homework homework = new Homework(
                 entity.Id,
                 entity.Content,
                 entity.Date,
                 Student.FromStudentEntity(entity.Student),
                 Lesson.FromLessonEntity(entity.Lesson),
-                Mark.FromMarkEntity(entity.Marks.First())
+                mark
             );
 
             return homework;
@@ -62,7 +71,10 @@ namespace VirtualClassroom.Services.POCO_Classes
             entity.Student = Student.ToStudentEntity(homework.Student);
             entity.Lesson = Lesson.ToLessonEntity(homework.Lesson);
             entity.Marks = new EntityCollection<MarkEntity>();
-            entity.Marks.Add(Mark.ToMarkEntity(homework.Mark));
+            if (homework.Mark != null)
+            {
+                entity.Marks.Add(Mark.ToMarkEntity(homework.Mark));
+            }
 
             return entity;
         }

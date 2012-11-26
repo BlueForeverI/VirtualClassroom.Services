@@ -45,6 +45,13 @@ namespace VirtualClassroom.Services.POCO_Classes
 
         internal static Teacher FromTeacherEntity(TeacherEntity entity)
         {
+            List<Subject> subjects = new List<Subject>();
+            if(entity.Subjects != null)
+            {
+                subjects = (from s in entity.Subjects
+                 select Subject.FromSubjectEntity(s)).ToList();
+            }
+
             Teacher teacher = new Teacher(
                 entity.Id,
                 entity.Username,
@@ -52,8 +59,7 @@ namespace VirtualClassroom.Services.POCO_Classes
                 entity.MiddleName,
                 entity.LastName,
                 entity.PasswordHash,
-                (from s in entity.Subjects
-                 select Subject.FromSubjectEntity(s)).ToList()
+                subjects
             );
 
             return teacher;
@@ -61,6 +67,13 @@ namespace VirtualClassroom.Services.POCO_Classes
 
         internal static TeacherEntity ToTeacherEntity(Teacher teacher)
         {
+            EntityCollection<SubjectEntity> subjectEntities = new EntityCollection<SubjectEntity>();
+            if(teacher.Subjects != null)
+            {
+                subjectEntities =
+                (EntityCollection<SubjectEntity>)(from s in teacher.Subjects select Subject.ToSubjectEntity(s));
+            }
+
             TeacherEntity entity = new TeacherEntity();
             entity.Id = teacher.Id;
             entity.Username = teacher.Username;
@@ -68,8 +81,7 @@ namespace VirtualClassroom.Services.POCO_Classes
             entity.MiddleName = teacher.MiddleName;
             entity.LastName = teacher.LastName;
             entity.PasswordHash = teacher.PasswordHash;
-            entity.Subjects =
-                (EntityCollection<SubjectEntity>) (from s in teacher.Subjects select Subject.ToSubjectEntity(s));
+            entity.Subjects = subjectEntities;
 
             return entity;
         }
