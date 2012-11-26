@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BCrypt.Net">
+      <HintPath>C:\Users\George\Downloads\bcryptnet.build107\BCrypt.Net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Security" />
@@ -54,6 +57,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="StudentServices\StudentManagement.svc" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -76,9 +80,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SchoolModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="StudentServices\IStudentManagement.cs" />
+    <Compile Include="StudentServices\StudentManagement.svc.cs">
+      <DependentUpon>StudentManagement.svc</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="AdminServices\" />
     <Folder Include="App_Data\" />
+    <Folder Include="TeacherServices\" />
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="SchoolModel.edmx">
