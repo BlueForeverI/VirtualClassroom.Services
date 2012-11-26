@@ -6,6 +6,7 @@ using System.ServiceModel;
 using System.Text;
 using VirtualClassroom.Services.POCO_Classes;
 using BCrypt.Net;
+using BCrypt;
 
 namespace VirtualClassroom.Services.StudentServices
 {
