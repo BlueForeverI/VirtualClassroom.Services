@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Objects.DataClasses;
 using System.Linq;
 using System.Runtime.Serialization;
+using System.ServiceModel;
 using System.Web;
 
 namespace VirtualClassroom.Services.POCO_Classes
@@ -84,6 +85,13 @@ namespace VirtualClassroom.Services.POCO_Classes
             entity.Teacher = Teacher.ToTeacherEntity(subject.Teacher);
 
             return entity;
+        }
+
+        [OperationContract]
+        public static Subject CreateInstance(int id, string name, List<Lesson> lessons, List<Class> classes,
+            Teacher teacher)
+        {
+            return new Subject(id, name, lessons, classes, teacher);
         }
     }
 }

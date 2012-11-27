@@ -66,6 +66,10 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
+    <Content Include="_bin_deployableAssemblies\BCrypt.Net.dll" />
+    <Content Include="_bin_deployableAssemblies\MySql.Data.dll" />
+    <Content Include="_bin_deployableAssemblies\MySql.Data.Entity.dll" />
+    <Content Include="_bin_deployableAssemblies\MySql.Web.dll" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="POCO Classes\Class.cs" />

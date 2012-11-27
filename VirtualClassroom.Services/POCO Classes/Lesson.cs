@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Objects.DataClasses;
 using System.Linq;
 using System.Runtime.Serialization;
+using System.ServiceModel;
 using System.Text;
 
 namespace VirtualClassroom.Services.POCO_Classes
@@ -83,6 +84,13 @@ namespace VirtualClassroom.Services.POCO_Classes
             entity.Subject = Subject.ToSubjectEntity(lesson.Subject);
 
             return entity;
+        }
+
+        [OperationContract]
+        public static Lesson CreateInstance(int id, string name, DateTime date, DateTime? homeworkDueDate,
+            byte[] homeworkContent, List<Homework> homeworks, Subject subject)
+        {
+            return new Lesson(id, name, date, homeworkDueDate, homeworkContent, homeworks, subject);
         }
     }
 }

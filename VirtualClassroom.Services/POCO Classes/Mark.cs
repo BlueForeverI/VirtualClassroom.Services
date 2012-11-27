@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
+using System.ServiceModel;
 using System.Text;
 
 namespace VirtualClassroom.Services.POCO_Classes
@@ -44,6 +45,12 @@ namespace VirtualClassroom.Services.POCO_Classes
             entity.Homework = Homework.ToHomeworkEntity(mark.Homework);
 
             return entity;
+        }
+
+        [OperationContract]
+        public static Mark CreateInstance(int id, int value, Homework homework)
+        {
+            return new Mark(id, value, homework);
         }
     }
 }

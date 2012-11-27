@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Objects.DataClasses;
 using System.Linq;
 using System.Runtime.Serialization;
+using System.ServiceModel;
 using System.Text;
 
 namespace VirtualClassroom.Services.POCO_Classes
@@ -31,6 +32,7 @@ namespace VirtualClassroom.Services.POCO_Classes
         [DataMember]
         public List<Subject> Subjects { get; private set; }
 
+        
         public Teacher(int id, string username, string firstName, string middleName,
             string lastName, string passwordHash, List<Subject> subjects)
         {
@@ -84,6 +86,13 @@ namespace VirtualClassroom.Services.POCO_Classes
             entity.Subjects = subjectEntities;
 
             return entity;
+        }
+
+        [OperationContract]
+        public static Teacher CreateInstance(int id, string username, string firstName, string middleName,
+            string lastName, string passwordHash, List<Subject> subjects)
+        {
+            return new Teacher(id, username, firstName, middleName, lastName, passwordHash, subjects);
         }
     }
 }

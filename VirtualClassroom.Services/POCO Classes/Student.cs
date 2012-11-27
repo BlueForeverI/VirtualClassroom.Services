@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Objects.DataClasses;
 using System.Linq;
 using System.Runtime.Serialization;
+using System.ServiceModel;
 using System.Text;
 
 namespace VirtualClassroom.Services.POCO_Classes
@@ -95,6 +96,14 @@ namespace VirtualClassroom.Services.POCO_Classes
             entity.Homeworks = homeworkEntities;
 
             return entity;
+        }
+
+        [OperationContract]
+        public static Student CreateInstance(int id, string username, string firstName, string middleName,
+            string lastName, string egn, string passwordHash, Class c, List<Homework> homeworks)
+        {
+            return new Student(id, username, firstName, middleName, lastName, egn, passwordHash,
+                c, homeworks);
         }
     }
 }
