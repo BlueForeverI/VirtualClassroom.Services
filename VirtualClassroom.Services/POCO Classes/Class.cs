@@ -12,19 +12,19 @@ namespace VirtualClassroom.Services.POCO_Classes
     public class Class
     {
         [DataMember]
-        public int Id { get; private set; }
+        public int Id { get; set; }
 
         [DataMember]
-        public int Number { get; private set; }
+        public int Number { get; set; }
 
         [DataMember]
-        public char Letter { get; private set; }
+        public char Letter { get; set; }
 
         [DataMember]
-        public List<Student> Students { get; private set; }
+        public List<Student> Students { get; set; }
 
         [DataMember]
-        public List<Subject> Subjects { get; private set; }
+        public List<Subject> Subjects { get; set; }
 
         public Class(int id, int number, char letter, List<Student> students,
             List<Subject> subjects)
@@ -85,13 +85,6 @@ namespace VirtualClassroom.Services.POCO_Classes
             entity.Subjects = subjectEntities;
 
             return entity;
-        }
-
-        [OperationContract]
-        public static Class CreateInstance(int id, int number, char letter, List<Student> students,
-            List<Subject> subjects)
-        {
-            return new Class(id, number, letter, students, subjects);
         }
     }
 }

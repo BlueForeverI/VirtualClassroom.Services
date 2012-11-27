@@ -12,25 +12,25 @@ namespace VirtualClassroom.Services.POCO_Classes
     public class Teacher
     {
         [DataMember]
-        public int Id { get; private set; }
+        public int Id { get; set; }
 
         [DataMember]
-        public string Username { get; private set; }
+        public string Username { get; set; }
 
         [DataMember]
-        public string FirstName { get; private set; }
+        public string FirstName { get; set; }
 
         [DataMember]
-        public string MiddleName { get; private set; }
+        public string MiddleName { get; set; }
 
         [DataMember]
-        public string LastName { get; private set; }
+        public string LastName { get; set; }
 
         [DataMember]
-        public string PasswordHash { get; private set; }
+        public string PasswordHash { get; set; }
 
         [DataMember]
-        public List<Subject> Subjects { get; private set; }
+        public List<Subject> Subjects { get; set; }
 
         
         public Teacher(int id, string username, string firstName, string middleName,
@@ -86,13 +86,6 @@ namespace VirtualClassroom.Services.POCO_Classes
             entity.Subjects = subjectEntities;
 
             return entity;
-        }
-
-        [OperationContract]
-        public static Teacher CreateInstance(int id, string username, string firstName, string middleName,
-            string lastName, string passwordHash, List<Subject> subjects)
-        {
-            return new Teacher(id, username, firstName, middleName, lastName, passwordHash, subjects);
         }
     }
 }

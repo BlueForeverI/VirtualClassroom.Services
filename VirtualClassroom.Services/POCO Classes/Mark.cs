@@ -11,13 +11,13 @@ namespace VirtualClassroom.Services.POCO_Classes
     public class Mark
     {
         [DataMember]
-        public int Id { get; private set; }
+        public int Id { get; set; }
 
         [DataMember]
-        public int Value { get; private set; }
+        public int Value { get; set; }
 
         [DataMember]
-        public Homework Homework { get; private set; }
+        public Homework Homework { get; set; }
 
         public Mark(int id, int value, Homework homework)
         {
@@ -45,12 +45,6 @@ namespace VirtualClassroom.Services.POCO_Classes
             entity.Homework = Homework.ToHomeworkEntity(mark.Homework);
 
             return entity;
-        }
-
-        [OperationContract]
-        public static Mark CreateInstance(int id, int value, Homework homework)
-        {
-            return new Mark(id, value, homework);
         }
     }
 }

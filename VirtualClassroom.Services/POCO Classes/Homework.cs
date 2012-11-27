@@ -12,22 +12,22 @@ namespace VirtualClassroom.Services.POCO_Classes
     public class Homework
     {
         [DataMember]
-        public int Id { get; private set; }
+        public int Id { get; set; }
 
         [DataMember]
-        public byte[] Content { get; private set; }
+        public byte[] Content { get; set; }
 
         [DataMember]
-        public DateTime Date { get; private set; }
+        public DateTime Date { get; set; }
 
         [DataMember]
-        public Student Student { get; private set; }
+        public Student Student { get; set; }
 
         [DataMember]
-        public Lesson Lesson { get; private set; }
+        public Lesson Lesson { get; set; }
 
         [DataMember]
-        public Mark Mark { get; private set; }
+        public Mark Mark { get; set; }
 
         public Homework(int id, byte[] content, DateTime date, Student student,
             Lesson lesson, Mark mark)
@@ -78,13 +78,6 @@ namespace VirtualClassroom.Services.POCO_Classes
             }
 
             return entity;
-        }
-
-        [OperationContract]
-        public static Homework CreateInstance(int id, byte[] content, DateTime date, Student student,
-            Lesson lesson, Mark mark)
-        {
-            return new Homework(id, content, date, student, lesson, mark);
         }
     }
 }

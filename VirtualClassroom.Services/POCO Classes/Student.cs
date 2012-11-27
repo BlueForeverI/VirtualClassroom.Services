@@ -12,22 +12,22 @@ namespace VirtualClassroom.Services.POCO_Classes
     public class Student
     {
         [DataMember]
-        public int Id { get; private set; }
+        public int Id { get; set; }
 
         [DataMember]
-        public string Username { get; private set; }
+        public string Username { get; set; }
 
         [DataMember]
-        public string FirstName { get; private set; }
+        public string FirstName { get; set; }
 
         [DataMember]
-        public string MiddleName { get; private set; }
+        public string MiddleName { get; set; }
 
         [DataMember]
-        public string LastName { get; private set; }
+        public string LastName { get; set; }
 
         [DataMember]
-        public string EGN { get; private set; }
+        public string EGN { get; set; }
 
         [DataMember]
         public string PasswordHash { get; private set; }
@@ -96,14 +96,6 @@ namespace VirtualClassroom.Services.POCO_Classes
             entity.Homeworks = homeworkEntities;
 
             return entity;
-        }
-
-        [OperationContract]
-        public static Student CreateInstance(int id, string username, string firstName, string middleName,
-            string lastName, string egn, string passwordHash, Class c, List<Homework> homeworks)
-        {
-            return new Student(id, username, firstName, middleName, lastName, egn, passwordHash,
-                c, homeworks);
         }
     }
 }

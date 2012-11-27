@@ -12,22 +12,22 @@ namespace VirtualClassroom.Services.POCO_Classes
     public class Lesson
     {
         [DataMember]
-        public int Id { get; private set; }
+        public int Id { get; set; }
 
         [DataMember]
-        public string Name { get; private set; }
+        public string Name { get; set; }
 
         [DataMember]
-        public DateTime Date { get; private set; }
+        public DateTime Date { get; set; }
 
         [DataMember]
-        public DateTime? HomeworkDueDate { get; private set; }
+        public DateTime? HomeworkDueDate { get; set; }
 
         [DataMember]
-        public byte[] HomeworkContent { get; private set; }
+        public byte[] HomeworkContent { get; set; }
 
         [DataMember]
-        public List<Homework> Homeworks { get; private set; }
+        public List<Homework> Homeworks { get; set; }
 
         [DataMember]
         public Subject Subject { get; private set; }
@@ -84,13 +84,6 @@ namespace VirtualClassroom.Services.POCO_Classes
             entity.Subject = Subject.ToSubjectEntity(lesson.Subject);
 
             return entity;
-        }
-
-        [OperationContract]
-        public static Lesson CreateInstance(int id, string name, DateTime date, DateTime? homeworkDueDate,
-            byte[] homeworkContent, List<Homework> homeworks, Subject subject)
-        {
-            return new Lesson(id, name, date, homeworkDueDate, homeworkContent, homeworks, subject);
         }
     }
 }
