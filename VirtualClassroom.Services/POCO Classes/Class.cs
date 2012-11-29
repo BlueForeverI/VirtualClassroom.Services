@@ -36,31 +36,6 @@ namespace VirtualClassroom.Services.POCO_Classes
             this.Subjects = subjects;
         }
 
-        internal static Class FromClassEntity(ClassEntity entity)
-        {
-            List<Student> students = new List<Student>();
-            if(entity.Students != null)
-            {
-                students = (from s in entity.Students select Student.FromStudentEntity(s)).ToList();
-            }
-
-            List<Subject> subjects = new List<Subject>();
-            if(entity.Subjects != null)
-            {
-                subjects = (from s in entity.Subjects select Subject.FromSubjectEntity(s)).ToList();
-            }
-
-            Class cl = new Class(
-                entity.Id,
-                entity.Number,
-                entity.Letter.First(),
-                students,
-                subjects
-            );
-
-            return cl;
-        }
-
         internal static ClassEntity ToClassEntity(Class cl)
         {
             EntityCollection<StudentEntity> studentEntities = new EntityCollection<StudentEntity>();
@@ -85,6 +60,32 @@ namespace VirtualClassroom.Services.POCO_Classes
             entity.Subjects = subjectEntities;
 
             return entity;
+        }
+
+        public static explicit operator Class(ClassEntity entity)
+        {
+            List<Student> students = new List<Student>();
+            foreach (var studentEntity in entity.Students.ToList())
+            {
+                students.Add(Student.FromStudentEntity(studentEntity));
+            }
+            
+            List<Subject> subjects = new List<Subject>();
+            foreach (var subjectEntity in entity.Subjects.ToList())
+            {
+                subjects.Add(Subject.FromSubjectEntity(subjectEntity));
+            }
+             
+
+            Class cl = new Class(
+                entity.Id,
+                entity.Number,
+                entity.Letter.First(),
+                students,
+                subjects
+            );
+
+            return cl;
         }
     }
 }

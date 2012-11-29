@@ -1249,7 +1249,7 @@ namespace VirtualClassroom.Services
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
         public global::System.String PasswordHash
         {
@@ -1261,7 +1261,7 @@ namespace VirtualClassroom.Services
             {
                 OnPasswordHashChanging(value);
                 ReportPropertyChanging("PasswordHash");
-                _PasswordHash = StructuralObject.SetValidValue(value, false);
+                _PasswordHash = StructuralObject.SetValidValue(value, true);
                 ReportPropertyChanged("PasswordHash");
                 OnPasswordHashChanged();
             }

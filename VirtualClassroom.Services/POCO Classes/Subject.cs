@@ -47,7 +47,8 @@ namespace VirtualClassroom.Services.POCO_Classes
             List<Class> classes = new List<Class>();
             if(entity.Classes != null)
             {
-                classes = (from c in entity.Classes select Class.FromClassEntity(c)).ToList();
+                //classes = (from c in entity.Classes select Class.FromClassEntity(c)).Cast<Class>().ToList();
+                classes = (from c in entity.Classes select (Class)c).ToList();
             }
 
             Subject subject = new Subject(

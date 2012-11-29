@@ -68,7 +68,8 @@ namespace VirtualClassroom.Services.POCO_Classes
                 entity.LastName,
                 entity.EGN,
                 entity.PasswordHash, 
-                Class.FromClassEntity(entity.Class),
+                //Class.FromClassEntity(entity.Class),
+                (Class)entity.Class,
                 homeworks
             );
 
