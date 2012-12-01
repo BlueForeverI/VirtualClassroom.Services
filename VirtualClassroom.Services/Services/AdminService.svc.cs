@@ -15,14 +15,14 @@ namespace VirtualClassroom.Services.Services
 
         public void AddClass(Class c)
         {
-            ClassEntity classEntity = Class.ToClassEntity(c);
+            ClassEntity classEntity = (ClassEntity)c;
             entitityContext.ClassEntities.AddObject(classEntity);
             entitityContext.SaveChanges();
         }
 
         public void RegisterStudent(Student student)
         {
-            StudentEntity studentEntity = Student.ToStudentEntity(student);
+            StudentEntity studentEntity = (StudentEntity)student;
             entitityContext.StudentEntities.AddObject(studentEntity);
             entitityContext.SaveChanges();
         }

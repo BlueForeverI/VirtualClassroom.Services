@@ -36,19 +36,24 @@ namespace VirtualClassroom.Services.POCO_Classes
             this.Teacher = teacher;
         }
 
-        internal static Subject FromSubjectEntity(SubjectEntity entity)
+        public static explicit operator Subject(SubjectEntity entity)
         {
             List<Lesson> lessons = new List<Lesson>();
-            if(entity.Lessons != null)
+            if (entity.Lessons != null)
             {
-                lessons = (from l in entity.Lessons select Lesson.FromLessonEntity(l)).ToList();
+                foreach(var lessonEntity in entity.Lessons.ToList())
+                {
+                    lessons.Add((Lesson)lessonEntity);
+                }
             }
 
             List<Class> classes = new List<Class>();
-            if(entity.Classes != null)
+            if (entity.Classes != null)
             {
-                //classes = (from c in entity.Classes select Class.FromClassEntity(c)).Cast<Class>().ToList();
-                classes = (from c in entity.Classes select (Class)c).ToList();
+                foreach(var classEntity in entity.Classes.ToList())
+                {
+                    classes.Add((Class)classEntity);
+                }
             }
 
             Subject subject = new Subject(
@@ -56,26 +61,30 @@ namespace VirtualClassroom.Services.POCO_Classes
                 entity.Name,
                 lessons,
                 classes,
-                Teacher.FromTeacherEntity(entity.Teacher)
+                (Teacher)entity.Teacher
             );
 
             return subject;
         }
 
-        internal static SubjectEntity ToSubjectEntity(Subject subject)
+        public static explicit operator SubjectEntity(Subject subject)
         {
             EntityCollection<LessonEntity> lessonEntities = new EntityCollection<LessonEntity>();
-            if(subject.Lessons != null)
+            if (subject.Lessons != null)
             {
-                lessonEntities = (EntityCollection<LessonEntity>)
-                    (from l in subject.Lessons select Lesson.ToLessonEntity(l));
+                foreach (var lesson in subject.Lessons)
+                {
+                    lessonEntities.Add((LessonEntity)lesson);
+                }
             }
 
             EntityCollection<ClassEntity> classEntities = new EntityCollection<ClassEntity>();
-            if(subject.Classes != null)
+            if (subject.Classes != null)
             {
-                classEntities = (EntityCollection<ClassEntity>)
-                    (from c in subject.Classes select Class.ToClassEntity(c));
+                foreach (var cl in subject.Classes)
+                {
+                    classEntities.Add((ClassEntity)cl);
+                }
             }
 
             SubjectEntity entity = new SubjectEntity();
@@ -83,7 +92,7 @@ namespace VirtualClassroom.Services.POCO_Classes
             entity.Name = subject.Name;
             entity.Lessons = lessonEntities;
             entity.Classes = classEntities;
-            entity.Teacher = Teacher.ToTeacherEntity(subject.Teacher);
+            entity.Teacher = (TeacherEntity)subject.Teacher;
 
             return entity;
         }

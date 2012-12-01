@@ -40,14 +40,14 @@ namespace VirtualClassroom.Services.POCO_Classes
             this.Mark = mark;
         }
 
-        internal static Homework FromHomeworkEntity(HomeworkEntity entity)
+        public static explicit operator Homework(HomeworkEntity entity)
         {
             Mark mark = null;
-            if(entity.Marks != null)
+            if (entity.Marks != null)
             {
-                if(entity.Marks.Count > 0)
+                if (entity.Marks.Count > 0)
                 {
-                    mark = Mark.FromMarkEntity(entity.Marks.First());
+                    mark = (Mark)entity.Marks.First();
                 }
             }
 
@@ -55,26 +55,26 @@ namespace VirtualClassroom.Services.POCO_Classes
                 entity.Id,
                 entity.Content,
                 entity.Date,
-                Student.FromStudentEntity(entity.Student),
-                Lesson.FromLessonEntity(entity.Lesson),
+                (Student)entity.Student,
+                (Lesson)entity.Lesson,
                 mark
             );
 
             return homework;
         }
 
-        internal static HomeworkEntity ToHomeworkEntity(Homework homework)
+        public static explicit operator HomeworkEntity(Homework homework)
         {
             HomeworkEntity entity = new HomeworkEntity();
             entity.Id = homework.Id;
             entity.Content = homework.Content;
             entity.Date = homework.Date;
-            entity.Student = Student.ToStudentEntity(homework.Student);
-            entity.Lesson = Lesson.ToLessonEntity(homework.Lesson);
+            entity.Student = (StudentEntity)homework.Student;
+            entity.Lesson = (LessonEntity)homework.Lesson;
             entity.Marks = new EntityCollection<MarkEntity>();
             if (homework.Mark != null)
             {
-                entity.Marks.Add(Mark.ToMarkEntity(homework.Mark));
+                entity.Marks.Add((MarkEntity)homework.Mark);
             }
 
             return entity;

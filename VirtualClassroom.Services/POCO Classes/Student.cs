@@ -52,12 +52,15 @@ namespace VirtualClassroom.Services.POCO_Classes
             this.Homeworks = homeworks;
         }
 
-        internal static Student FromStudentEntity(StudentEntity entity)
+        public static explicit operator Student(StudentEntity entity)
         {
             List<Homework> homeworks = new List<Homework>();
-            if(entity.Homeworks != null)
+            if (entity.Homeworks != null)
             {
-                homeworks = (from h in entity.Homeworks select Homework.FromHomeworkEntity(h)).ToList();
+                foreach(var homeworkEntity in entity.Homeworks.ToList())
+                {
+                    homeworks.Add((Homework)homeworkEntity);
+                }
             }
 
             Student student = new Student(
@@ -67,8 +70,7 @@ namespace VirtualClassroom.Services.POCO_Classes
                 entity.MiddleName,
                 entity.LastName,
                 entity.EGN,
-                entity.PasswordHash, 
-                //Class.FromClassEntity(entity.Class),
+                entity.PasswordHash,
                 (Class)entity.Class,
                 homeworks
             );
@@ -76,13 +78,15 @@ namespace VirtualClassroom.Services.POCO_Classes
             return student;
         }
 
-        internal static StudentEntity ToStudentEntity(Student student)
+        public static explicit operator StudentEntity(Student student)
         {
             EntityCollection<HomeworkEntity> homeworkEntities = new EntityCollection<HomeworkEntity>();
-            if(student.Homeworks != null)
+            if (student.Homeworks != null)
             {
-                homeworkEntities = (EntityCollection<HomeworkEntity>)
-                    (from h in student.Homeworks select Homework.ToHomeworkEntity(h));
+                foreach(var homework in student.Homeworks)
+                {
+                    homeworkEntities.Add((HomeworkEntity)homework);
+                }
             }
 
             StudentEntity entity = new StudentEntity();
@@ -93,7 +97,7 @@ namespace VirtualClassroom.Services.POCO_Classes
             entity.LastName = student.LastName;
             entity.EGN = student.EGN;
             entity.PasswordHash = student.PasswordHash;
-            entity.Class = Class.ToClassEntity(student.Class);
+            entity.Class = (ClassEntity)student.Class;
             entity.Homeworks = homeworkEntities;
 
             return entity;

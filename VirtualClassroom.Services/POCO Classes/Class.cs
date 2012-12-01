@@ -36,44 +36,18 @@ namespace VirtualClassroom.Services.POCO_Classes
             this.Subjects = subjects;
         }
 
-        internal static ClassEntity ToClassEntity(Class cl)
-        {
-            EntityCollection<StudentEntity> studentEntities = new EntityCollection<StudentEntity>();
-            if(cl.Students != null)
-            {
-                studentEntities = (EntityCollection<StudentEntity>)
-                    (from s in cl.Students select Student.ToStudentEntity(s));
-            }
-
-            EntityCollection<SubjectEntity> subjectEntities = new EntityCollection<SubjectEntity>();
-            if(cl.Subjects != null)
-            {
-                subjectEntities =  (EntityCollection<SubjectEntity>) 
-                    (from s in cl.Subjects select Subject.ToSubjectEntity(s));
-            }
-
-            ClassEntity entity = new ClassEntity();
-            entity.Id = cl.Id;
-            entity.Number = cl.Number;
-            entity.Letter = cl.Letter.ToString();
-            entity.Students = studentEntities;
-            entity.Subjects = subjectEntities;
-
-            return entity;
-        }
-
         public static explicit operator Class(ClassEntity entity)
         {
             List<Student> students = new List<Student>();
             foreach (var studentEntity in entity.Students.ToList())
             {
-                students.Add(Student.FromStudentEntity(studentEntity));
+                students.Add((Student)studentEntity);
             }
             
             List<Subject> subjects = new List<Subject>();
             foreach (var subjectEntity in entity.Subjects.ToList())
             {
-                subjects.Add(Subject.FromSubjectEntity(subjectEntity));
+                subjects.Add((Subject)subjectEntity);
             }
              
 
@@ -86,6 +60,36 @@ namespace VirtualClassroom.Services.POCO_Classes
             );
 
             return cl;
+        }
+
+        public static explicit operator ClassEntity(Class cl)
+        {
+            EntityCollection<StudentEntity> studentEntities = new EntityCollection<StudentEntity>();
+            if (cl.Students != null)
+            {
+                foreach (var student in cl.Students)
+                {
+                    studentEntities.Add((StudentEntity)student);
+                }
+            }
+
+            EntityCollection<SubjectEntity> subjectEntities = new EntityCollection<SubjectEntity>();
+            if (cl.Subjects != null)
+            {
+                foreach(var subject in cl.Subjects)
+                {
+                    subjectEntities.Add((SubjectEntity)subject);
+                }
+            }
+
+            ClassEntity entity = new ClassEntity();
+            entity.Id = cl.Id;
+            entity.Number = cl.Number;
+            entity.Letter = cl.Letter.ToString();
+            entity.Students = studentEntities;
+            entity.Subjects = subjectEntities;
+
+            return entity;
         }
     }
 }

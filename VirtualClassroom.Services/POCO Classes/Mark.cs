@@ -26,23 +26,23 @@ namespace VirtualClassroom.Services.POCO_Classes
             this.Homework = homework;
         }
 
-        internal static Mark FromMarkEntity(MarkEntity entity)
+        public static explicit operator Mark(MarkEntity entity)
         {
             Mark mark = new Mark(
                 entity.Id,
                 entity.Value,
-                Homework.FromHomeworkEntity(entity.Homework)
+                (Homework)entity.Homework
             );
 
             return mark;
         }
 
-        internal static MarkEntity ToMarkEntity(Mark mark)
+        public static explicit operator MarkEntity(Mark mark)
         {
             MarkEntity entity = new MarkEntity();
             entity.Id = mark.Id;
             entity.Value = mark.Value;
-            entity.Homework = Homework.ToHomeworkEntity(mark.Homework);
+            entity.Homework = (HomeworkEntity)mark.Homework;
 
             return entity;
         }

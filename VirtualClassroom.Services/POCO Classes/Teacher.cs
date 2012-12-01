@@ -45,13 +45,15 @@ namespace VirtualClassroom.Services.POCO_Classes
             this.Subjects = subjects;
         }
 
-        internal static Teacher FromTeacherEntity(TeacherEntity entity)
+        public static explicit operator Teacher(TeacherEntity entity)
         {
             List<Subject> subjects = new List<Subject>();
-            if(entity.Subjects != null)
+            if (entity.Subjects != null)
             {
-                subjects = (from s in entity.Subjects
-                 select Subject.FromSubjectEntity(s)).ToList();
+                foreach (var subjectEntity in entity.Subjects.ToList())
+                {
+                    subjects.Add((Subject)subjectEntity);
+                }
             }
 
             Teacher teacher = new Teacher(
@@ -67,13 +69,15 @@ namespace VirtualClassroom.Services.POCO_Classes
             return teacher;
         }
 
-        internal static TeacherEntity ToTeacherEntity(Teacher teacher)
+        public static explicit operator  TeacherEntity(Teacher teacher)
         {
             EntityCollection<SubjectEntity> subjectEntities = new EntityCollection<SubjectEntity>();
-            if(teacher.Subjects != null)
+            if (teacher.Subjects != null)
             {
-                subjectEntities =
-                (EntityCollection<SubjectEntity>)(from s in teacher.Subjects select Subject.ToSubjectEntity(s));
+                foreach (var subject in teacher.Subjects)
+                {
+                    subjectEntities.Add((SubjectEntity)subject);
+                }
             }
 
             TeacherEntity entity = new TeacherEntity();

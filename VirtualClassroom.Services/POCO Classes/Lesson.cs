@@ -44,12 +44,15 @@ namespace VirtualClassroom.Services.POCO_Classes
             this.Subject = subject;
         }
 
-        internal static Lesson FromLessonEntity(LessonEntity entity)
+        public static explicit operator Lesson(LessonEntity entity)
         {
             List<Homework> homeworks = new List<Homework>();
-            if(entity.Homeworks != null)
+            if (entity.Homeworks != null)
             {
-                homeworks = (from h in entity.Homeworks select Homework.FromHomeworkEntity(h)).ToList();
+                foreach (var homeworkEntity in entity.Homeworks.ToList())
+                {
+                    homeworks.Add((Homework)homeworkEntity);                    
+                }
             }
 
             Lesson lesson = new Lesson(
@@ -59,19 +62,21 @@ namespace VirtualClassroom.Services.POCO_Classes
                 entity.HomeworkDueDate,
                 entity.HomeworkContent,
                 homeworks,
-                Subject.FromSubjectEntity(entity.Subject)
+                (Subject)entity.Subject
             );
 
             return lesson;
         }
 
-        internal static LessonEntity ToLessonEntity(Lesson lesson)
+        public static explicit operator LessonEntity(Lesson lesson)
         {
             EntityCollection<HomeworkEntity> homeworkEntities = new EntityCollection<HomeworkEntity>();
-            if(lesson.Homeworks != null)
+            if (lesson.Homeworks != null)
             {
-                homeworkEntities = (EntityCollection<HomeworkEntity>)
-                    (from h in lesson.Homeworks select Homework.ToHomeworkEntity(h));
+                foreach(var homework in lesson.Homeworks)
+                {
+                    homeworkEntities.Add((HomeworkEntity)homework);
+                }
             }
 
             LessonEntity entity = new LessonEntity();
@@ -81,7 +86,7 @@ namespace VirtualClassroom.Services.POCO_Classes
             entity.HomeworkDueDate = lesson.HomeworkDueDate;
             entity.HomeworkContent = lesson.HomeworkContent;
             entity.Homeworks = homeworkEntities;
-            entity.Subject = Subject.ToSubjectEntity(lesson.Subject);
+            entity.Subject =(SubjectEntity)lesson.Subject;
 
             return entity;
         }
