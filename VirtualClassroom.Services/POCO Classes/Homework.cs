@@ -21,22 +21,22 @@ namespace VirtualClassroom.Services.POCO_Classes
         public DateTime Date { get; set; }
 
         [DataMember]
-        public Student Student { get; set; }
+        public int StudentId { get; set; }
 
         [DataMember]
-        public Lesson Lesson { get; set; }
+        public int LessonId { get; set; }
 
         [DataMember]
         public Mark Mark { get; set; }
 
-        public Homework(int id, byte[] content, DateTime date, Student student,
-            Lesson lesson, Mark mark)
+        public Homework(int id, byte[] content, DateTime date, int studentId,
+            int lessonId, Mark mark)
         {
             this.Id = id;
             this.Content = content;
             this.Date = date;
-            this.Student = student;
-            this.Lesson = lesson;
+            this.StudentId = studentId;
+            this.LessonId = lessonId;
             this.Mark = mark;
         }
 
@@ -55,8 +55,8 @@ namespace VirtualClassroom.Services.POCO_Classes
                 entity.Id,
                 entity.Content,
                 entity.Date,
-                (Student)entity.Student,
-                (Lesson)entity.Lesson,
+                entity.StudentId,
+                entity.LessonId,
                 mark
             );
 
@@ -69,8 +69,8 @@ namespace VirtualClassroom.Services.POCO_Classes
             entity.Id = homework.Id;
             entity.Content = homework.Content;
             entity.Date = homework.Date;
-            entity.Student = (StudentEntity)homework.Student;
-            entity.Lesson = (LessonEntity)homework.Lesson;
+            entity.StudentId = homework.StudentId;
+            entity.LessonId = homework.LessonId;
             entity.Marks = new EntityCollection<MarkEntity>();
             if (homework.Mark != null)
             {

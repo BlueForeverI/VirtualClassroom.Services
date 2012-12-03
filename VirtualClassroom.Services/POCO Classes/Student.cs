@@ -30,16 +30,16 @@ namespace VirtualClassroom.Services.POCO_Classes
         public string EGN { get; set; }
 
         [DataMember]
-        public string PasswordHash { get; private set; }
+        public string PasswordHash { get; set; }
 
         [DataMember]
-        public Class Class { get; private set; }
+        public int ClassId { get; set; }
 
         [DataMember]
         public List<Homework> Homeworks { get; private set; }
 
         public Student(int id, string username, string firstName, string middleName,
-            string lastName, string egn, string passwordHash, Class c, List<Homework> homeworks)
+            string lastName, string egn, string passwordHash, int classId, List<Homework> homeworks)
         {
             this.Id = id;
             this.Username = username;
@@ -48,7 +48,7 @@ namespace VirtualClassroom.Services.POCO_Classes
             this.LastName = lastName;
             this.EGN = egn;
             this.PasswordHash = passwordHash;
-            this.Class = c;
+            this.ClassId = classId;
             this.Homeworks = homeworks;
         }
 
@@ -71,7 +71,7 @@ namespace VirtualClassroom.Services.POCO_Classes
                 entity.LastName,
                 entity.EGN,
                 entity.PasswordHash,
-                (Class)entity.Class,
+                entity.ClassId,
                 homeworks
             );
 
@@ -97,7 +97,7 @@ namespace VirtualClassroom.Services.POCO_Classes
             entity.LastName = student.LastName;
             entity.EGN = student.EGN;
             entity.PasswordHash = student.PasswordHash;
-            entity.Class = (ClassEntity)student.Class;
+            entity.ClassId = student.ClassId;
             entity.Homeworks = homeworkEntities;
 
             return entity;

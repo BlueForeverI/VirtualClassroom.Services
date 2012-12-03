@@ -24,16 +24,16 @@ namespace VirtualClassroom.Services.POCO_Classes
         public List<Class> Classes { get; set; }
 
         [DataMember]
-        public Teacher Teacher { get; set; }
+        public int TeacherId { get; set; }
 
         public Subject(int id, string name, List<Lesson> lessons, List<Class> classes,
-            Teacher teacher)
+            int teacherId)
         {
             this.Id = id;
             this.Name = name;
             this.Lessons = lessons;
             this.Classes = classes;
-            this.Teacher = teacher;
+            this.TeacherId = teacherId;
         }
 
         public static explicit operator Subject(SubjectEntity entity)
@@ -61,7 +61,7 @@ namespace VirtualClassroom.Services.POCO_Classes
                 entity.Name,
                 lessons,
                 classes,
-                (Teacher)entity.Teacher
+                entity.TeacherId
             );
 
             return subject;
@@ -92,7 +92,7 @@ namespace VirtualClassroom.Services.POCO_Classes
             entity.Name = subject.Name;
             entity.Lessons = lessonEntities;
             entity.Classes = classEntities;
-            entity.Teacher = (TeacherEntity)subject.Teacher;
+            entity.TeacherId = subject.TeacherId;
 
             return entity;
         }

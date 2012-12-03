@@ -17,13 +17,13 @@ namespace VirtualClassroom.Services.POCO_Classes
         public int Value { get; set; }
 
         [DataMember]
-        public Homework Homework { get; set; }
+        public int HomeworkId { get; set; }
 
-        public Mark(int id, int value, Homework homework)
+        public Mark(int id, int value, int homeworkId)
         {
             this.Id = id;
             this.Value = value;
-            this.Homework = homework;
+            this.HomeworkId = homeworkId;
         }
 
         public static explicit operator Mark(MarkEntity entity)
@@ -31,7 +31,7 @@ namespace VirtualClassroom.Services.POCO_Classes
             Mark mark = new Mark(
                 entity.Id,
                 entity.Value,
-                (Homework)entity.Homework
+                entity.HomeworkId
             );
 
             return mark;
@@ -42,7 +42,7 @@ namespace VirtualClassroom.Services.POCO_Classes
             MarkEntity entity = new MarkEntity();
             entity.Id = mark.Id;
             entity.Value = mark.Value;
-            entity.Homework = (HomeworkEntity)mark.Homework;
+            entity.HomeworkId = mark.HomeworkId;
 
             return entity;
         }

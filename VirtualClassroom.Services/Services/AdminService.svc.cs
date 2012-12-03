@@ -20,8 +20,11 @@ namespace VirtualClassroom.Services.Services
             entitityContext.SaveChanges();
         }
 
-        public void RegisterStudent(Student student)
+        public void RegisterStudent(Student student, string password)
         {
+            string passwordHash = BCrypt.Net.BCrypt.HashPassword(password);
+            student.PasswordHash = passwordHash;
+
             StudentEntity studentEntity = (StudentEntity)student;
             entitityContext.StudentEntities.AddObject(studentEntity);
             entitityContext.SaveChanges();

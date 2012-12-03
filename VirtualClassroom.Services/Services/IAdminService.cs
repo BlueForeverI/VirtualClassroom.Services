@@ -16,7 +16,7 @@ namespace VirtualClassroom.Services.Services
         void AddClass(Class c);
 
         [OperationContract]
-        void RegisterStudent(Student student);
+        void RegisterStudent(Student student, string password);
 
         [OperationContract]
         List<Class> GetClasses();

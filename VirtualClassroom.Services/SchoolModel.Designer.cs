@@ -18,13 +18,13 @@ using System.Runtime.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
-[assembly: EdmRelationshipAttribute("swaguche_virtualclassroomModel", "Students_ibfk_1", "Classes", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(VirtualClassroom.Services.ClassEntity), "Students", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(VirtualClassroom.Services.StudentEntity), true)]
-[assembly: EdmRelationshipAttribute("swaguche_virtualclassroomModel", "Homeworks_ibfk_2", "Students", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(VirtualClassroom.Services.StudentEntity), "Homeworks", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(VirtualClassroom.Services.HomeworkEntity), true)]
-[assembly: EdmRelationshipAttribute("swaguche_virtualclassroomModel", "Homeworks_ibfk_3", "Lessons", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(VirtualClassroom.Services.LessonEntity), "Homeworks", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(VirtualClassroom.Services.HomeworkEntity), true)]
-[assembly: EdmRelationshipAttribute("swaguche_virtualclassroomModel", "Marks_ibfk_1", "Homeworks", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(VirtualClassroom.Services.HomeworkEntity), "Marks", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(VirtualClassroom.Services.MarkEntity), true)]
-[assembly: EdmRelationshipAttribute("swaguche_virtualclassroomModel", "Lessons_ibfk_1", "Subjects", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(VirtualClassroom.Services.SubjectEntity), "Lessons", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(VirtualClassroom.Services.LessonEntity), true)]
-[assembly: EdmRelationshipAttribute("swaguche_virtualclassroomModel", "Subjects_ibfk_1", "Teachers", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(VirtualClassroom.Services.TeacherEntity), "Subjects", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(VirtualClassroom.Services.SubjectEntity), true)]
-[assembly: EdmRelationshipAttribute("swaguche_virtualclassroomModel", "Classes_Subjects", "Classes", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(VirtualClassroom.Services.ClassEntity), "Subjects", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(VirtualClassroom.Services.SubjectEntity))]
+[assembly: EdmRelationshipAttribute("SchoolModel", "Students_ibfk_1", "Classes", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(VirtualClassroom.Services.ClassEntity), "Students", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(VirtualClassroom.Services.StudentEntity), true)]
+[assembly: EdmRelationshipAttribute("SchoolModel", "Homeworks_ibfk_2", "Students", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(VirtualClassroom.Services.StudentEntity), "Homeworks", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(VirtualClassroom.Services.HomeworkEntity), true)]
+[assembly: EdmRelationshipAttribute("SchoolModel", "Homeworks_ibfk_3", "Lessons", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(VirtualClassroom.Services.LessonEntity), "Homeworks", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(VirtualClassroom.Services.HomeworkEntity), true)]
+[assembly: EdmRelationshipAttribute("SchoolModel", "Marks_ibfk_1", "Homeworks", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(VirtualClassroom.Services.HomeworkEntity), "Marks", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(VirtualClassroom.Services.MarkEntity), true)]
+[assembly: EdmRelationshipAttribute("SchoolModel", "Lessons_ibfk_1", "Subjects", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(VirtualClassroom.Services.SubjectEntity), "Lessons", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(VirtualClassroom.Services.LessonEntity), true)]
+[assembly: EdmRelationshipAttribute("SchoolModel", "Subjects_ibfk_1", "Teachers", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(VirtualClassroom.Services.TeacherEntity), "Subjects", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(VirtualClassroom.Services.SubjectEntity), true)]
+[assembly: EdmRelationshipAttribute("SchoolModel", "Classes_Subjects", "Classes", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(VirtualClassroom.Services.ClassEntity), "Subjects", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(VirtualClassroom.Services.SubjectEntity))]
 
 #endregion
 
@@ -258,7 +258,7 @@ namespace VirtualClassroom.Services
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="swaguche_virtualclassroomModel", Name="ClassEntity")]
+    [EdmEntityTypeAttribute(NamespaceName="SchoolModel", Name="ClassEntity")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class ClassEntity : EntityObject
@@ -368,18 +368,18 @@ namespace VirtualClassroom.Services
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("swaguche_virtualclassroomModel", "Students_ibfk_1", "Students")]
+        [EdmRelationshipNavigationPropertyAttribute("SchoolModel", "Students_ibfk_1", "Students")]
         public EntityCollection<StudentEntity> Students
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<StudentEntity>("swaguche_virtualclassroomModel.Students_ibfk_1", "Students");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<StudentEntity>("SchoolModel.Students_ibfk_1", "Students");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<StudentEntity>("swaguche_virtualclassroomModel.Students_ibfk_1", "Students", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<StudentEntity>("SchoolModel.Students_ibfk_1", "Students", value);
                 }
             }
         }
@@ -390,18 +390,18 @@ namespace VirtualClassroom.Services
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("swaguche_virtualclassroomModel", "Classes_Subjects", "Subjects")]
+        [EdmRelationshipNavigationPropertyAttribute("SchoolModel", "Classes_Subjects", "Subjects")]
         public EntityCollection<SubjectEntity> Subjects
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SubjectEntity>("swaguche_virtualclassroomModel.Classes_Subjects", "Subjects");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SubjectEntity>("SchoolModel.Classes_Subjects", "Subjects");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SubjectEntity>("swaguche_virtualclassroomModel.Classes_Subjects", "Subjects", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SubjectEntity>("SchoolModel.Classes_Subjects", "Subjects", value);
                 }
             }
         }
@@ -412,7 +412,7 @@ namespace VirtualClassroom.Services
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="swaguche_virtualclassroomModel", Name="HomeworkEntity")]
+    [EdmEntityTypeAttribute(NamespaceName="SchoolModel", Name="HomeworkEntity")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class HomeworkEntity : EntityObject
@@ -574,16 +574,16 @@ namespace VirtualClassroom.Services
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("swaguche_virtualclassroomModel", "Homeworks_ibfk_2", "Students")]
+        [EdmRelationshipNavigationPropertyAttribute("SchoolModel", "Homeworks_ibfk_2", "Students")]
         public StudentEntity Student
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<StudentEntity>("swaguche_virtualclassroomModel.Homeworks_ibfk_2", "Students").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<StudentEntity>("SchoolModel.Homeworks_ibfk_2", "Students").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<StudentEntity>("swaguche_virtualclassroomModel.Homeworks_ibfk_2", "Students").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<StudentEntity>("SchoolModel.Homeworks_ibfk_2", "Students").Value = value;
             }
         }
         /// <summary>
@@ -595,13 +595,13 @@ namespace VirtualClassroom.Services
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<StudentEntity>("swaguche_virtualclassroomModel.Homeworks_ibfk_2", "Students");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<StudentEntity>("SchoolModel.Homeworks_ibfk_2", "Students");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<StudentEntity>("swaguche_virtualclassroomModel.Homeworks_ibfk_2", "Students", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<StudentEntity>("SchoolModel.Homeworks_ibfk_2", "Students", value);
                 }
             }
         }
@@ -612,16 +612,16 @@ namespace VirtualClassroom.Services
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("swaguche_virtualclassroomModel", "Homeworks_ibfk_3", "Lessons")]
+        [EdmRelationshipNavigationPropertyAttribute("SchoolModel", "Homeworks_ibfk_3", "Lessons")]
         public LessonEntity Lesson
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<LessonEntity>("swaguche_virtualclassroomModel.Homeworks_ibfk_3", "Lessons").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<LessonEntity>("SchoolModel.Homeworks_ibfk_3", "Lessons").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<LessonEntity>("swaguche_virtualclassroomModel.Homeworks_ibfk_3", "Lessons").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<LessonEntity>("SchoolModel.Homeworks_ibfk_3", "Lessons").Value = value;
             }
         }
         /// <summary>
@@ -633,13 +633,13 @@ namespace VirtualClassroom.Services
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<LessonEntity>("swaguche_virtualclassroomModel.Homeworks_ibfk_3", "Lessons");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<LessonEntity>("SchoolModel.Homeworks_ibfk_3", "Lessons");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<LessonEntity>("swaguche_virtualclassroomModel.Homeworks_ibfk_3", "Lessons", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<LessonEntity>("SchoolModel.Homeworks_ibfk_3", "Lessons", value);
                 }
             }
         }
@@ -650,18 +650,18 @@ namespace VirtualClassroom.Services
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("swaguche_virtualclassroomModel", "Marks_ibfk_1", "Marks")]
+        [EdmRelationshipNavigationPropertyAttribute("SchoolModel", "Marks_ibfk_1", "Marks")]
         public EntityCollection<MarkEntity> Marks
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<MarkEntity>("swaguche_virtualclassroomModel.Marks_ibfk_1", "Marks");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<MarkEntity>("SchoolModel.Marks_ibfk_1", "Marks");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<MarkEntity>("swaguche_virtualclassroomModel.Marks_ibfk_1", "Marks", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<MarkEntity>("SchoolModel.Marks_ibfk_1", "Marks", value);
                 }
             }
         }
@@ -672,7 +672,7 @@ namespace VirtualClassroom.Services
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="swaguche_virtualclassroomModel", Name="LessonEntity")]
+    [EdmEntityTypeAttribute(NamespaceName="SchoolModel", Name="LessonEntity")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class LessonEntity : EntityObject
@@ -856,18 +856,18 @@ namespace VirtualClassroom.Services
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("swaguche_virtualclassroomModel", "Homeworks_ibfk_3", "Homeworks")]
+        [EdmRelationshipNavigationPropertyAttribute("SchoolModel", "Homeworks_ibfk_3", "Homeworks")]
         public EntityCollection<HomeworkEntity> Homeworks
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<HomeworkEntity>("swaguche_virtualclassroomModel.Homeworks_ibfk_3", "Homeworks");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<HomeworkEntity>("SchoolModel.Homeworks_ibfk_3", "Homeworks");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<HomeworkEntity>("swaguche_virtualclassroomModel.Homeworks_ibfk_3", "Homeworks", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<HomeworkEntity>("SchoolModel.Homeworks_ibfk_3", "Homeworks", value);
                 }
             }
         }
@@ -878,16 +878,16 @@ namespace VirtualClassroom.Services
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("swaguche_virtualclassroomModel", "Lessons_ibfk_1", "Subjects")]
+        [EdmRelationshipNavigationPropertyAttribute("SchoolModel", "Lessons_ibfk_1", "Subjects")]
         public SubjectEntity Subject
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SubjectEntity>("swaguche_virtualclassroomModel.Lessons_ibfk_1", "Subjects").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SubjectEntity>("SchoolModel.Lessons_ibfk_1", "Subjects").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SubjectEntity>("swaguche_virtualclassroomModel.Lessons_ibfk_1", "Subjects").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SubjectEntity>("SchoolModel.Lessons_ibfk_1", "Subjects").Value = value;
             }
         }
         /// <summary>
@@ -899,13 +899,13 @@ namespace VirtualClassroom.Services
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SubjectEntity>("swaguche_virtualclassroomModel.Lessons_ibfk_1", "Subjects");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SubjectEntity>("SchoolModel.Lessons_ibfk_1", "Subjects");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SubjectEntity>("swaguche_virtualclassroomModel.Lessons_ibfk_1", "Subjects", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SubjectEntity>("SchoolModel.Lessons_ibfk_1", "Subjects", value);
                 }
             }
         }
@@ -916,7 +916,7 @@ namespace VirtualClassroom.Services
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="swaguche_virtualclassroomModel", Name="MarkEntity")]
+    [EdmEntityTypeAttribute(NamespaceName="SchoolModel", Name="MarkEntity")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class MarkEntity : EntityObject
@@ -1026,16 +1026,16 @@ namespace VirtualClassroom.Services
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("swaguche_virtualclassroomModel", "Marks_ibfk_1", "Homeworks")]
+        [EdmRelationshipNavigationPropertyAttribute("SchoolModel", "Marks_ibfk_1", "Homeworks")]
         public HomeworkEntity Homework
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<HomeworkEntity>("swaguche_virtualclassroomModel.Marks_ibfk_1", "Homeworks").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<HomeworkEntity>("SchoolModel.Marks_ibfk_1", "Homeworks").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<HomeworkEntity>("swaguche_virtualclassroomModel.Marks_ibfk_1", "Homeworks").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<HomeworkEntity>("SchoolModel.Marks_ibfk_1", "Homeworks").Value = value;
             }
         }
         /// <summary>
@@ -1047,13 +1047,13 @@ namespace VirtualClassroom.Services
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<HomeworkEntity>("swaguche_virtualclassroomModel.Marks_ibfk_1", "Homeworks");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<HomeworkEntity>("SchoolModel.Marks_ibfk_1", "Homeworks");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<HomeworkEntity>("swaguche_virtualclassroomModel.Marks_ibfk_1", "Homeworks", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<HomeworkEntity>("SchoolModel.Marks_ibfk_1", "Homeworks", value);
                 }
             }
         }
@@ -1064,7 +1064,7 @@ namespace VirtualClassroom.Services
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="swaguche_virtualclassroomModel", Name="StudentEntity")]
+    [EdmEntityTypeAttribute(NamespaceName="SchoolModel", Name="StudentEntity")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class StudentEntity : EntityObject
@@ -1249,7 +1249,7 @@ namespace VirtualClassroom.Services
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.String PasswordHash
         {
@@ -1261,7 +1261,7 @@ namespace VirtualClassroom.Services
             {
                 OnPasswordHashChanging(value);
                 ReportPropertyChanging("PasswordHash");
-                _PasswordHash = StructuralObject.SetValidValue(value, true);
+                _PasswordHash = StructuralObject.SetValidValue(value, false);
                 ReportPropertyChanged("PasswordHash");
                 OnPasswordHashChanged();
             }
@@ -1304,16 +1304,16 @@ namespace VirtualClassroom.Services
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("swaguche_virtualclassroomModel", "Students_ibfk_1", "Classes")]
+        [EdmRelationshipNavigationPropertyAttribute("SchoolModel", "Students_ibfk_1", "Classes")]
         public ClassEntity Class
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ClassEntity>("swaguche_virtualclassroomModel.Students_ibfk_1", "Classes").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ClassEntity>("SchoolModel.Students_ibfk_1", "Classes").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ClassEntity>("swaguche_virtualclassroomModel.Students_ibfk_1", "Classes").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ClassEntity>("SchoolModel.Students_ibfk_1", "Classes").Value = value;
             }
         }
         /// <summary>
@@ -1325,13 +1325,13 @@ namespace VirtualClassroom.Services
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ClassEntity>("swaguche_virtualclassroomModel.Students_ibfk_1", "Classes");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ClassEntity>("SchoolModel.Students_ibfk_1", "Classes");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ClassEntity>("swaguche_virtualclassroomModel.Students_ibfk_1", "Classes", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ClassEntity>("SchoolModel.Students_ibfk_1", "Classes", value);
                 }
             }
         }
@@ -1342,18 +1342,18 @@ namespace VirtualClassroom.Services
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("swaguche_virtualclassroomModel", "Homeworks_ibfk_2", "Homeworks")]
+        [EdmRelationshipNavigationPropertyAttribute("SchoolModel", "Homeworks_ibfk_2", "Homeworks")]
         public EntityCollection<HomeworkEntity> Homeworks
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<HomeworkEntity>("swaguche_virtualclassroomModel.Homeworks_ibfk_2", "Homeworks");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<HomeworkEntity>("SchoolModel.Homeworks_ibfk_2", "Homeworks");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<HomeworkEntity>("swaguche_virtualclassroomModel.Homeworks_ibfk_2", "Homeworks", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<HomeworkEntity>("SchoolModel.Homeworks_ibfk_2", "Homeworks", value);
                 }
             }
         }
@@ -1364,7 +1364,7 @@ namespace VirtualClassroom.Services
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="swaguche_virtualclassroomModel", Name="SubjectEntity")]
+    [EdmEntityTypeAttribute(NamespaceName="SchoolModel", Name="SubjectEntity")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class SubjectEntity : EntityObject
@@ -1474,18 +1474,18 @@ namespace VirtualClassroom.Services
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("swaguche_virtualclassroomModel", "Lessons_ibfk_1", "Lessons")]
+        [EdmRelationshipNavigationPropertyAttribute("SchoolModel", "Lessons_ibfk_1", "Lessons")]
         public EntityCollection<LessonEntity> Lessons
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<LessonEntity>("swaguche_virtualclassroomModel.Lessons_ibfk_1", "Lessons");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<LessonEntity>("SchoolModel.Lessons_ibfk_1", "Lessons");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<LessonEntity>("swaguche_virtualclassroomModel.Lessons_ibfk_1", "Lessons", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<LessonEntity>("SchoolModel.Lessons_ibfk_1", "Lessons", value);
                 }
             }
         }
@@ -1496,16 +1496,16 @@ namespace VirtualClassroom.Services
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("swaguche_virtualclassroomModel", "Subjects_ibfk_1", "Teachers")]
+        [EdmRelationshipNavigationPropertyAttribute("SchoolModel", "Subjects_ibfk_1", "Teachers")]
         public TeacherEntity Teacher
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TeacherEntity>("swaguche_virtualclassroomModel.Subjects_ibfk_1", "Teachers").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TeacherEntity>("SchoolModel.Subjects_ibfk_1", "Teachers").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TeacherEntity>("swaguche_virtualclassroomModel.Subjects_ibfk_1", "Teachers").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TeacherEntity>("SchoolModel.Subjects_ibfk_1", "Teachers").Value = value;
             }
         }
         /// <summary>
@@ -1517,13 +1517,13 @@ namespace VirtualClassroom.Services
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TeacherEntity>("swaguche_virtualclassroomModel.Subjects_ibfk_1", "Teachers");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TeacherEntity>("SchoolModel.Subjects_ibfk_1", "Teachers");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<TeacherEntity>("swaguche_virtualclassroomModel.Subjects_ibfk_1", "Teachers", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<TeacherEntity>("SchoolModel.Subjects_ibfk_1", "Teachers", value);
                 }
             }
         }
@@ -1534,18 +1534,18 @@ namespace VirtualClassroom.Services
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("swaguche_virtualclassroomModel", "Classes_Subjects", "Classes")]
+        [EdmRelationshipNavigationPropertyAttribute("SchoolModel", "Classes_Subjects", "Classes")]
         public EntityCollection<ClassEntity> Classes
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ClassEntity>("swaguche_virtualclassroomModel.Classes_Subjects", "Classes");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ClassEntity>("SchoolModel.Classes_Subjects", "Classes");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ClassEntity>("swaguche_virtualclassroomModel.Classes_Subjects", "Classes", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ClassEntity>("SchoolModel.Classes_Subjects", "Classes", value);
                 }
             }
         }
@@ -1556,7 +1556,7 @@ namespace VirtualClassroom.Services
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="swaguche_virtualclassroomModel", Name="TeacherEntity")]
+    [EdmEntityTypeAttribute(NamespaceName="SchoolModel", Name="TeacherEntity")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class TeacherEntity : EntityObject
@@ -1744,18 +1744,18 @@ namespace VirtualClassroom.Services
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("swaguche_virtualclassroomModel", "Subjects_ibfk_1", "Subjects")]
+        [EdmRelationshipNavigationPropertyAttribute("SchoolModel", "Subjects_ibfk_1", "Subjects")]
         public EntityCollection<SubjectEntity> Subjects
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SubjectEntity>("swaguche_virtualclassroomModel.Subjects_ibfk_1", "Subjects");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SubjectEntity>("SchoolModel.Subjects_ibfk_1", "Subjects");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SubjectEntity>("swaguche_virtualclassroomModel.Subjects_ibfk_1", "Subjects", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SubjectEntity>("SchoolModel.Subjects_ibfk_1", "Subjects", value);
                 }
             }
         }

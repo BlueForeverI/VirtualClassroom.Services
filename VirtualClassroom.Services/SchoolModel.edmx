@@ -4,45 +4,45 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="swaguche_virtualclassroomModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.1" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
-        <EntityContainer Name="swaguche_virtualclassroomModelStoreContainer">
-          <EntitySet Name="Classes" EntityType="swaguche_virtualclassroomModel.Store.Classes" store:Type="Tables" Schema="swaguche_virtualclassroom" />
-          <EntitySet Name="Classes_Subjects" EntityType="swaguche_virtualclassroomModel.Store.Classes_Subjects" store:Type="Tables" Schema="swaguche_virtualclassroom" />
-          <EntitySet Name="Homeworks" EntityType="swaguche_virtualclassroomModel.Store.Homeworks" store:Type="Tables" Schema="swaguche_virtualclassroom" />
-          <EntitySet Name="Lessons" EntityType="swaguche_virtualclassroomModel.Store.Lessons" store:Type="Tables" Schema="swaguche_virtualclassroom" />
-          <EntitySet Name="Marks" EntityType="swaguche_virtualclassroomModel.Store.Marks" store:Type="Tables" Schema="swaguche_virtualclassroom" />
-          <EntitySet Name="Students" EntityType="swaguche_virtualclassroomModel.Store.Students" store:Type="Tables" Schema="swaguche_virtualclassroom" />
-          <EntitySet Name="Subjects" EntityType="swaguche_virtualclassroomModel.Store.Subjects" store:Type="Tables" Schema="swaguche_virtualclassroom" />
-          <EntitySet Name="Teachers" EntityType="swaguche_virtualclassroomModel.Store.Teachers" store:Type="Tables" Schema="swaguche_virtualclassroom" />
-          <AssociationSet Name="Classes_Subjects_ibfk_1" Association="swaguche_virtualclassroomModel.Store.Classes_Subjects_ibfk_1">
+      <Schema Namespace="SchoolModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.1" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="SchoolModelStoreContainer">
+          <EntitySet Name="Classes" EntityType="SchoolModel.Store.Classes" store:Type="Tables" Schema="swaguche_virtualclassroom" />
+          <EntitySet Name="Classes_Subjects" EntityType="SchoolModel.Store.Classes_Subjects" store:Type="Tables" Schema="swaguche_virtualclassroom" />
+          <EntitySet Name="Homeworks" EntityType="SchoolModel.Store.Homeworks" store:Type="Tables" Schema="swaguche_virtualclassroom" />
+          <EntitySet Name="Lessons" EntityType="SchoolModel.Store.Lessons" store:Type="Tables" Schema="swaguche_virtualclassroom" />
+          <EntitySet Name="Marks" EntityType="SchoolModel.Store.Marks" store:Type="Tables" Schema="swaguche_virtualclassroom" />
+          <EntitySet Name="Students" EntityType="SchoolModel.Store.Students" store:Type="Tables" Schema="swaguche_virtualclassroom" />
+          <EntitySet Name="Subjects" EntityType="SchoolModel.Store.Subjects" store:Type="Tables" Schema="swaguche_virtualclassroom" />
+          <EntitySet Name="Teachers" EntityType="SchoolModel.Store.Teachers" store:Type="Tables" Schema="swaguche_virtualclassroom" />
+          <AssociationSet Name="Classes_Subjects_ibfk_1" Association="SchoolModel.Store.Classes_Subjects_ibfk_1">
             <End Role="Classes" EntitySet="Classes" />
             <End Role="Classes_Subjects" EntitySet="Classes_Subjects" />
           </AssociationSet>
-          <AssociationSet Name="Classes_Subjects_ibfk_2" Association="swaguche_virtualclassroomModel.Store.Classes_Subjects_ibfk_2">
+          <AssociationSet Name="Classes_Subjects_ibfk_2" Association="SchoolModel.Store.Classes_Subjects_ibfk_2">
             <End Role="Subjects" EntitySet="Subjects" />
             <End Role="Classes_Subjects" EntitySet="Classes_Subjects" />
           </AssociationSet>
-          <AssociationSet Name="Homeworks_ibfk_2" Association="swaguche_virtualclassroomModel.Store.Homeworks_ibfk_2">
+          <AssociationSet Name="Homeworks_ibfk_2" Association="SchoolModel.Store.Homeworks_ibfk_2">
             <End Role="Students" EntitySet="Students" />
             <End Role="Homeworks" EntitySet="Homeworks" />
           </AssociationSet>
-          <AssociationSet Name="Homeworks_ibfk_3" Association="swaguche_virtualclassroomModel.Store.Homeworks_ibfk_3">
+          <AssociationSet Name="Homeworks_ibfk_3" Association="SchoolModel.Store.Homeworks_ibfk_3">
             <End Role="Lessons" EntitySet="Lessons" />
             <End Role="Homeworks" EntitySet="Homeworks" />
           </AssociationSet>
-          <AssociationSet Name="Lessons_ibfk_1" Association="swaguche_virtualclassroomModel.Store.Lessons_ibfk_1">
+          <AssociationSet Name="Lessons_ibfk_1" Association="SchoolModel.Store.Lessons_ibfk_1">
             <End Role="Subjects" EntitySet="Subjects" />
             <End Role="Lessons" EntitySet="Lessons" />
           </AssociationSet>
-          <AssociationSet Name="Marks_ibfk_1" Association="swaguche_virtualclassroomModel.Store.Marks_ibfk_1">
+          <AssociationSet Name="Marks_ibfk_1" Association="SchoolModel.Store.Marks_ibfk_1">
             <End Role="Homeworks" EntitySet="Homeworks" />
             <End Role="Marks" EntitySet="Marks" />
           </AssociationSet>
-          <AssociationSet Name="Students_ibfk_1" Association="swaguche_virtualclassroomModel.Store.Students_ibfk_1">
+          <AssociationSet Name="Students_ibfk_1" Association="SchoolModel.Store.Students_ibfk_1">
             <End Role="Classes" EntitySet="Classes" />
             <End Role="Students" EntitySet="Students" />
           </AssociationSet>
-          <AssociationSet Name="Subjects_ibfk_1" Association="swaguche_virtualclassroomModel.Store.Subjects_ibfk_1">
+          <AssociationSet Name="Subjects_ibfk_1" Association="SchoolModel.Store.Subjects_ibfk_1">
             <End Role="Teachers" EntitySet="Teachers" />
             <End Role="Subjects" EntitySet="Subjects" />
           </AssociationSet>
@@ -96,7 +96,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Username" Type="varchar" Nullable="false" MaxLength="25" />
           <Property Name="FirstName" Type="varchar" Nullable="false" MaxLength="35" />
           <Property Name="MiddleName" Type="varchar" Nullable="false" MaxLength="35" />
@@ -125,10 +125,10 @@
           <Property Name="PasswordHash" Type="text" Nullable="false" />
         </EntityType>
         <Association Name="Classes_Subjects_ibfk_1">
-          <End Role="Classes" Type="swaguche_virtualclassroomModel.Store.Classes" Multiplicity="1">
+          <End Role="Classes" Type="SchoolModel.Store.Classes" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Classes_Subjects" Type="swaguche_virtualclassroomModel.Store.Classes_Subjects" Multiplicity="*" />
+          <End Role="Classes_Subjects" Type="SchoolModel.Store.Classes_Subjects" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Classes">
               <PropertyRef Name="Id" />
@@ -139,10 +139,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="Classes_Subjects_ibfk_2">
-          <End Role="Subjects" Type="swaguche_virtualclassroomModel.Store.Subjects" Multiplicity="1">
+          <End Role="Subjects" Type="SchoolModel.Store.Subjects" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Classes_Subjects" Type="swaguche_virtualclassroomModel.Store.Classes_Subjects" Multiplicity="*" />
+          <End Role="Classes_Subjects" Type="SchoolModel.Store.Classes_Subjects" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Subjects">
               <PropertyRef Name="Id" />
@@ -153,10 +153,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="Homeworks_ibfk_2">
-          <End Role="Students" Type="swaguche_virtualclassroomModel.Store.Students" Multiplicity="1">
+          <End Role="Students" Type="SchoolModel.Store.Students" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Homeworks" Type="swaguche_virtualclassroomModel.Store.Homeworks" Multiplicity="*" />
+          <End Role="Homeworks" Type="SchoolModel.Store.Homeworks" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Students">
               <PropertyRef Name="Id" />
@@ -167,10 +167,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="Homeworks_ibfk_3">
-          <End Role="Lessons" Type="swaguche_virtualclassroomModel.Store.Lessons" Multiplicity="1">
+          <End Role="Lessons" Type="SchoolModel.Store.Lessons" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Homeworks" Type="swaguche_virtualclassroomModel.Store.Homeworks" Multiplicity="*" />
+          <End Role="Homeworks" Type="SchoolModel.Store.Homeworks" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Lessons">
               <PropertyRef Name="Id" />
@@ -181,10 +181,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="Lessons_ibfk_1">
-          <End Role="Subjects" Type="swaguche_virtualclassroomModel.Store.Subjects" Multiplicity="1">
+          <End Role="Subjects" Type="SchoolModel.Store.Subjects" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Lessons" Type="swaguche_virtualclassroomModel.Store.Lessons" Multiplicity="*" />
+          <End Role="Lessons" Type="SchoolModel.Store.Lessons" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Subjects">
               <PropertyRef Name="Id" />
@@ -195,10 +195,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="Marks_ibfk_1">
-          <End Role="Homeworks" Type="swaguche_virtualclassroomModel.Store.Homeworks" Multiplicity="1">
+          <End Role="Homeworks" Type="SchoolModel.Store.Homeworks" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Marks" Type="swaguche_virtualclassroomModel.Store.Marks" Multiplicity="*" />
+          <End Role="Marks" Type="SchoolModel.Store.Marks" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Homeworks">
               <PropertyRef Name="Id" />
@@ -209,10 +209,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="Students_ibfk_1">
-          <End Role="Classes" Type="swaguche_virtualclassroomModel.Store.Classes" Multiplicity="1">
+          <End Role="Classes" Type="SchoolModel.Store.Classes" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Students" Type="swaguche_virtualclassroomModel.Store.Students" Multiplicity="*" />
+          <End Role="Students" Type="SchoolModel.Store.Students" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Classes">
               <PropertyRef Name="Id" />
@@ -223,10 +223,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="Subjects_ibfk_1">
-          <End Role="Teachers" Type="swaguche_virtualclassroomModel.Store.Teachers" Multiplicity="1">
+          <End Role="Teachers" Type="SchoolModel.Store.Teachers" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Subjects" Type="swaguche_virtualclassroomModel.Store.Subjects" Multiplicity="*" />
+          <End Role="Subjects" Type="SchoolModel.Store.Subjects" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Teachers">
               <PropertyRef Name="Id" />
@@ -240,40 +240,40 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="swaguche_virtualclassroomModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+      <Schema Namespace="SchoolModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityContainer Name="VirtualClassroomEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="ClassEntities" EntityType="swaguche_virtualclassroomModel.ClassEntity" />
-          <EntitySet Name="Homeworks" EntityType="swaguche_virtualclassroomModel.HomeworkEntity" />
-          <EntitySet Name="LessonEntities" EntityType="swaguche_virtualclassroomModel.LessonEntity" />
-          <EntitySet Name="MarkEntities" EntityType="swaguche_virtualclassroomModel.MarkEntity" />
-          <EntitySet Name="StudentEntities" EntityType="swaguche_virtualclassroomModel.StudentEntity" />
-          <EntitySet Name="SubjectEntities" EntityType="swaguche_virtualclassroomModel.SubjectEntity" />
-          <EntitySet Name="TeacherEntities" EntityType="swaguche_virtualclassroomModel.TeacherEntity" />
-          <AssociationSet Name="Students_ibfk_1" Association="swaguche_virtualclassroomModel.Students_ibfk_1">
+          <EntitySet Name="ClassEntities" EntityType="SchoolModel.ClassEntity" />
+          <EntitySet Name="Homeworks" EntityType="SchoolModel.HomeworkEntity" />
+          <EntitySet Name="LessonEntities" EntityType="SchoolModel.LessonEntity" />
+          <EntitySet Name="MarkEntities" EntityType="SchoolModel.MarkEntity" />
+          <EntitySet Name="StudentEntities" EntityType="SchoolModel.StudentEntity" />
+          <EntitySet Name="SubjectEntities" EntityType="SchoolModel.SubjectEntity" />
+          <EntitySet Name="TeacherEntities" EntityType="SchoolModel.TeacherEntity" />
+          <AssociationSet Name="Students_ibfk_1" Association="SchoolModel.Students_ibfk_1">
             <End Role="Classes" EntitySet="ClassEntities" />
             <End Role="Students" EntitySet="StudentEntities" />
           </AssociationSet>
-          <AssociationSet Name="Homeworks_ibfk_2" Association="swaguche_virtualclassroomModel.Homeworks_ibfk_2">
+          <AssociationSet Name="Homeworks_ibfk_2" Association="SchoolModel.Homeworks_ibfk_2">
             <End Role="Students" EntitySet="StudentEntities" />
             <End Role="Homeworks" EntitySet="Homeworks" />
           </AssociationSet>
-          <AssociationSet Name="Homeworks_ibfk_3" Association="swaguche_virtualclassroomModel.Homeworks_ibfk_3">
+          <AssociationSet Name="Homeworks_ibfk_3" Association="SchoolModel.Homeworks_ibfk_3">
             <End Role="Lessons" EntitySet="LessonEntities" />
             <End Role="Homeworks" EntitySet="Homeworks" />
           </AssociationSet>
-          <AssociationSet Name="Marks_ibfk_1" Association="swaguche_virtualclassroomModel.Marks_ibfk_1">
+          <AssociationSet Name="Marks_ibfk_1" Association="SchoolModel.Marks_ibfk_1">
             <End Role="Homeworks" EntitySet="Homeworks" />
             <End Role="Marks" EntitySet="MarkEntities" />
           </AssociationSet>
-          <AssociationSet Name="Lessons_ibfk_1" Association="swaguche_virtualclassroomModel.Lessons_ibfk_1">
+          <AssociationSet Name="Lessons_ibfk_1" Association="SchoolModel.Lessons_ibfk_1">
             <End Role="Subjects" EntitySet="SubjectEntities" />
             <End Role="Lessons" EntitySet="LessonEntities" />
           </AssociationSet>
-          <AssociationSet Name="Subjects_ibfk_1" Association="swaguche_virtualclassroomModel.Subjects_ibfk_1">
+          <AssociationSet Name="Subjects_ibfk_1" Association="SchoolModel.Subjects_ibfk_1">
             <End Role="Teachers" EntitySet="TeacherEntities" />
             <End Role="Subjects" EntitySet="SubjectEntities" />
           </AssociationSet>
-          <AssociationSet Name="Classes_Subjects" Association="swaguche_virtualclassroomModel.Classes_Subjects">
+          <AssociationSet Name="Classes_Subjects" Association="SchoolModel.Classes_Subjects">
             <End Role="Classes" EntitySet="ClassEntities" />
             <End Role="Subjects" EntitySet="SubjectEntities" />
           </AssociationSet>
@@ -285,8 +285,8 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Number" Type="Int32" Nullable="false" />
           <Property Name="Letter" Type="String" Nullable="false" />
-          <NavigationProperty Name="Students" Relationship="swaguche_virtualclassroomModel.Students_ibfk_1" FromRole="Classes" ToRole="Students" />
-          <NavigationProperty Name="Subjects" Relationship="swaguche_virtualclassroomModel.Classes_Subjects" FromRole="Classes" ToRole="Subjects" />
+          <NavigationProperty Name="Students" Relationship="SchoolModel.Students_ibfk_1" FromRole="Classes" ToRole="Students" />
+          <NavigationProperty Name="Subjects" Relationship="SchoolModel.Classes_Subjects" FromRole="Classes" ToRole="Subjects" />
         </EntityType>
         <EntityType Name="HomeworkEntity">
           <Key>
@@ -297,9 +297,9 @@
           <Property Name="LessonId" Type="Int32" Nullable="false" />
           <Property Name="Content" Type="Binary" Nullable="false" />
           <Property Name="Date" Type="DateTime" Nullable="false" />
-          <NavigationProperty Name="Student" Relationship="swaguche_virtualclassroomModel.Homeworks_ibfk_2" FromRole="Homeworks" ToRole="Students" />
-          <NavigationProperty Name="Lesson" Relationship="swaguche_virtualclassroomModel.Homeworks_ibfk_3" FromRole="Homeworks" ToRole="Lessons" />
-          <NavigationProperty Name="Marks" Relationship="swaguche_virtualclassroomModel.Marks_ibfk_1" FromRole="Homeworks" ToRole="Marks" />
+          <NavigationProperty Name="Student" Relationship="SchoolModel.Homeworks_ibfk_2" FromRole="Homeworks" ToRole="Students" />
+          <NavigationProperty Name="Lesson" Relationship="SchoolModel.Homeworks_ibfk_3" FromRole="Homeworks" ToRole="Lessons" />
+          <NavigationProperty Name="Marks" Relationship="SchoolModel.Marks_ibfk_1" FromRole="Homeworks" ToRole="Marks" />
         </EntityType>
         <EntityType Name="LessonEntity">
           <Key>
@@ -311,8 +311,8 @@
           <Property Name="Date" Type="DateTime" Nullable="false" />
           <Property Name="HomeworkDueDate" Type="DateTime" />
           <Property Name="HomeworkContent" Type="Binary" />
-          <NavigationProperty Name="Homeworks" Relationship="swaguche_virtualclassroomModel.Homeworks_ibfk_3" FromRole="Lessons" ToRole="Homeworks" />
-          <NavigationProperty Name="Subject" Relationship="swaguche_virtualclassroomModel.Lessons_ibfk_1" FromRole="Lessons" ToRole="Subjects" />
+          <NavigationProperty Name="Homeworks" Relationship="SchoolModel.Homeworks_ibfk_3" FromRole="Lessons" ToRole="Homeworks" />
+          <NavigationProperty Name="Subject" Relationship="SchoolModel.Lessons_ibfk_1" FromRole="Lessons" ToRole="Subjects" />
         </EntityType>
         <EntityType Name="MarkEntity">
           <Key>
@@ -321,13 +321,13 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Value" Type="Int32" Nullable="false" />
           <Property Name="HomeworkId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Homework" Relationship="swaguche_virtualclassroomModel.Marks_ibfk_1" FromRole="Marks" ToRole="Homeworks" />
+          <NavigationProperty Name="Homework" Relationship="SchoolModel.Marks_ibfk_1" FromRole="Marks" ToRole="Homeworks" />
         </EntityType>
         <EntityType Name="StudentEntity">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Username" Type="String" Nullable="false" />
           <Property Name="FirstName" Type="String" Nullable="false" />
           <Property Name="MiddleName" Type="String" Nullable="false" />
@@ -335,8 +335,8 @@
           <Property Name="EGN" Type="String" Nullable="false" />
           <Property Name="PasswordHash" Type="String" Nullable="false" />
           <Property Name="ClassId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Class" Relationship="swaguche_virtualclassroomModel.Students_ibfk_1" FromRole="Students" ToRole="Classes" />
-          <NavigationProperty Name="Homeworks" Relationship="swaguche_virtualclassroomModel.Homeworks_ibfk_2" FromRole="Students" ToRole="Homeworks" />
+          <NavigationProperty Name="Class" Relationship="SchoolModel.Students_ibfk_1" FromRole="Students" ToRole="Classes" />
+          <NavigationProperty Name="Homeworks" Relationship="SchoolModel.Homeworks_ibfk_2" FromRole="Students" ToRole="Homeworks" />
         </EntityType>
         <EntityType Name="SubjectEntity">
           <Key>
@@ -345,9 +345,9 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" />
           <Property Name="TeacherId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Lessons" Relationship="swaguche_virtualclassroomModel.Lessons_ibfk_1" FromRole="Subjects" ToRole="Lessons" />
-          <NavigationProperty Name="Teacher" Relationship="swaguche_virtualclassroomModel.Subjects_ibfk_1" FromRole="Subjects" ToRole="Teachers" />
-          <NavigationProperty Name="Classes" Relationship="swaguche_virtualclassroomModel.Classes_Subjects" FromRole="Subjects" ToRole="Classes" />
+          <NavigationProperty Name="Lessons" Relationship="SchoolModel.Lessons_ibfk_1" FromRole="Subjects" ToRole="Lessons" />
+          <NavigationProperty Name="Teacher" Relationship="SchoolModel.Subjects_ibfk_1" FromRole="Subjects" ToRole="Teachers" />
+          <NavigationProperty Name="Classes" Relationship="SchoolModel.Classes_Subjects" FromRole="Subjects" ToRole="Classes" />
         </EntityType>
         <EntityType Name="TeacherEntity">
           <Key>
@@ -359,13 +359,13 @@
           <Property Name="MiddleName" Type="String" Nullable="false" />
           <Property Name="LastName" Type="String" Nullable="false" />
           <Property Name="PasswordHash" Type="String" Nullable="false" />
-          <NavigationProperty Name="Subjects" Relationship="swaguche_virtualclassroomModel.Subjects_ibfk_1" FromRole="Teachers" ToRole="Subjects" />
+          <NavigationProperty Name="Subjects" Relationship="SchoolModel.Subjects_ibfk_1" FromRole="Teachers" ToRole="Subjects" />
         </EntityType>
         <Association Name="Students_ibfk_1">
-          <End Role="Classes" Type="swaguche_virtualclassroomModel.ClassEntity" Multiplicity="1">
+          <End Role="Classes" Type="SchoolModel.ClassEntity" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Students" Type="swaguche_virtualclassroomModel.StudentEntity" Multiplicity="*" />
+          <End Role="Students" Type="SchoolModel.StudentEntity" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Classes">
               <PropertyRef Name="Id" />
@@ -376,10 +376,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="Homeworks_ibfk_2">
-          <End Role="Students" Type="swaguche_virtualclassroomModel.StudentEntity" Multiplicity="1">
+          <End Role="Students" Type="SchoolModel.StudentEntity" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Homeworks" Type="swaguche_virtualclassroomModel.HomeworkEntity" Multiplicity="*" />
+          <End Role="Homeworks" Type="SchoolModel.HomeworkEntity" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Students">
               <PropertyRef Name="Id" />
@@ -390,10 +390,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="Homeworks_ibfk_3">
-          <End Role="Lessons" Type="swaguche_virtualclassroomModel.LessonEntity" Multiplicity="1">
+          <End Role="Lessons" Type="SchoolModel.LessonEntity" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Homeworks" Type="swaguche_virtualclassroomModel.HomeworkEntity" Multiplicity="*" />
+          <End Role="Homeworks" Type="SchoolModel.HomeworkEntity" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Lessons">
               <PropertyRef Name="Id" />
@@ -404,10 +404,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="Marks_ibfk_1">
-          <End Role="Homeworks" Type="swaguche_virtualclassroomModel.HomeworkEntity" Multiplicity="1">
+          <End Role="Homeworks" Type="SchoolModel.HomeworkEntity" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Marks" Type="swaguche_virtualclassroomModel.MarkEntity" Multiplicity="*" />
+          <End Role="Marks" Type="SchoolModel.MarkEntity" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Homeworks">
               <PropertyRef Name="Id" />
@@ -418,10 +418,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="Lessons_ibfk_1">
-          <End Role="Subjects" Type="swaguche_virtualclassroomModel.SubjectEntity" Multiplicity="1">
+          <End Role="Subjects" Type="SchoolModel.SubjectEntity" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Lessons" Type="swaguche_virtualclassroomModel.LessonEntity" Multiplicity="*" />
+          <End Role="Lessons" Type="SchoolModel.LessonEntity" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Subjects">
               <PropertyRef Name="Id" />
@@ -432,10 +432,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="Subjects_ibfk_1">
-          <End Role="Teachers" Type="swaguche_virtualclassroomModel.TeacherEntity" Multiplicity="1">
+          <End Role="Teachers" Type="SchoolModel.TeacherEntity" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Subjects" Type="swaguche_virtualclassroomModel.SubjectEntity" Multiplicity="*" />
+          <End Role="Subjects" Type="SchoolModel.SubjectEntity" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Teachers">
               <PropertyRef Name="Id" />
@@ -446,28 +446,28 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="Classes_Subjects">
-          <End Role="Classes" Type="swaguche_virtualclassroomModel.ClassEntity" Multiplicity="*" />
-          <End Role="Subjects" Type="swaguche_virtualclassroomModel.SubjectEntity" Multiplicity="*" />
+          <End Role="Classes" Type="SchoolModel.ClassEntity" Multiplicity="*" />
+          <End Role="Subjects" Type="SchoolModel.SubjectEntity" Multiplicity="*" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="swaguche_virtualclassroomModelStoreContainer" CdmEntityContainer="VirtualClassroomEntities">
-          <EntitySetMapping Name="ClassEntities"><EntityTypeMapping TypeName="swaguche_virtualclassroomModel.ClassEntity"><MappingFragment StoreEntitySet="Classes">
+        <EntityContainerMapping StorageEntityContainer="SchoolModelStoreContainer" CdmEntityContainer="VirtualClassroomEntities">
+          <EntitySetMapping Name="ClassEntities"><EntityTypeMapping TypeName="SchoolModel.ClassEntity"><MappingFragment StoreEntitySet="Classes">
             <ScalarProperty Name="Id" ColumnName="Id" />
             <ScalarProperty Name="Number" ColumnName="Number" />
             <ScalarProperty Name="Letter" ColumnName="Letter" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="Homeworks"><EntityTypeMapping TypeName="swaguche_virtualclassroomModel.HomeworkEntity"><MappingFragment StoreEntitySet="Homeworks">
+          <EntitySetMapping Name="Homeworks"><EntityTypeMapping TypeName="SchoolModel.HomeworkEntity"><MappingFragment StoreEntitySet="Homeworks">
             <ScalarProperty Name="Id" ColumnName="Id" />
             <ScalarProperty Name="StudentId" ColumnName="StudentId" />
             <ScalarProperty Name="LessonId" ColumnName="LessonId" />
             <ScalarProperty Name="Content" ColumnName="Content" />
             <ScalarProperty Name="Date" ColumnName="Date" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="LessonEntities"><EntityTypeMapping TypeName="swaguche_virtualclassroomModel.LessonEntity"><MappingFragment StoreEntitySet="Lessons">
+          <EntitySetMapping Name="LessonEntities"><EntityTypeMapping TypeName="SchoolModel.LessonEntity"><MappingFragment StoreEntitySet="Lessons">
             <ScalarProperty Name="Id" ColumnName="Id" />
             <ScalarProperty Name="SubjectId" ColumnName="SubjectId" />
             <ScalarProperty Name="Name" ColumnName="Name" />
@@ -475,12 +475,12 @@
             <ScalarProperty Name="HomeworkDueDate" ColumnName="HomeworkDueDate" />
             <ScalarProperty Name="HomeworkContent" ColumnName="HomeworkContent" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="MarkEntities"><EntityTypeMapping TypeName="swaguche_virtualclassroomModel.MarkEntity"><MappingFragment StoreEntitySet="Marks">
+          <EntitySetMapping Name="MarkEntities"><EntityTypeMapping TypeName="SchoolModel.MarkEntity"><MappingFragment StoreEntitySet="Marks">
             <ScalarProperty Name="Id" ColumnName="Id" />
             <ScalarProperty Name="Value" ColumnName="Value" />
             <ScalarProperty Name="HomeworkId" ColumnName="HomeworkId" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="StudentEntities"><EntityTypeMapping TypeName="swaguche_virtualclassroomModel.StudentEntity"><MappingFragment StoreEntitySet="Students">
+          <EntitySetMapping Name="StudentEntities"><EntityTypeMapping TypeName="SchoolModel.StudentEntity"><MappingFragment StoreEntitySet="Students">
             <ScalarProperty Name="Id" ColumnName="Id" />
             <ScalarProperty Name="Username" ColumnName="Username" />
             <ScalarProperty Name="FirstName" ColumnName="FirstName" />
@@ -490,12 +490,12 @@
             <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
             <ScalarProperty Name="ClassId" ColumnName="ClassId" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="SubjectEntities"><EntityTypeMapping TypeName="swaguche_virtualclassroomModel.SubjectEntity"><MappingFragment StoreEntitySet="Subjects">
+          <EntitySetMapping Name="SubjectEntities"><EntityTypeMapping TypeName="SchoolModel.SubjectEntity"><MappingFragment StoreEntitySet="Subjects">
             <ScalarProperty Name="Id" ColumnName="Id" />
             <ScalarProperty Name="Name" ColumnName="Name" />
             <ScalarProperty Name="TeacherId" ColumnName="TeacherId" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="TeacherEntities"><EntityTypeMapping TypeName="swaguche_virtualclassroomModel.TeacherEntity"><MappingFragment StoreEntitySet="Teachers">
+          <EntitySetMapping Name="TeacherEntities"><EntityTypeMapping TypeName="SchoolModel.TeacherEntity"><MappingFragment StoreEntitySet="Teachers">
             <ScalarProperty Name="Id" ColumnName="Id" />
             <ScalarProperty Name="Username" ColumnName="Username" />
             <ScalarProperty Name="FirstName" ColumnName="FirstName" />
@@ -503,7 +503,7 @@
             <ScalarProperty Name="LastName" ColumnName="LastName" />
             <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <AssociationSetMapping Name="Classes_Subjects" TypeName="swaguche_virtualclassroomModel.Classes_Subjects" StoreEntitySet="Classes_Subjects">
+          <AssociationSetMapping Name="Classes_Subjects" TypeName="SchoolModel.Classes_Subjects" StoreEntitySet="Classes_Subjects">
             <EndProperty Name="Classes">
               <ScalarProperty Name="Id" ColumnName="ClassId" />
             </EndProperty>
@@ -532,46 +532,46 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="SchoolModel">
-        <EntityTypeShape EntityType="swaguche_virtualclassroomModel.ClassEntity" Width="1.5" PointX="0.75" PointY="4.875" Height="1.9802864583333335" IsExpanded="true" />
-        <EntityTypeShape EntityType="swaguche_virtualclassroomModel.HomeworkEntity" Width="1.5" PointX="5.25" PointY="4.5" Height="2.5571907552083326" IsExpanded="true" />
-        <EntityTypeShape EntityType="swaguche_virtualclassroomModel.LessonEntity" Width="1.5" PointX="5.25" PointY="8.125" Height="2.5571907552083317" IsExpanded="true" />
-        <EntityTypeShape EntityType="swaguche_virtualclassroomModel.MarkEntity" Width="1.5" PointX="7.5" PointY="5" Height="1.7879850260416657" IsExpanded="true" />
-        <EntityTypeShape EntityType="swaguche_virtualclassroomModel.StudentEntity" Width="1.5" PointX="3" PointY="4.375" Height="2.9417936197916656" IsExpanded="true" />
-        <EntityTypeShape EntityType="swaguche_virtualclassroomModel.SubjectEntity" Width="1.5" PointX="3" PointY="0.75" Height="2.1725878906249996" IsExpanded="true" />
-        <EntityTypeShape EntityType="swaguche_virtualclassroomModel.TeacherEntity" Width="1.5" PointX="0.75" PointY="8" Height="2.3648893229166656" IsExpanded="true" />
-        <AssociationConnector Association="swaguche_virtualclassroomModel.Students_ibfk_1" ManuallyRouted="false">
+        <EntityTypeShape EntityType="SchoolModel.ClassEntity" Width="1.5" PointX="0.75" PointY="4.875" Height="1.9802864583333335" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolModel.HomeworkEntity" Width="1.5" PointX="5.25" PointY="4.5" Height="2.5571907552083326" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolModel.LessonEntity" Width="1.5" PointX="5.25" PointY="8.125" Height="2.5571907552083317" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolModel.MarkEntity" Width="1.5" PointX="7.5" PointY="5" Height="1.7879850260416657" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolModel.StudentEntity" Width="1.5" PointX="3" PointY="4.375" Height="2.9417936197916656" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolModel.SubjectEntity" Width="1.5" PointX="3" PointY="0.75" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolModel.TeacherEntity" Width="1.5" PointX="0.75" PointY="8" Height="2.3648893229166656" IsExpanded="true" />
+        <AssociationConnector Association="SchoolModel.Students_ibfk_1" ManuallyRouted="false">
           <ConnectorPoint PointX="2.25" PointY="5.8651432291666667" />
           <ConnectorPoint PointX="2.5416666666666665" PointY="5.8651432291666659" />
           <ConnectorPoint PointX="2.7083333333333335" PointY="5.8651432291666667" />
           <ConnectorPoint PointX="3" PointY="5.8651432291666667" />
         </AssociationConnector>
-        <AssociationConnector Association="swaguche_virtualclassroomModel.Homeworks_ibfk_2" ManuallyRouted="false">
+        <AssociationConnector Association="SchoolModel.Homeworks_ibfk_2" ManuallyRouted="false">
           <ConnectorPoint PointX="4.5" PointY="5.7785953776041659" />
           <ConnectorPoint PointX="4.791666666666667" PointY="5.778595377604165" />
           <ConnectorPoint PointX="4.958333333333333" PointY="5.7785953776041659" />
           <ConnectorPoint PointX="5.25" PointY="5.7785953776041659" />
         </AssociationConnector>
-        <AssociationConnector Association="swaguche_virtualclassroomModel.Homeworks_ibfk_3" ManuallyRouted="false">
+        <AssociationConnector Association="SchoolModel.Homeworks_ibfk_3" ManuallyRouted="false">
           <ConnectorPoint PointX="6" PointY="8.125" />
           <ConnectorPoint PointX="6" PointY="7.0571907552083326" />
         </AssociationConnector>
-        <AssociationConnector Association="swaguche_virtualclassroomModel.Marks_ibfk_1" ManuallyRouted="false">
+        <AssociationConnector Association="SchoolModel.Marks_ibfk_1" ManuallyRouted="false">
           <ConnectorPoint PointX="6.75" PointY="5.8939925130208328" />
           <ConnectorPoint PointX="7.5" PointY="5.8939925130208328" />
         </AssociationConnector>
-        <AssociationConnector Association="swaguche_virtualclassroomModel.Lessons_ibfk_1" ManuallyRouted="false">
+        <AssociationConnector Association="SchoolModel.Lessons_ibfk_1" ManuallyRouted="false">
           <ConnectorPoint PointX="4.5" PointY="2.9225878906249996" />
           <ConnectorPoint PointX="4.875" PointY="3.2975878906249996" />
           <ConnectorPoint PointX="4.875" PointY="9.4035953776041659" />
           <ConnectorPoint PointX="5.25" PointY="9.4035953776041659" />
         </AssociationConnector>
-        <AssociationConnector Association="swaguche_virtualclassroomModel.Subjects_ibfk_1" ManuallyRouted="false">
+        <AssociationConnector Association="SchoolModel.Subjects_ibfk_1" ManuallyRouted="false">
           <ConnectorPoint PointX="2.25" PointY="8.0011528461538468" />
           <ConnectorPoint PointX="2.625" PointY="7.6261528461538468" />
           <ConnectorPoint PointX="2.625" PointY="1.8362939453124998" />
           <ConnectorPoint PointX="3" PointY="1.8362939453124998" />
         </AssociationConnector>
-        <AssociationConnector Association="swaguche_virtualclassroomModel.Classes_Subjects" ManuallyRouted="false">
+        <AssociationConnector Association="SchoolModel.Classes_Subjects" ManuallyRouted="false">
           <ConnectorPoint PointX="1.5" PointY="4.875" />
           <ConnectorPoint PointX="1.5" PointY="2.4106934179687505" />
           <ConnectorPoint PointX="2.5416666666666665" PointY="2.41069341796875" />

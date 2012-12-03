@@ -30,10 +30,10 @@ namespace VirtualClassroom.Services.POCO_Classes
         public List<Homework> Homeworks { get; set; }
 
         [DataMember]
-        public Subject Subject { get; private set; }
+        public int SubjectId { get; private set; }
 
         public Lesson(int id, string name, DateTime date, DateTime? homeworkDueDate,
-            byte[] homeworkContent, List<Homework> homeworks, Subject subject)
+            byte[] homeworkContent, List<Homework> homeworks, int subjectId)
         {
             this.Id = id;
             this.Name = name;
@@ -41,7 +41,7 @@ namespace VirtualClassroom.Services.POCO_Classes
             this.HomeworkDueDate = homeworkDueDate;
             this.HomeworkContent = homeworkContent;
             this.Homeworks = homeworks;
-            this.Subject = subject;
+            this.SubjectId = subjectId;
         }
 
         public static explicit operator Lesson(LessonEntity entity)
@@ -62,7 +62,7 @@ namespace VirtualClassroom.Services.POCO_Classes
                 entity.HomeworkDueDate,
                 entity.HomeworkContent,
                 homeworks,
-                (Subject)entity.Subject
+                entity.SubjectId
             );
 
             return lesson;
@@ -86,7 +86,7 @@ namespace VirtualClassroom.Services.POCO_Classes
             entity.HomeworkDueDate = lesson.HomeworkDueDate;
             entity.HomeworkContent = lesson.HomeworkContent;
             entity.Homeworks = homeworkEntities;
-            entity.Subject =(SubjectEntity)lesson.Subject;
+            entity.SubjectId =lesson.SubjectId;
 
             return entity;
         }
