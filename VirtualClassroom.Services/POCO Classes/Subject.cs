@@ -26,75 +26,75 @@ namespace VirtualClassroom.Services.POCO_Classes
         [DataMember]
         public int TeacherId { get; set; }
 
-        public Subject(int id, string name, List<Lesson> lessons, List<Class> classes,
-            int teacherId)
-        {
-            this.Id = id;
-            this.Name = name;
-            this.Lessons = lessons;
-            this.Classes = classes;
-            this.TeacherId = teacherId;
-        }
+        //public Subject(int id, string name, List<Lesson> lessons, List<Class> classes,
+        //    int teacherId)
+        //{
+        //    this.Id = id;
+        //    this.Name = name;
+        //    this.Lessons = lessons;
+        //    this.Classes = classes;
+        //    this.TeacherId = teacherId;
+        //}
 
-        public static explicit operator Subject(SubjectEntity entity)
-        {
-            List<Lesson> lessons = new List<Lesson>();
-            if (entity.Lessons != null)
-            {
-                foreach(var lessonEntity in entity.Lessons.ToList())
-                {
-                    lessons.Add((Lesson)lessonEntity);
-                }
-            }
+        //public static explicit operator Subject(SubjectEntity entity)
+        //{
+        //    List<Lesson> lessons = new List<Lesson>();
+        //    if (entity.Lessons != null)
+        //    {
+        //        foreach(var lessonEntity in entity.Lessons.ToList())
+        //        {
+        //            lessons.Add((Lesson)lessonEntity);
+        //        }
+        //    }
 
-            List<Class> classes = new List<Class>();
-            if (entity.Classes != null)
-            {
-                foreach(var classEntity in entity.Classes.ToList())
-                {
-                    classes.Add((Class)classEntity);
-                }
-            }
+        //    List<Class> classes = new List<Class>();
+        //    if (entity.Classes != null)
+        //    {
+        //        foreach(var classEntity in entity.Classes.ToList())
+        //        {
+        //            classes.Add((Class)classEntity);
+        //        }
+        //    }
 
-            Subject subject = new Subject(
-                entity.Id,
-                entity.Name,
-                lessons,
-                classes,
-                entity.TeacherId
-            );
+        //    Subject subject = new Subject(
+        //        entity.Id,
+        //        entity.Name,
+        //        lessons,
+        //        classes,
+        //        entity.TeacherId
+        //    );
 
-            return subject;
-        }
+        //    return subject;
+        //}
 
-        public static explicit operator SubjectEntity(Subject subject)
-        {
-            EntityCollection<LessonEntity> lessonEntities = new EntityCollection<LessonEntity>();
-            if (subject.Lessons != null)
-            {
-                foreach (var lesson in subject.Lessons)
-                {
-                    lessonEntities.Add((LessonEntity)lesson);
-                }
-            }
+        //public static explicit operator SubjectEntity(Subject subject)
+        //{
+        //    EntityCollection<LessonEntity> lessonEntities = new EntityCollection<LessonEntity>();
+        //    if (subject.Lessons != null)
+        //    {
+        //        foreach (var lesson in subject.Lessons)
+        //        {
+        //            lessonEntities.Add((LessonEntity)lesson);
+        //        }
+        //    }
 
-            EntityCollection<ClassEntity> classEntities = new EntityCollection<ClassEntity>();
-            if (subject.Classes != null)
-            {
-                foreach (var cl in subject.Classes)
-                {
-                    classEntities.Add((ClassEntity)cl);
-                }
-            }
+        //    EntityCollection<ClassEntity> classEntities = new EntityCollection<ClassEntity>();
+        //    if (subject.Classes != null)
+        //    {
+        //        foreach (var cl in subject.Classes)
+        //        {
+        //            classEntities.Add((ClassEntity)cl);
+        //        }
+        //    }
 
-            SubjectEntity entity = new SubjectEntity();
-            entity.Id = subject.Id;
-            entity.Name = subject.Name;
-            entity.Lessons = lessonEntities;
-            entity.Classes = classEntities;
-            entity.TeacherId = subject.TeacherId;
+        //    SubjectEntity entity = new SubjectEntity();
+        //    entity.Id = subject.Id;
+        //    entity.Name = subject.Name;
+        //    entity.Lessons = lessonEntities;
+        //    entity.Classes = classEntities;
+        //    entity.TeacherId = subject.TeacherId;
 
-            return entity;
-        }
+        //    return entity;
+        //}
     }
 }

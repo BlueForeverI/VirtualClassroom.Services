@@ -32,63 +32,63 @@ namespace VirtualClassroom.Services.POCO_Classes
         [DataMember]
         public int SubjectId { get; private set; }
 
-        public Lesson(int id, string name, DateTime date, DateTime? homeworkDueDate,
-            byte[] homeworkContent, List<Homework> homeworks, int subjectId)
-        {
-            this.Id = id;
-            this.Name = name;
-            this.Date = date;
-            this.HomeworkDueDate = homeworkDueDate;
-            this.HomeworkContent = homeworkContent;
-            this.Homeworks = homeworks;
-            this.SubjectId = subjectId;
-        }
+        //public Lesson(int id, string name, DateTime date, DateTime? homeworkDueDate,
+        //    byte[] homeworkContent, List<Homework> homeworks, int subjectId)
+        //{
+        //    this.Id = id;
+        //    this.Name = name;
+        //    this.Date = date;
+        //    this.HomeworkDueDate = homeworkDueDate;
+        //    this.HomeworkContent = homeworkContent;
+        //    this.Homeworks = homeworks;
+        //    this.SubjectId = subjectId;
+        //}
 
-        public static explicit operator Lesson(LessonEntity entity)
-        {
-            List<Homework> homeworks = new List<Homework>();
-            if (entity.Homeworks != null)
-            {
-                foreach (var homeworkEntity in entity.Homeworks.ToList())
-                {
-                    homeworks.Add((Homework)homeworkEntity);                    
-                }
-            }
+        //public static explicit operator Lesson(LessonEntity entity)
+        //{
+        //    List<Homework> homeworks = new List<Homework>();
+        //    if (entity.Homeworks != null)
+        //    {
+        //        foreach (var homeworkEntity in entity.Homeworks.ToList())
+        //        {
+        //            homeworks.Add((Homework)homeworkEntity);                    
+        //        }
+        //    }
 
-            Lesson lesson = new Lesson(
-                entity.Id,
-                entity.Name,
-                entity.Date,
-                entity.HomeworkDueDate,
-                entity.HomeworkContent,
-                homeworks,
-                entity.SubjectId
-            );
+        //    Lesson lesson = new Lesson(
+        //        entity.Id,
+        //        entity.Name,
+        //        entity.Date,
+        //        entity.HomeworkDueDate,
+        //        entity.HomeworkContent,
+        //        homeworks,
+        //        entity.SubjectId
+        //    );
 
-            return lesson;
-        }
+        //    return lesson;
+        //}
 
-        public static explicit operator LessonEntity(Lesson lesson)
-        {
-            EntityCollection<HomeworkEntity> homeworkEntities = new EntityCollection<HomeworkEntity>();
-            if (lesson.Homeworks != null)
-            {
-                foreach(var homework in lesson.Homeworks)
-                {
-                    homeworkEntities.Add((HomeworkEntity)homework);
-                }
-            }
+        //public static explicit operator LessonEntity(Lesson lesson)
+        //{
+        //    EntityCollection<HomeworkEntity> homeworkEntities = new EntityCollection<HomeworkEntity>();
+        //    if (lesson.Homeworks != null)
+        //    {
+        //        foreach(var homework in lesson.Homeworks)
+        //        {
+        //            homeworkEntities.Add((HomeworkEntity)homework);
+        //        }
+        //    }
 
-            LessonEntity entity = new LessonEntity();
-            entity.Id = lesson.Id;
-            entity.Name = lesson.Name;
-            entity.Date = lesson.Date;
-            entity.HomeworkDueDate = lesson.HomeworkDueDate;
-            entity.HomeworkContent = lesson.HomeworkContent;
-            entity.Homeworks = homeworkEntities;
-            entity.SubjectId =lesson.SubjectId;
+        //    LessonEntity entity = new LessonEntity();
+        //    entity.Id = lesson.Id;
+        //    entity.Name = lesson.Name;
+        //    entity.Date = lesson.Date;
+        //    entity.HomeworkDueDate = lesson.HomeworkDueDate;
+        //    entity.HomeworkContent = lesson.HomeworkContent;
+        //    entity.Homeworks = homeworkEntities;
+        //    entity.SubjectId =lesson.SubjectId;
 
-            return entity;
-        }
+        //    return entity;
+        //}
     }
 }

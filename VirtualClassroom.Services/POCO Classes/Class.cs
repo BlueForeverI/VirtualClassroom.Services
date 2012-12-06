@@ -26,70 +26,70 @@ namespace VirtualClassroom.Services.POCO_Classes
         [DataMember]
         public List<Subject> Subjects { get; set; }
 
-        public Class(int id, int number, char letter, List<Student> students,
-            List<Subject> subjects)
-        {
-            this.Id = id;
-            this.Number = number;
-            this.Letter = letter;
-            this.Students = students;
-            this.Subjects = subjects;
-        }
+        //public Class(int id, int number, char letter, List<Student> students,
+        //    List<Subject> subjects)
+        //{
+        //    this.Id = id;
+        //    this.Number = number;
+        //    this.Letter = letter;
+        //    this.Students = students;
+        //    this.Subjects = subjects;
+        //}
 
-        public static explicit operator Class(ClassEntity entity)
-        {
-            List<Student> students = new List<Student>();
-            foreach (var studentEntity in entity.Students.ToList())
-            {
-                students.Add((Student)studentEntity);
-            }
+        //public static explicit operator Class(ClassEntity entity)
+        //{
+        //    List<Student> students = new List<Student>();
+        //    foreach (var studentEntity in entity.Students.ToList())
+        //    {
+        //        students.Add((Student)studentEntity);
+        //    }
             
-            List<Subject> subjects = new List<Subject>();
-            foreach (var subjectEntity in entity.Subjects.ToList())
-            {
-                subjects.Add((Subject)subjectEntity);
-            }
+        //    List<Subject> subjects = new List<Subject>();
+        //    foreach (var subjectEntity in entity.Subjects.ToList())
+        //    {
+        //        subjects.Add((Subject)subjectEntity);
+        //    }
              
 
-            Class cl = new Class(
-                entity.Id,
-                entity.Number,
-                entity.Letter.First(),
-                students,
-                subjects
-            );
+        //    Class cl = new Class(
+        //        entity.Id,
+        //        entity.Number,
+        //        entity.Letter.First(),
+        //        students,
+        //        subjects
+        //    );
 
-            return cl;
-        }
+        //    return cl;
+        //}
 
-        public static explicit operator ClassEntity(Class cl)
-        {
-            EntityCollection<StudentEntity> studentEntities = new EntityCollection<StudentEntity>();
-            if (cl.Students != null)
-            {
-                foreach (var student in cl.Students)
-                {
-                    studentEntities.Add((StudentEntity)student);
-                }
-            }
+        //public static explicit operator ClassEntity(Class cl)
+        //{
+        //    EntityCollection<StudentEntity> studentEntities = new EntityCollection<StudentEntity>();
+        //    if (cl.Students != null)
+        //    {
+        //        foreach (var student in cl.Students)
+        //        {
+        //            studentEntities.Add((StudentEntity)student);
+        //        }
+        //    }
 
-            EntityCollection<SubjectEntity> subjectEntities = new EntityCollection<SubjectEntity>();
-            if (cl.Subjects != null)
-            {
-                foreach(var subject in cl.Subjects)
-                {
-                    subjectEntities.Add((SubjectEntity)subject);
-                }
-            }
+        //    EntityCollection<SubjectEntity> subjectEntities = new EntityCollection<SubjectEntity>();
+        //    if (cl.Subjects != null)
+        //    {
+        //        foreach(var subject in cl.Subjects)
+        //        {
+        //            subjectEntities.Add((SubjectEntity)subject);
+        //        }
+        //    }
 
-            ClassEntity entity = new ClassEntity();
-            entity.Id = cl.Id;
-            entity.Number = cl.Number;
-            entity.Letter = cl.Letter.ToString();
-            entity.Students = studentEntities;
-            entity.Subjects = subjectEntities;
+        //    ClassEntity entity = new ClassEntity();
+        //    entity.Id = cl.Id;
+        //    entity.Number = cl.Number;
+        //    entity.Letter = cl.Letter.ToString();
+        //    entity.Students = studentEntities;
+        //    entity.Subjects = subjectEntities;
 
-            return entity;
-        }
+        //    return entity;
+        //}
     }
 }

@@ -27,57 +27,57 @@ namespace VirtualClassroom.Services.POCO_Classes
         public int LessonId { get; set; }
 
         [DataMember]
-        public Mark Mark { get; set; }
+        public List<Mark> Marks { get; set; }
 
-        public Homework(int id, byte[] content, DateTime date, int studentId,
-            int lessonId, Mark mark)
-        {
-            this.Id = id;
-            this.Content = content;
-            this.Date = date;
-            this.StudentId = studentId;
-            this.LessonId = lessonId;
-            this.Mark = mark;
-        }
+        //public Homework(int id, byte[] content, DateTime date, int studentId,
+        //    int lessonId, List<Mark> marks)
+        //{
+        //    this.Id = id;
+        //    this.Content = content;
+        //    this.Date = date;
+        //    this.StudentId = studentId;
+        //    this.LessonId = lessonId;
+        //    this.Marks = marks;
+        //}
 
-        public static explicit operator Homework(HomeworkEntity entity)
-        {
-            Mark mark = null;
-            if (entity.Marks != null)
-            {
-                if (entity.Marks.Count > 0)
-                {
-                    mark = (Mark)entity.Marks.First();
-                }
-            }
+        //public static explicit operator Homework(HomeworkEntity entity)
+        //{
+        //    Mark mark = null;
+        //    if (entity.Marks != null)
+        //    {
+        //        if (entity.Marks.Count > 0)
+        //        {
+        //            mark = (Mark)entity.Marks.First();
+        //        }
+        //    }
 
-            Homework homework = new Homework(
-                entity.Id,
-                entity.Content,
-                entity.Date,
-                entity.StudentId,
-                entity.LessonId,
-                mark
-            );
+        //    Homework homework = new Homework(
+        //        entity.Id,
+        //        entity.Content,
+        //        entity.Date,
+        //        entity.StudentId,
+        //        entity.LessonId,
+        //        mark
+        //    );
 
-            return homework;
-        }
+        //    return homework;
+        //}
 
-        public static explicit operator HomeworkEntity(Homework homework)
-        {
-            HomeworkEntity entity = new HomeworkEntity();
-            entity.Id = homework.Id;
-            entity.Content = homework.Content;
-            entity.Date = homework.Date;
-            entity.StudentId = homework.StudentId;
-            entity.LessonId = homework.LessonId;
-            entity.Marks = new EntityCollection<MarkEntity>();
-            if (homework.Mark != null)
-            {
-                entity.Marks.Add((MarkEntity)homework.Mark);
-            }
+        //public static explicit operator HomeworkEntity(Homework homework)
+        //{
+        //    HomeworkEntity entity = new HomeworkEntity();
+        //    entity.Id = homework.Id;
+        //    entity.Content = homework.Content;
+        //    entity.Date = homework.Date;
+        //    entity.StudentId = homework.StudentId;
+        //    entity.LessonId = homework.LessonId;
+        //    entity.Marks = new EntityCollection<MarkEntity>();
+        //    if (homework.Mark != null)
+        //    {
+        //        entity.Marks.Add((MarkEntity)homework.Mark);
+        //    }
 
-            return entity;
-        }
+        //    return entity;
+        //}
     }
 }

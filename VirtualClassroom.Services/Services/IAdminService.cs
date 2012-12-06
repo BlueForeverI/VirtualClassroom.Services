@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
-using System.Text;
 using VirtualClassroom.Services.POCO_Classes;
+using System.ServiceModel.Web;
+using System.Text;
+using System.Collections.ObjectModel;
 
 namespace VirtualClassroom.Services.Services
 {
@@ -20,5 +22,20 @@ namespace VirtualClassroom.Services.Services
 
         [OperationContract]
         List<Class> GetClasses();
+
+        [OperationContract]
+        void AddSubject(Subject subject);
+
+        [OperationContract]
+        void RegisterTeacher(Teacher teacher, string password);
+
+        [OperationContract]
+        List<Teacher> GetTeachers();
+
+        [OperationContract]
+        void AddClassesToSubject(Subject subject, List<Class> classes);
+
+        [OperationContract]
+        List<Subject> GetSubjects();
     }
 }
