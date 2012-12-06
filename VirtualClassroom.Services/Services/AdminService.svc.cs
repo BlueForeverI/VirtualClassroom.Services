@@ -4,9 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
-using VirtualClassroom.Services.Converters;
 using VirtualClassroom.Services.POCO_Classes;
-using VirtualClassroom.Services.Resolvers;
 using AutoMapper;
 
 namespace VirtualClassroom.Services.Services
