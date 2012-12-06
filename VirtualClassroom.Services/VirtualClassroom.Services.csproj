@@ -77,8 +77,6 @@
     <Content Include="_bin_deployableAssemblies\MySql.Web.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Converters\EntityToClassConverter.cs" />
-    <Compile Include="Converters\EntityToSubjectConverter.cs" />
     <Compile Include="POCO Classes\Class.cs" />
     <Compile Include="POCO Classes\Homework.cs" />
     <Compile Include="POCO Classes\Lesson.cs" />
@@ -87,8 +85,6 @@
     <Compile Include="POCO Classes\Subject.cs" />
     <Compile Include="POCO Classes\Teacher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resolvers\ClassToEntityResolver.cs" />
-    <Compile Include="Resolvers\EntityToClassResover.cs" />
     <Compile Include="SchoolModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
