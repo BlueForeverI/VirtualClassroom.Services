@@ -16,12 +16,40 @@ namespace VirtualClassroom.Services.Services
 
         static AdminService()
         {
-            Mapper.CreateMap<ClassEntity, Class>();
+            //possible performance issue: modify the entities first
+            Mapper.CreateMap<ClassEntity, Class>().AfterMap((entity, c) =>
+            {
+                if(c.Subjects != null)
+                {
+                    foreach (var subject in c.Subjects)
+                    {
+                        if(subject.Classes != null)
+                        {
+                            subject.Classes = new List<Class>();
+                        }
+                    }
+                }                                    
+            });
+
             Mapper.CreateMap<StudentEntity, Student>();
             Mapper.CreateMap<MarkEntity, Mark>();
             Mapper.CreateMap<HomeworkEntity, Homework>();
-            Mapper.CreateMap<SubjectEntity, Subject>().ForMember(x => x.Classes, y => y.Condition(c => c.Classes.Count > 0))
-                .ForMember(x => x.Classes, y => y.Ignore());
+
+            //possible performance issue: modify the entities first
+            Mapper.CreateMap<SubjectEntity, Subject>().AfterMap((entity, subject) =>
+            {
+                if (subject.Classes != null)
+                {
+                    foreach (var c in subject.Classes)
+                    {
+                        if (c.Subjects != null)
+                        {
+                            c.Subjects = new List<Subject>();
+                        }
+                    }
+                }
+            });
+
             Mapper.CreateMap<LessonEntity, Lesson>();
             Mapper.CreateMap<TeacherEntity, Teacher>();
 
@@ -86,14 +114,9 @@ namespace VirtualClassroom.Services.Services
 
         public void AddSubject(Subject subject)
         {
-            SubjectEntity subjectEntity = new SubjectEntity();//(SubjectEntity) subject;
-            subjectEntity.Classes.Clear();
+            SubjectEntity entity = Mapper.Map<Subject, SubjectEntity>(subject);
+            entitityContext.SubjectEntities.AddObject(entity);
 
-            entitityContext.SubjectEntities.AddObject(subjectEntity);
-            entitityContext.SaveChanges();
-            subjectEntity.Classes.Add(new ClassEntity(){Letter = "A", Number = 11});
-            //AddClassesToSubject(subject, subject.Classes);
-            //subjectEntity.Classes.Attach(entitityContext.ClassEntities);
             entitityContext.SaveChanges();
         }
 
@@ -120,10 +143,13 @@ namespace VirtualClassroom.Services.Services
 
         public void AddClassesToSubject(Subject subject, List<Class> classes)
         {
-            SubjectEntity subjectEntity = new SubjectEntity();//(SubjectEntity) subject;
+            SubjectEntity subjectEntity = new SubjectEntity(){Id = subject.Id};
+            entitityContext.AttachTo("SubjectEntities", subjectEntity);
             foreach (var c in classes)
             {
-                //subjectEntity.Classes.Add((ClassEntity)c);
+                ClassEntity entity = new ClassEntity(){Id = c.Id};
+                entitityContext.AttachTo("ClassEntities", entity);
+                subjectEntity.Classes.Add(entity);
             }
 
             entitityContext.SaveChanges();
