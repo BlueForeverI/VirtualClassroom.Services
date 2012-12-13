@@ -37,5 +37,11 @@ namespace VirtualClassroom.Services.Services
 
         [OperationContract]
         List<Subject> GetSubjects();
+
+        [OperationContract]
+        Student LoginStudent(string username, string password);
+
+        [OperationContract]
+        Teacher LoginTeacher(string username, string password);
     }
 }

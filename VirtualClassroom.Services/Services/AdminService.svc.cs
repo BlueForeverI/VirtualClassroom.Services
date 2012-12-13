@@ -168,5 +168,37 @@ namespace VirtualClassroom.Services.Services
         {
             return true;
         }
+
+        public Student LoginStudent(string username, string password)
+        {
+            if(entitityContext.StudentEntities.Count(s => s.Username == username) == 0)
+            {
+                return null;
+            }
+
+            StudentEntity entity = entitityContext.StudentEntities.Where(s => s.Username == username).First();
+            if(BCrypt.Net.BCrypt.Verify(password, entity.PasswordHash))
+            {
+                return Mapper.Map<StudentEntity, Student>(entity);
+            }
+
+            return null;
+        }
+
+        public Teacher LoginTeacher(string username, string password)
+        {
+            if (entitityContext.TeacherEntities.Count(s => s.Username == username) == 0)
+            {
+                return null;
+            }
+
+            TeacherEntity entity = entitityContext.TeacherEntities.Where(s => s.Username == username).First();
+            if (BCrypt.Net.BCrypt.Verify(password, entity.PasswordHash))
+            {
+                return Mapper.Map<TeacherEntity, Teacher>(entity);
+            }
+
+            return null;
+        }
     }
 }
