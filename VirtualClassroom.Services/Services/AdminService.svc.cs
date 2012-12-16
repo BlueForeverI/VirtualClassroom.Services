@@ -4,7 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
-using VirtualClassroom.Services.POCO_Classes;
+//using VirtualClassroom.Services.POCO_Classes;
 using AutoMapper;
 
 namespace VirtualClassroom.Services.Services
@@ -14,72 +14,9 @@ namespace VirtualClassroom.Services.Services
     {
         VirtualClassroomEntities entitityContext = new VirtualClassroomEntities();
 
-        static AdminService()
-        {
-            //possible performance issue: modify the entities first
-            Mapper.CreateMap<ClassEntity, Class>().AfterMap((entity, c) =>
-            {
-                if(c.Subjects != null)
-                {
-                    foreach (var subject in c.Subjects)
-                    {
-                        if(subject.Classes != null)
-                        {
-                            subject.Classes = new List<Class>();
-                        }
-                    }
-                }                                    
-            });
-
-            Mapper.CreateMap<StudentEntity, Student>();
-            Mapper.CreateMap<MarkEntity, Mark>();
-            Mapper.CreateMap<HomeworkEntity, Homework>();
-
-            //possible performance issue: modify the entities first
-            Mapper.CreateMap<SubjectEntity, Subject>().AfterMap((entity, subject) =>
-            {
-                if (subject.Classes != null)
-                {
-                    foreach (var c in subject.Classes)
-                    {
-                        if (c.Subjects != null)
-                        {
-                            c.Subjects = new List<Subject>();
-                        }
-                    }
-                }
-            });
-
-            Mapper.CreateMap<LessonEntity, Lesson>();
-            Mapper.CreateMap<TeacherEntity, Teacher>();
-
-            Mapper.CreateMap<Class, ClassEntity>().ForMember(x => x.EntityKey, y => y.Ignore());
-            Mapper.CreateMap<Student, StudentEntity>().ForMember(x => x.EntityKey, y => y.Ignore())
-                .ForMember(x => x.Class, y => y.Ignore()).ForMember(x => x.ClassReference, y => y.Ignore());
-
-            Mapper.CreateMap<Mark, MarkEntity>().ForMember(x => x.EntityKey, y => y.Ignore())
-                .ForMember(x => x.Homework, y => y.Ignore()).ForMember(x => x.HomeworkReference, y => y.Ignore());
-
-            Mapper.CreateMap<Homework, HomeworkEntity>().ForMember(x => x.EntityKey, y => y.Ignore())
-                .ForMember(x => x.Lesson, y => y.Ignore()).ForMember(x => x.LessonReference, y => y.Ignore())
-                .ForMember(x => x.Student, y => y.Ignore()).ForMember(x => x.StudentReference, y => y.Ignore());
-
-            Mapper.CreateMap<Subject, SubjectEntity>().ForMember(x => x.EntityKey, y => y.Ignore())
-                .ForMember(x => x.Teacher, y => y.Ignore()).ForMember(x => x.TeacherReference, y => y.Ignore());
-
-            Mapper.CreateMap<Lesson, LessonEntity>().ForMember(x => x.EntityKey, y => y.Ignore())
-                .ForMember(x => x.Subject, y => y.Ignore()).ForMember(x => x.SubjectReference, y => y.Ignore());
-
-            Mapper.CreateMap<Teacher, TeacherEntity>().ForMember(x => x.EntityKey, y => y.Ignore());
-
-            Mapper.AssertConfigurationIsValid();
-        }
-        
-
         public void AddClass(Class c)
         {
-            ClassEntity classEntity = Mapper.Map<Class, ClassEntity>(c);
-            entitityContext.ClassEntities.AddObject(classEntity);
+            entitityContext.Classes.Add(c);
             entitityContext.SaveChanges();
         }
 
@@ -90,8 +27,7 @@ namespace VirtualClassroom.Services.Services
 
             if (IsStudentValid(student))
             {
-                StudentEntity studentEntity = Mapper.Map<Student, StudentEntity>(student);
-                entitityContext.StudentEntities.AddObject(studentEntity);
+                entitityContext.Students.Add(student);
                 entitityContext.SaveChanges();
             }
         }
@@ -104,19 +40,12 @@ namespace VirtualClassroom.Services.Services
 
         public List<Class> GetClasses()
         {
-            List<Class> classes = new List<Class>();
-
-            List<ClassEntity> classEntities = entitityContext.ClassEntities.ToList();
-            classes = Mapper.Map<List<ClassEntity>, List<Class>>(classEntities).ToList();
-
-            return classes;
+            return entitityContext.Classes.ToList();
         }
 
         public void AddSubject(Subject subject)
         {
-            SubjectEntity entity = Mapper.Map<Subject, SubjectEntity>(subject);
-            entitityContext.SubjectEntities.AddObject(entity);
-
+            entitityContext.Subjects.Add(subject);
             entitityContext.SaveChanges();
         }
 
@@ -125,30 +54,28 @@ namespace VirtualClassroom.Services.Services
             string passwordHash = BCrypt.Net.BCrypt.HashPassword(password);
             teacher.PasswordHash = passwordHash;
 
-            if(IsTeacherValid(teacher))
+            if (IsTeacherValid(teacher))
             {
-                TeacherEntity teacherEntity = Mapper.Map<Teacher, TeacherEntity>(teacher);
-                entitityContext.TeacherEntities.AddObject(teacherEntity);
+                entitityContext.Teachers.Add(teacher);
                 entitityContext.SaveChanges();
             }
         }
 
         public List<Teacher> GetTeachers()
         {
-            List<TeacherEntity> teacherEntities = entitityContext.TeacherEntities.ToList();
-            List<Teacher> teachers = Mapper.Map<List<TeacherEntity>, List<Teacher>>(teacherEntities).ToList();
-
-            return teachers;
+            return entitityContext.Teachers.ToList();
         }
 
         public void AddClassesToSubject(Subject subject, List<Class> classes)
         {
-            SubjectEntity subjectEntity = new SubjectEntity(){Id = subject.Id};
-            entitityContext.AttachTo("SubjectEntities", subjectEntity);
+            Subject subjectEntity = new Subject() { Id = subject.Id };
+            //entitityContext.AttachTo("Subjects", subjectEntity);
+            entitityContext.Subjects.Attach(subjectEntity);
             foreach (var c in classes)
             {
-                ClassEntity entity = new ClassEntity(){Id = c.Id};
-                entitityContext.AttachTo("ClassEntities", entity);
+                Class entity = new Class() { Id = c.Id };
+                //entitityContext.AttachTo("Classes", entity);
+                entitityContext.Classes.Attach(entity);
                 subjectEntity.Classes.Add(entity);
             }
 
@@ -157,10 +84,7 @@ namespace VirtualClassroom.Services.Services
 
         public List<Subject> GetSubjects()
         {
-            List<SubjectEntity> entities = entitityContext.SubjectEntities.ToList();
-            List<Subject> subjects = Mapper.Map<List<SubjectEntity>, List<Subject>>(entities);
-
-            return subjects;
+            return entitityContext.Subjects.ToList();
         }
 
         //to refactor
@@ -171,15 +95,15 @@ namespace VirtualClassroom.Services.Services
 
         public Student LoginStudent(string username, string password)
         {
-            if(entitityContext.StudentEntities.Count(s => s.Username == username) == 0)
+            if (entitityContext.Students.Count(s => s.Username == username) == 0)
             {
                 return null;
             }
 
-            StudentEntity entity = entitityContext.StudentEntities.Where(s => s.Username == username).First();
-            if(BCrypt.Net.BCrypt.Verify(password, entity.PasswordHash))
+            Student entity = entitityContext.Students.Where(s => s.Username == username).First();
+            if (BCrypt.Net.BCrypt.Verify(password, entity.PasswordHash))
             {
-                return Mapper.Map<StudentEntity, Student>(entity);
+                return entity;
             }
 
             return null;
@@ -187,18 +111,28 @@ namespace VirtualClassroom.Services.Services
 
         public Teacher LoginTeacher(string username, string password)
         {
-            if (entitityContext.TeacherEntities.Count(s => s.Username == username) == 0)
+            if (entitityContext.Teachers.Count(s => s.Username == username) == 0)
             {
                 return null;
             }
 
-            TeacherEntity entity = entitityContext.TeacherEntities.Where(s => s.Username == username).First();
+            Teacher entity = entitityContext.Teachers.Where(s => s.Username == username).First();
             if (BCrypt.Net.BCrypt.Verify(password, entity.PasswordHash))
             {
-                return Mapper.Map<TeacherEntity, Teacher>(entity);
+                return entity;
             }
 
             return null;
+        }
+
+
+        public List<Subject> GetSubjectsByClass(int classId)
+        {
+            Class c = (from cl in entitityContext.Classes 
+                       where cl.Id == classId 
+                       select cl).First();
+
+            return c.Subjects.ToList();
         }
     }
 }
