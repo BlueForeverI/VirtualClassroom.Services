@@ -128,9 +128,15 @@ namespace VirtualClassroom.Services.Services
 
         public List<Subject> GetSubjectsByClass(int classId)
         {
-            Class c = (from cl in entitityContext.Classes 
+            Class c = (from cl in entitityContext.Classes.Include("Subjects") 
                        where cl.Id == classId 
                        select cl).First();
+
+            //avoid circular reference and infinite loop
+            foreach (var subject in c.Subjects)
+            {
+                subject.Classes = null;
+            }
 
             return c.Subjects.ToList();
         }

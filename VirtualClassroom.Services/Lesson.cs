@@ -27,7 +27,6 @@ namespace VirtualClassroom.Services
         public byte[] HomeworkContent { get; set; }
     
         public virtual ICollection<Homework> Homeworks { get; set; }
-        public virtual Subject Subject { get; set; }
     }
     
 }

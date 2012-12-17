@@ -28,7 +28,6 @@ namespace VirtualClassroom.Services
         public string PasswordHash { get; set; }
         public int ClassId { get; set; }
     
-        public virtual Class Class { get; set; }
         public virtual ICollection<Homework> Homeworks { get; set; }
     }
     

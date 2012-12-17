@@ -17,8 +17,6 @@ namespace VirtualClassroom.Services
         public int Id { get; set; }
         public int Value { get; set; }
         public int HomeworkId { get; set; }
-    
-        public virtual Homework Homework { get; set; }
     }
     
 }

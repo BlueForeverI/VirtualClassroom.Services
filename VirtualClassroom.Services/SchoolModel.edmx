@@ -297,8 +297,6 @@
           <Property Name="LessonId" Type="Int32" Nullable="false" />
           <Property Name="Content" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
           <Property Name="Date" Type="DateTime" Nullable="false" />
-          <NavigationProperty Name="Student" Relationship="VirtualClassroomModel.Homeworks_ibfk_2" FromRole="Homeworks" ToRole="Students" />
-          <NavigationProperty Name="Lesson" Relationship="VirtualClassroomModel.Homeworks_ibfk_3" FromRole="Homeworks" ToRole="Lessons" />
           <NavigationProperty Name="Marks" Relationship="VirtualClassroomModel.Marks_ibfk_1" FromRole="Homeworks" ToRole="Marks" />
         </EntityType>
         <EntityType Name="Lesson">
@@ -312,7 +310,6 @@
           <Property Name="HomeworkDueDate" Type="DateTime" />
           <Property Name="HomeworkContent" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="Homeworks" Relationship="VirtualClassroomModel.Homeworks_ibfk_3" FromRole="Lessons" ToRole="Homeworks" />
-          <NavigationProperty Name="Subject" Relationship="VirtualClassroomModel.Lessons_ibfk_1" FromRole="Lessons" ToRole="Subjects" />
         </EntityType>
         <EntityType Name="Mark">
           <Key>
@@ -321,7 +318,6 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Value" Type="Int32" Nullable="false" />
           <Property Name="HomeworkId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Homework" Relationship="VirtualClassroomModel.Marks_ibfk_1" FromRole="Marks" ToRole="Homeworks" />
         </EntityType>
         <EntityType Name="Student">
           <Key>
@@ -335,7 +331,6 @@
           <Property Name="EGN" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
           <Property Name="PasswordHash" Type="String" Nullable="false" MaxLength="65535" Unicode="false" FixedLength="false" />
           <Property Name="ClassId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Class" Relationship="VirtualClassroomModel.Students_ibfk_1" FromRole="Students" ToRole="Classes" />
           <NavigationProperty Name="Homeworks" Relationship="VirtualClassroomModel.Homeworks_ibfk_2" FromRole="Students" ToRole="Homeworks" />
         </EntityType>
         <EntityType Name="Subject">
@@ -346,7 +341,6 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="60" Unicode="false" FixedLength="false" />
           <Property Name="TeacherId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Lessons" Relationship="VirtualClassroomModel.Lessons_ibfk_1" FromRole="Subjects" ToRole="Lessons" />
-          <NavigationProperty Name="Teacher" Relationship="VirtualClassroomModel.Subjects_ibfk_1" FromRole="Subjects" ToRole="Teachers" />
           <NavigationProperty Name="Classes" Relationship="VirtualClassroomModel.Classes_Subjects" FromRole="Subjects" ToRole="Classes" />
         </EntityType>
         <EntityType Name="Teacher">
@@ -562,11 +556,11 @@
     <Diagrams>
       <Diagram Name="SchoolModel">
         <EntityTypeShape EntityType="VirtualClassroomModel.Class" Width="1.5" PointX="0.75" PointY="4.875" Height="1.9802864583333335" IsExpanded="true" />
-        <EntityTypeShape EntityType="VirtualClassroomModel.Homework" Width="1.5" PointX="5.25" PointY="4.5" Height="2.5571907552083326" IsExpanded="true" />
-        <EntityTypeShape EntityType="VirtualClassroomModel.Lesson" Width="1.5" PointX="5.25" PointY="8.125" Height="2.5571907552083317" IsExpanded="true" />
-        <EntityTypeShape EntityType="VirtualClassroomModel.Mark" Width="1.5" PointX="7.5" PointY="5" Height="1.7879850260416657" IsExpanded="true" />
-        <EntityTypeShape EntityType="VirtualClassroomModel.Student" Width="1.5" PointX="3" PointY="4.375" Height="2.9417936197916656" IsExpanded="true" />
-        <EntityTypeShape EntityType="VirtualClassroomModel.Subject" Width="1.5" PointX="3" PointY="0.75" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="VirtualClassroomModel.Homework" Width="1.5" PointX="5.25" PointY="4.5" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="VirtualClassroomModel.Lesson" Width="1.5" PointX="5.25" PointY="8.125" Height="2.3648893229166656" IsExpanded="true" />
+        <EntityTypeShape EntityType="VirtualClassroomModel.Mark" Width="1.5" PointX="7.5" PointY="5" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="VirtualClassroomModel.Student" Width="1.5" PointX="3" PointY="4.375" Height="2.7494921874999996" IsExpanded="true" />
+        <EntityTypeShape EntityType="VirtualClassroomModel.Subject" Width="1.5" PointX="3" PointY="0.75" Height="1.9802864583333335" IsExpanded="true" />
         <EntityTypeShape EntityType="VirtualClassroomModel.Teacher" Width="1.5" PointX="0.75" PointY="8" Height="2.3648893229166656" IsExpanded="true" />
         <AssociationConnector Association="VirtualClassroomModel.Students_ibfk_1" ManuallyRouted="false">
           <ConnectorPoint PointX="2.25" PointY="5.8651432291666667" />
@@ -575,37 +569,37 @@
           <ConnectorPoint PointX="3" PointY="5.8651432291666667" />
         </AssociationConnector>
         <AssociationConnector Association="VirtualClassroomModel.Homeworks_ibfk_2" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="5.7785953776041659" />
-          <ConnectorPoint PointX="4.791666666666667" PointY="5.778595377604165" />
-          <ConnectorPoint PointX="4.958333333333333" PointY="5.7785953776041659" />
-          <ConnectorPoint PointX="5.25" PointY="5.7785953776041659" />
+          <ConnectorPoint PointX="4.5" PointY="5.5862939453125" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="5.5862939453124989" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="5.5862939453125" />
+          <ConnectorPoint PointX="5.25" PointY="5.5862939453125" />
         </AssociationConnector>
         <AssociationConnector Association="VirtualClassroomModel.Homeworks_ibfk_3" ManuallyRouted="false">
           <ConnectorPoint PointX="6" PointY="8.125" />
-          <ConnectorPoint PointX="6" PointY="7.0571907552083326" />
+          <ConnectorPoint PointX="6" PointY="6.672587890625" />
         </AssociationConnector>
         <AssociationConnector Association="VirtualClassroomModel.Marks_ibfk_1" ManuallyRouted="false">
-          <ConnectorPoint PointX="6.75" PointY="5.8939925130208328" />
-          <ConnectorPoint PointX="7.5" PointY="5.8939925130208328" />
+          <ConnectorPoint PointX="6.75" PointY="5.797841796875" />
+          <ConnectorPoint PointX="7.5" PointY="5.797841796875" />
         </AssociationConnector>
         <AssociationConnector Association="VirtualClassroomModel.Lessons_ibfk_1" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="2.9225878906249996" />
-          <ConnectorPoint PointX="4.875" PointY="3.2975878906249996" />
-          <ConnectorPoint PointX="4.875" PointY="9.4035953776041659" />
-          <ConnectorPoint PointX="5.25" PointY="9.4035953776041659" />
+          <ConnectorPoint PointX="4.5" PointY="2.7302864583333335" />
+          <ConnectorPoint PointX="4.875" PointY="3.1052864583333335" />
+          <ConnectorPoint PointX="4.875" PointY="9.3074446614583337" />
+          <ConnectorPoint PointX="5.25" PointY="9.3074446614583337" />
         </AssociationConnector>
         <AssociationConnector Association="VirtualClassroomModel.Subjects_ibfk_1" ManuallyRouted="false">
           <ConnectorPoint PointX="2.25" PointY="8.0011528461538468" />
           <ConnectorPoint PointX="2.625" PointY="7.6261528461538468" />
-          <ConnectorPoint PointX="2.625" PointY="1.8362939453124998" />
-          <ConnectorPoint PointX="3" PointY="1.8362939453124998" />
+          <ConnectorPoint PointX="2.625" PointY="1.4228643420135749" />
+          <ConnectorPoint PointX="3" PointY="1.4228643420135749" />
         </AssociationConnector>
         <AssociationConnector Association="VirtualClassroomModel.Classes_Subjects" ManuallyRouted="false">
           <ConnectorPoint PointX="1.5" PointY="4.875" />
-          <ConnectorPoint PointX="1.5" PointY="2.4106934179687505" />
-          <ConnectorPoint PointX="2.5416666666666665" PointY="2.41069341796875" />
-          <ConnectorPoint PointX="2.7083333333333335" PointY="2.4106934179687505" />
-          <ConnectorPoint PointX="3" PointY="2.4106934179687505" />
+          <ConnectorPoint PointX="1.5" PointY="2.1582326840271513" />
+          <ConnectorPoint PointX="2.5416666666666665" PointY="2.1582326840271508" />
+          <ConnectorPoint PointX="2.7083333333333335" PointY="2.1582326840271513" />
+          <ConnectorPoint PointX="3" PointY="2.1582326840271513" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

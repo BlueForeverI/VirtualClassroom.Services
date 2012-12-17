@@ -25,8 +25,6 @@ namespace VirtualClassroom.Services
         public byte[] Content { get; set; }
         public System.DateTime Date { get; set; }
     
-        public virtual Student Student { get; set; }
-        public virtual Lesson Lesson { get; set; }
         public virtual ICollection<Mark> Marks { get; set; }
     }
     

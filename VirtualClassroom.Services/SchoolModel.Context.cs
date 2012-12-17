@@ -18,22 +18,13 @@ namespace VirtualClassroom.Services
         public VirtualClassroomEntities()
             : base("name=VirtualClassroomEntities")
         {
+            this.Configuration.ProxyCreationEnabled = false;
+            this.Configuration.LazyLoadingEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            //throw new UnintentionalCodeFirstException();
-            modelBuilder.Entity<Class>().
-                HasMany(c => c.Subjects).
-                WithMany(s => s.Classes).
-                Map(
-                    m =>
-                    {
-                        m.MapLeftKey("ClassId");
-                        m.MapRightKey("SubjectId");
-                        m.ToTable("Classes_Subjects");
-                    }
-                );
+            throw new UnintentionalCodeFirstException();
         }
     
         public DbSet<Class> Classes { get; set; }

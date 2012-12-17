@@ -25,7 +25,6 @@ namespace VirtualClassroom.Services
         public int TeacherId { get; set; }
     
         public virtual ICollection<Lesson> Lessons { get; set; }
-        public virtual Teacher Teacher { get; set; }
         public virtual ICollection<Class> Classes { get; set; }
     }
     
