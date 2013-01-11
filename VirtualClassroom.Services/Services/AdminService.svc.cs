@@ -50,6 +50,11 @@ namespace VirtualClassroom.Services.Services
             entitityContext.SaveChanges();
         }
 
+        public List<Student> GetStudents()
+        {
+            return entitityContext.Students.ToList();
+        }
+
         //to refactor
         private static bool IsStudentValid(Student student)
         {

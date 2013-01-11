@@ -30,6 +30,9 @@ namespace VirtualClassroom.Services.Services
         void RemoveStudent(Student student);
 
         [OperationContract]
+        List<Student> GetStudents();
+
+        [OperationContract]
         void AddSubject(Subject subject);
 
         [OperationContract]
