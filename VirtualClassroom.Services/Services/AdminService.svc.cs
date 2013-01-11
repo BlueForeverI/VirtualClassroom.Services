@@ -4,8 +4,6 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
-//using VirtualClassroom.Services.POCO_Classes;
-using AutoMapper;
 
 namespace VirtualClassroom.Services.Services
 {
@@ -20,6 +18,16 @@ namespace VirtualClassroom.Services.Services
             entitityContext.SaveChanges();
         }
 
+        public void RemoveClass(Class c)
+        {
+            Class classEntity = (from cl in entitityContext.Classes
+                                 where cl.Id == c.Id
+                                 select cl).First();
+
+            entitityContext.Classes.Remove(classEntity);
+            entitityContext.SaveChanges();
+        }
+
         public void RegisterStudent(Student student, string password)
         {
             string passwordHash = BCrypt.Net.BCrypt.HashPassword(password);
@@ -30,6 +38,16 @@ namespace VirtualClassroom.Services.Services
                 entitityContext.Students.Add(student);
                 entitityContext.SaveChanges();
             }
+        }
+
+        public void RemoveStudent(Student student)
+        {
+            Student studentEntity = (from s in entitityContext.Students
+                                     where s.Id == student.Id
+                                     select s).First();
+
+            entitityContext.Students.Remove(studentEntity);
+            entitityContext.SaveChanges();
         }
 
         //to refactor
@@ -49,6 +67,16 @@ namespace VirtualClassroom.Services.Services
             entitityContext.SaveChanges();
         }
 
+        public void RemoveSubject(Subject subject)
+        {
+            Subject subjectEntity = (from s in entitityContext.Subjects
+                                     where s.Id == subject.Id
+                                     select s).First();
+
+            entitityContext.Subjects.Remove(subjectEntity);
+            entitityContext.SaveChanges();
+        }
+
         public void RegisterTeacher(Teacher teacher, string password)
         {
             string passwordHash = BCrypt.Net.BCrypt.HashPassword(password);
@@ -59,6 +87,16 @@ namespace VirtualClassroom.Services.Services
                 entitityContext.Teachers.Add(teacher);
                 entitityContext.SaveChanges();
             }
+        }
+
+        public void RemoveTeacher(Teacher teacher)
+        {
+            Teacher teacherEntity = (from t in entitityContext.Teachers
+                                     where t.Id == teacher.Id
+                                     select t).First();
+
+            entitityContext.Teachers.Remove(teacherEntity);
+            entitityContext.SaveChanges();
         }
 
         public List<Teacher> GetTeachers()

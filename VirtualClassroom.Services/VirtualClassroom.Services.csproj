@@ -33,9 +33,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper">
-      <HintPath>C:\Users\George\Downloads\AutoMapper.2.0.0\net40-client\AutoMapper.dll</HintPath>
-    </Reference>
     <Reference Include="BCrypt.Net, Version=0.1.4056.18965, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>_bin_deployableAssemblies\BCrypt.Net.dll</HintPath>
@@ -89,7 +86,6 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="_bin_deployableAssemblies\AutoMapper.dll" />
     <Content Include="_bin_deployableAssemblies\BCrypt.Net.dll" />
     <Content Include="_bin_deployableAssemblies\EntityFramework.dll" />
     <Content Include="_bin_deployableAssemblies\MySql.Data.dll" />

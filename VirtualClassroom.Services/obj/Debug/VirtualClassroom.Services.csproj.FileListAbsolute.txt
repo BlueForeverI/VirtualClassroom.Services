@@ -1,7 +1,6 @@
 E:\Dev\Projects\VirtualClassroom\VirtualClassroom.Services\VirtualClassroom.Services\VirtualClassroom.Services\obj\Debug\VirtualClassroom.Services.csprojResolveAssemblyReference.cache
 E:\Dev\Projects\VirtualClassroom\VirtualClassroom.Services\VirtualClassroom.Services\VirtualClassroom.Services\bin\VirtualClassroom.Services.dll
 E:\Dev\Projects\VirtualClassroom\VirtualClassroom.Services\VirtualClassroom.Services\VirtualClassroom.Services\bin\VirtualClassroom.Services.pdb
-E:\Dev\Projects\VirtualClassroom\VirtualClassroom.Services\VirtualClassroom.Services\VirtualClassroom.Services\bin\AutoMapper.dll
 E:\Dev\Projects\VirtualClassroom\VirtualClassroom.Services\VirtualClassroom.Services\VirtualClassroom.Services\bin\BCrypt.Net.dll
 E:\Dev\Projects\VirtualClassroom\VirtualClassroom.Services\VirtualClassroom.Services\VirtualClassroom.Services\bin\EntityFramework.dll
 E:\Dev\Projects\VirtualClassroom\VirtualClassroom.Services\VirtualClassroom.Services\VirtualClassroom.Services\obj\Debug\VirtualClassroom.Services.dll
