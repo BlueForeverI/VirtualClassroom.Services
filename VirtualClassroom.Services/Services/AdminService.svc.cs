@@ -10,22 +10,26 @@ namespace VirtualClassroom.Services.Services
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "AdminService" in code, svc and config file together.
     public class AdminService : IAdminService
     {
-        VirtualClassroomEntities entitityContext = new VirtualClassroomEntities();
+        VirtualClassroomEntities entityContext = new VirtualClassroomEntities();
 
         public void AddClass(Class c)
         {
-            entitityContext.Classes.Add(c);
-            entitityContext.SaveChanges();
+            entityContext.Classes.Add(c);
+            entityContext.SaveChanges();
         }
 
-        public void RemoveClass(Class c)
+        public void RemoveClasses(Class[] classes)
         {
-            Class classEntity = (from cl in entitityContext.Classes
-                                 where cl.Id == c.Id
-                                 select cl).First();
+            var entities = (from c in entityContext.Classes
+                            where classes.Any(cl => cl.Id == c.Id)
+                            select c).ToList();
 
-            entitityContext.Classes.Remove(classEntity);
-            entitityContext.SaveChanges();
+            foreach (var entity in entities)
+            {
+                entityContext.Classes.Remove(entity);
+            }
+
+            entityContext.SaveChanges();
         }
 
         public void RegisterStudent(Student student, string password)
@@ -35,24 +39,28 @@ namespace VirtualClassroom.Services.Services
 
             if (IsStudentValid(student))
             {
-                entitityContext.Students.Add(student);
-                entitityContext.SaveChanges();
+                entityContext.Students.Add(student);
+                entityContext.SaveChanges();
             }
         }
 
-        public void RemoveStudent(Student student)
+        public void RemoveStudents(Student[] students)
         {
-            Student studentEntity = (from s in entitityContext.Students
-                                     where s.Id == student.Id
-                                     select s).First();
+            var entities = (from s in entityContext.Students
+                            where students.Any(st => st.Id == s.Id)
+                            select s).ToList();
 
-            entitityContext.Students.Remove(studentEntity);
-            entitityContext.SaveChanges();
+            foreach (var entity in entities)
+            {
+                entityContext.Students.Remove(entity);
+            }
+
+            entityContext.SaveChanges();
         }
 
         public List<Student> GetStudents()
         {
-            return entitityContext.Students.ToList();
+            return entityContext.Students.ToList();
         }
 
         //to refactor
@@ -63,23 +71,27 @@ namespace VirtualClassroom.Services.Services
 
         public List<Class> GetClasses()
         {
-            return entitityContext.Classes.ToList();
+            return entityContext.Classes.ToList();
         }
 
         public void AddSubject(Subject subject)
         {
-            entitityContext.Subjects.Add(subject);
-            entitityContext.SaveChanges();
+            entityContext.Subjects.Add(subject);
+            entityContext.SaveChanges();
         }
 
-        public void RemoveSubject(Subject subject)
+        public void RemoveSubjects(Subject[] subjects)
         {
-            Subject subjectEntity = (from s in entitityContext.Subjects
-                                     where s.Id == subject.Id
-                                     select s).First();
+            var entities = (from s in entityContext.Subjects
+                            where subjects.Any(sub => sub.Id == s.Id)
+                            select s).ToList();
 
-            entitityContext.Subjects.Remove(subjectEntity);
-            entitityContext.SaveChanges();
+            foreach (var entity in entities)
+            {
+                entityContext.Subjects.Remove(entity);
+            }
+
+            entityContext.SaveChanges();
         }
 
         public void RegisterTeacher(Teacher teacher, string password)
@@ -89,45 +101,64 @@ namespace VirtualClassroom.Services.Services
 
             if (IsTeacherValid(teacher))
             {
-                entitityContext.Teachers.Add(teacher);
-                entitityContext.SaveChanges();
+                entityContext.Teachers.Add(teacher);
+                entityContext.SaveChanges();
             }
         }
 
-        public void RemoveTeacher(Teacher teacher)
+        public void RemoveTeachers(Teacher[] teachers)
         {
-            Teacher teacherEntity = (from t in entitityContext.Teachers
-                                     where t.Id == teacher.Id
-                                     select t).First();
+            var entities = (from t in entityContext.Teachers
+                            where teachers.Any(te => te.Id == t.Id)
+                            select t).ToList();
 
-            entitityContext.Teachers.Remove(teacherEntity);
-            entitityContext.SaveChanges();
+            foreach (var entity in entities)
+            {
+                entityContext.Teachers.Remove(entity);
+            }
+
+            entityContext.SaveChanges();
         }
 
         public List<Teacher> GetTeachers()
         {
-            return entitityContext.Teachers.ToList();
+            return entityContext.Teachers.ToList();
         }
 
         public void AddClassesToSubject(Subject subject, List<Class> classes)
         {
             Subject subjectEntity = new Subject() { Id = subject.Id };
             //entitityContext.AttachTo("Subjects", subjectEntity);
-            entitityContext.Subjects.Attach(subjectEntity);
+            entityContext.Subjects.Attach(subjectEntity);
             foreach (var c in classes)
             {
                 Class entity = new Class() { Id = c.Id };
                 //entitityContext.AttachTo("Classes", entity);
-                entitityContext.Classes.Attach(entity);
+                entityContext.Classes.Attach(entity);
                 subjectEntity.Classes.Add(entity);
             }
 
-            entitityContext.SaveChanges();
+            entityContext.SaveChanges();
+        }
+
+        public void AddSubjectsToClass(Class c, List<Subject> subjects)
+        {
+            Class classEntity = new Class(){Id = c.Id};
+            entityContext.Classes.Attach(classEntity);
+
+            foreach (var subject in subjects)
+            {
+                Subject entity = new Subject(){Id = subject.Id};
+                entityContext.Subjects.Attach(entity);
+                classEntity.Subjects.Add(entity);
+            }
+
+            entityContext.SaveChanges();
         }
 
         public List<Subject> GetSubjects()
         {
-            return entitityContext.Subjects.ToList();
+            return entityContext.Subjects.ToList();
         }
 
         //to refactor
@@ -138,12 +169,12 @@ namespace VirtualClassroom.Services.Services
 
         public Student LoginStudent(string username, string password)
         {
-            if (entitityContext.Students.Count(s => s.Username == username) == 0)
+            if (entityContext.Students.Count(s => s.Username == username) == 0)
             {
                 return null;
             }
 
-            Student entity = entitityContext.Students.Where(s => s.Username == username).First();
+            Student entity = entityContext.Students.Where(s => s.Username == username).First();
             if (BCrypt.Net.BCrypt.Verify(password, entity.PasswordHash))
             {
                 return entity;
@@ -154,12 +185,12 @@ namespace VirtualClassroom.Services.Services
 
         public Teacher LoginTeacher(string username, string password)
         {
-            if (entitityContext.Teachers.Count(s => s.Username == username) == 0)
+            if (entityContext.Teachers.Count(s => s.Username == username) == 0)
             {
                 return null;
             }
 
-            Teacher entity = entitityContext.Teachers.Where(s => s.Username == username).First();
+            Teacher entity = entityContext.Teachers.Where(s => s.Username == username).First();
             if (BCrypt.Net.BCrypt.Verify(password, entity.PasswordHash))
             {
                 return entity;
@@ -171,7 +202,7 @@ namespace VirtualClassroom.Services.Services
 
         public List<Subject> GetSubjectsByClass(int classId)
         {
-            Class c = (from cl in entitityContext.Classes.Include("Subjects") 
+            Class c = (from cl in entityContext.Classes.Include("Subjects") 
                        where cl.Id == classId 
                        select cl).First();
 
