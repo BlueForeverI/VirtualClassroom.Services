@@ -20,8 +20,10 @@ namespace VirtualClassroom.Services.Services
 
         public void RemoveClasses(List<Class> classes)
         {
+            int[] ids = (from c in classes select c.Id).ToArray();
+
             var entities = (from c in entityContext.Classes
-                            where classes.Any(cl => cl.Id == c.Id)
+                            where ids.Contains(c.Id)
                             select c).ToList();
 
             foreach (var entity in entities)
@@ -46,8 +48,10 @@ namespace VirtualClassroom.Services.Services
 
         public void RemoveStudents(List<Student> students)
         {
+            int[] ids = (from s in students select s.Id).ToArray();
+
             var entities = (from s in entityContext.Students
-                            where students.Any(st => st.Id == s.Id)
+                            where ids.Contains(s.Id)
                             select s).ToList();
 
             foreach (var entity in entities)
@@ -82,8 +86,10 @@ namespace VirtualClassroom.Services.Services
 
         public void RemoveSubjects(List<Subject> subjects)
         {
+            int[] ids = (from s in subjects select s.Id).ToArray();
+
             var entities = (from s in entityContext.Subjects
-                            where subjects.Any(sub => sub.Id == s.Id)
+                            where ids.Contains(s.Id)
                             select s).ToList();
 
             foreach (var entity in entities)
@@ -108,8 +114,10 @@ namespace VirtualClassroom.Services.Services
 
         public void RemoveTeachers(List<Teacher> teachers)
         {
+            int[] ids = (from t in teachers select t.Id).ToArray();
+
             var entities = (from t in entityContext.Teachers
-                            where teachers.Any(te => te.Id == t.Id)
+                            where ids.Contains(t.Id)
                             select t).ToList();
 
             foreach (var entity in entities)
