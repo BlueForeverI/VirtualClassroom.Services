@@ -9,7 +9,7 @@
   </SettingsComponent>
   <CompletionStatisticsManager>
     <ItemStatistics item="Default">
-      <Item value="entitityContext" priority="8" />
+      <Item value="entitityContext" priority="13" />
       <Item value="static" priority="0" />
       <Item value="AdminService`0" priority="1" />
       <Item value="private" priority="0" />
@@ -17,43 +17,69 @@
       <Item value="protected" priority="0" />
       <Item value="override" priority="0" />
       <Item value="Configuration" priority="0" />
-      <Item value="List" priority="1" />
+      <Item value="List" priority="2" />
       <Item value="Teacher`0" priority="5" />
-      <Item value="teachers" priority="3" />
-      <Item value="new" priority="2" />
+      <Item value="teachers" priority="4" />
+      <Item value="new" priority="4" />
       <Item value="List&lt;Teacher&gt;" priority="0" />
       <Item value="true" priority="1" />
       <Item value="return" priority="1" />
-      <Item value="this" priority="6" />
+      <Item value="this" priority="7" />
       <Item value="modelBuilder" priority="10" />
-      <Item value="t" priority="5" />
+      <Item value="t" priority="7" />
       <Item value="base" priority="3" />
-      <Item value="s" priority="8" />
+      <Item value="s" priority="12" />
       <Item value="m" priority="1" />
-      <Item value="Subject`0" priority="3" />
-      <Item value="var" priority="3" />
+      <Item value="Subject`0" priority="4" />
+      <Item value="var" priority="7" />
       <Item value="teacher" priority="0" />
-      <Item value="sub" priority="0" />
+      <Item value="sub" priority="1" />
       <Item value="OperationContext`0" priority="0" />
       <Item value="int" priority="0" />
-      <Item value="c" priority="2" />
-      <Item value="foreach" priority="0" />
-      <Item value="subject" priority="0" />
+      <Item value="c" priority="5" />
+      <Item value="foreach" priority="5" />
+      <Item value="subject" priority="1" />
       <Item value="null" priority="0" />
       <Item value="path" priority="0" />
       <Item value="p" priority="0" />
+      <Item value="OperationContract" priority="0" />
+      <Item value="void" priority="0" />
+      <Item value="Class`0" priority="1" />
+      <Item value="classes" priority="1" />
+      <Item value="from" priority="3" />
+      <Item value="where" priority="3" />
+      <Item value="Concat`1" priority="0" />
+      <Item value="Any`1" priority="3" />
+      <Item value="cl" priority="0" />
+      <Item value="select" priority="3" />
+      <Item value="entity" priority="6" />
+      <Item value="entities" priority="1" />
+      <Item value="students" priority="0" />
+      <Item value="st" priority="0" />
+      <Item value="entityContext" priority="7" />
+      <Item value="subjects" priority="0" />
+      <Item value="te" priority="0" />
+      <Item value="Class" priority="0" />
+      <Item value="Id" priority="1" />
+      <Item value="classEntity" priority="1" />
+      <Item value="Subject" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:VirtualClassroom.Services.VirtualClassroomEntities">
-      <Item value="Classes" priority="0" />
+      <Item value="Classes" priority="3" />
       <Item value="Configuration" priority="9" />
       <Item value="Set`0" priority="0" />
-      <Item value="Teachers" priority="1" />
+      <Item value="Teachers" priority="3" />
       <Item value="Entry`0" priority="0" />
+      <Item value="SaveChanges`0" priority="4" />
+      <Item value="Students" priority="1" />
+      <Item value="Subjects" priority="2" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Data.Entity.DbSet`1">
       <Item value="ToList`1" priority="2" />
       <Item value="Include`0" priority="8" />
       <Item value="Find`0" priority="0" />
+      <Item value="Remove`0" priority="3" />
+      <Item value="Attach`0" priority="1" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Data.Entity.Infrastructure.DbContextConfiguration">
       <Item value="LazyLoadingEnabled" priority="5" />
@@ -69,7 +95,8 @@
       <Item value="Ignore`1" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:VirtualClassroom.Services.Teacher">
-      <Item value="Subjects" priority="5" />
+      <Item value="Subjects" priority="6" />
+      <Item value="Id" priority="1" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Data.Entity.DbContext">
       <Item value="OnModelCreating`0" priority="3" />
@@ -86,6 +113,7 @@
       <Item value="TeacherId" priority="1" />
       <Item value="Teacher" priority="2" />
       <Item value="Classes" priority="0" />
+      <Item value="Id" priority="2" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Data.Entity.Infrastructure.DbQuery`1">
       <Item value="Where`1" priority="0" />
@@ -103,29 +131,51 @@
       <Item value="MapKey`0" priority="1" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:VirtualClassroom.Services.Class">
-      <Item value="Subjects" priority="1" />
+      <Item value="Subjects" priority="2" />
+      <Item value="Id" priority="2" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Linq.IQueryable`1">
+      <Item value="ToList`1" priority="3" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:VirtualClassroom.Services.Services.AdminService">
+      <Item value="entitityContext" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:VirtualClassroom.Services.Student">
+      <Item value="Id" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Collections.Generic.ICollection`1">
+      <Item value="Add`0" priority="0" />
     </ItemStatistics>
   </CompletionStatisticsManager>
   <RecentFiles>
     <RecentFiles>
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/f:SchoolModel.cs" caret="482" fromTop="12" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:IAdminService.cs" caret="1267" fromTop="16" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="559" fromTop="14" />
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/f:SchoolModel.Context.tt" caret="0" fromTop="0" />
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/f:SchoolModel.Context.cs" caret="554" fromTop="5" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:IAdminService.cs" caret="924" fromTop="0" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="4975" fromTop="155" />
     </RecentFiles>
     <RecentEdits>
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:IAdminService.cs" caret="940" fromTop="18" />
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/f:SchoolModel.Context.cs" caret="1017" fromTop="16" />
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/f:SchoolModel.Context.cs" caret="852" fromTop="12" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="1299" fromTop="12" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:IAdminService.cs" caret="1267" fromTop="16" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="4424" fromTop="24" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="4385" fromTop="26" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="4384" fromTop="27" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="4125" fromTop="20" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="2035" fromTop="22" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="559" fromTop="11" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="1375" fromTop="12" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="5170" fromTop="24" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="5131" fromTop="26" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="5130" fromTop="27" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="4369" fromTop="20" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="2169" fromTop="22" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="557" fromTop="11" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:IAdminService.cs" caret="1667" fromTop="23" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:IAdminService.cs" caret="1394" fromTop="14" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:IAdminService.cs" caret="1148" fromTop="5" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:IAdminService.cs" caret="681" fromTop="11" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:IAdminService.cs" caret="924" fromTop="20" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="1029" fromTop="20" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="1891" fromTop="33" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="2868" fromTop="30" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="3702" fromTop="20" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="373" fromTop="10" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="4975" fromTop="32" />
     </RecentEdits>
   </RecentFiles>
   <NAntValidationSettings>
