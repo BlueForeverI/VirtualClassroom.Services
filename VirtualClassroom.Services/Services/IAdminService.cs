@@ -18,7 +18,7 @@ namespace VirtualClassroom.Services.Services
         void AddClass(Class c);
 
         [OperationContract]
-        void RemoveClasses(Class[] classes);
+        void RemoveClasses(List<Class> classes);
 
         [OperationContract]
         List<Class> GetClasses();
@@ -27,7 +27,7 @@ namespace VirtualClassroom.Services.Services
         void RegisterStudent(Student student, string password);
 
         [OperationContract]
-        void RemoveStudents(Student[] students);
+        void RemoveStudents(List<Student> students);
 
         [OperationContract]
         List<Student> GetStudents();
@@ -37,7 +37,7 @@ namespace VirtualClassroom.Services.Services
 
 		
         [OperationContract]
-        void RemoveSubjects(Subject[] subjects); 
+        void RemoveSubjects(List<Subject> subjects); 
 
         [OperationContract]
         List<Subject> GetSubjects();
@@ -46,7 +46,7 @@ namespace VirtualClassroom.Services.Services
         void RegisterTeacher(Teacher teacher, string password);
 
         [OperationContract]
-        void RemoveTeachers(Teacher[] teachers);
+        void RemoveTeachers(List<Teacher> teachers);
 
         [OperationContract]
         List<Teacher> GetTeachers();

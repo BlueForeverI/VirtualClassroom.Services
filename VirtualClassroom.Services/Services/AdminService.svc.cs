@@ -18,7 +18,7 @@ namespace VirtualClassroom.Services.Services
             entityContext.SaveChanges();
         }
 
-        public void RemoveClasses(Class[] classes)
+        public void RemoveClasses(List<Class> classes)
         {
             var entities = (from c in entityContext.Classes
                             where classes.Any(cl => cl.Id == c.Id)
@@ -44,7 +44,7 @@ namespace VirtualClassroom.Services.Services
             }
         }
 
-        public void RemoveStudents(Student[] students)
+        public void RemoveStudents(List<Student> students)
         {
             var entities = (from s in entityContext.Students
                             where students.Any(st => st.Id == s.Id)
@@ -80,7 +80,7 @@ namespace VirtualClassroom.Services.Services
             entityContext.SaveChanges();
         }
 
-        public void RemoveSubjects(Subject[] subjects)
+        public void RemoveSubjects(List<Subject> subjects)
         {
             var entities = (from s in entityContext.Subjects
                             where subjects.Any(sub => sub.Id == s.Id)
@@ -106,7 +106,7 @@ namespace VirtualClassroom.Services.Services
             }
         }
 
-        public void RemoveTeachers(Teacher[] teachers)
+        public void RemoveTeachers(List<Teacher> teachers)
         {
             var entities = (from t in entityContext.Teachers
                             where teachers.Any(te => te.Id == t.Id)

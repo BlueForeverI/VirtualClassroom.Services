@@ -5,3 +5,13 @@ E:\Dev\Projects\VirtualClassroom\VirtualClassroom.Services\VirtualClassroom.Serv
 E:\Dev\Projects\VirtualClassroom\VirtualClassroom.Services\VirtualClassroom.Services\VirtualClassroom.Services\bin\EntityFramework.dll
 E:\Dev\Projects\VirtualClassroom\VirtualClassroom.Services\VirtualClassroom.Services\VirtualClassroom.Services\obj\Debug\VirtualClassroom.Services.dll
 E:\Dev\Projects\VirtualClassroom\VirtualClassroom.Services\VirtualClassroom.Services\VirtualClassroom.Services\obj\Debug\VirtualClassroom.Services.pdb
+E:\Dev\Projects\VirtualClassroom.Services\VirtualClassroom.Services\VirtualClassroom.Services\obj\Debug\VirtualClassroom.Services.csprojResolveAssemblyReference.cache
+E:\Dev\Projects\VirtualClassroom.Services\VirtualClassroom.Services\VirtualClassroom.Services\obj\Debug\VirtualClassroom.Services.dll
+E:\Dev\Projects\VirtualClassroom.Services\VirtualClassroom.Services\VirtualClassroom.Services\obj\Debug\VirtualClassroom.Services.pdb
+E:\Dev\Projects\VirtualClassroom.Services\VirtualClassroom.Services\VirtualClassroom.Services\bin\VirtualClassroom.Services.dll
+E:\Dev\Projects\VirtualClassroom.Services\VirtualClassroom.Services\VirtualClassroom.Services\bin\VirtualClassroom.Services.pdb
+E:\Dev\Projects\VirtualClassroom.Services\VirtualClassroom.Services\VirtualClassroom.Services\bin\BCrypt.Net.dll
+E:\Dev\Projects\VirtualClassroom.Services\VirtualClassroom.Services\VirtualClassroom.Services\bin\EntityFramework.dll
+E:\Dev\Projects\VirtualClassroom.Services\VirtualClassroom.Services\VirtualClassroom.Services\bin\MySql.Data.dll
+E:\Dev\Projects\VirtualClassroom.Services\VirtualClassroom.Services\VirtualClassroom.Services\bin\MySql.Data.Entity.dll
+E:\Dev\Projects\VirtualClassroom.Services\VirtualClassroom.Services\VirtualClassroom.Services\bin\MySql.Web.dll
