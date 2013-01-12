@@ -35,6 +35,7 @@ namespace VirtualClassroom.Services.Services
         [OperationContract]
         void AddSubject(Subject subject);
 
+		
         [OperationContract]
         void RemoveSubjects(Subject[] subjects); 
 
