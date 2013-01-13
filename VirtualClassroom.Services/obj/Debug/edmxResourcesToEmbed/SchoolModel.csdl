@@ -4,7 +4,6 @@
     <EntitySet Name="Classes" EntityType="VirtualClassroomModel.Class" />
     <EntitySet Name="Homeworks" EntityType="VirtualClassroomModel.Homework" />
     <EntitySet Name="Lessons" EntityType="VirtualClassroomModel.Lesson" />
-    <EntitySet Name="Marks" EntityType="VirtualClassroomModel.Mark" />
     <EntitySet Name="Students" EntityType="VirtualClassroomModel.Student" />
     <EntitySet Name="Subjects" EntityType="VirtualClassroomModel.Subject" />
     <EntitySet Name="Teachers" EntityType="VirtualClassroomModel.Teacher" />
@@ -19,10 +18,6 @@
     <AssociationSet Name="Homeworks_ibfk_3" Association="VirtualClassroomModel.Homeworks_ibfk_3">
       <End Role="Lessons" EntitySet="Lessons" />
       <End Role="Homeworks" EntitySet="Homeworks" />
-    </AssociationSet>
-    <AssociationSet Name="Marks_ibfk_1" Association="VirtualClassroomModel.Marks_ibfk_1">
-      <End Role="Homeworks" EntitySet="Homeworks" />
-      <End Role="Marks" EntitySet="Marks" />
     </AssociationSet>
     <AssociationSet Name="Lessons_ibfk_1" Association="VirtualClassroomModel.Lessons_ibfk_1">
       <End Role="Subjects" EntitySet="Subjects" />
@@ -56,7 +51,7 @@
     <Property Name="LessonId" Type="Int32" Nullable="false" />
     <Property Name="Content" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
     <Property Name="Date" Type="DateTime" Nullable="false" />
-    <NavigationProperty Name="Marks" Relationship="VirtualClassroomModel.Marks_ibfk_1" FromRole="Homeworks" ToRole="Marks" />
+    <Property Type="Single" Name="Mark" />
   </EntityType>
   <EntityType Name="Lesson">
     <Key>
@@ -66,17 +61,12 @@
     <Property Name="SubjectId" Type="Int32" Nullable="false" />
     <Property Name="Name" Type="String" Nullable="false" MaxLength="80" Unicode="false" FixedLength="false" />
     <Property Name="Date" Type="DateTime" Nullable="false" />
-    <Property Name="HomeworkDueDate" Type="DateTime" />
     <Property Name="HomeworkContent" Type="Binary" MaxLength="Max" FixedLength="false" />
     <NavigationProperty Name="Homeworks" Relationship="VirtualClassroomModel.Homeworks_ibfk_3" FromRole="Lessons" ToRole="Homeworks" />
-  </EntityType>
-  <EntityType Name="Mark">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Value" Type="Int32" Nullable="false" />
-    <Property Name="HomeworkId" Type="Int32" Nullable="false" />
+    <Property Type="Binary" Name="Content" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <Property Type="String" Name="ContentFilename" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="HomeworkDeadline" />
+    <Property Type="String" Name="HomeworkFilename" MaxLength="100" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="Student">
     <Key>
@@ -153,20 +143,6 @@
       </Principal>
       <Dependent Role="Homeworks">
         <PropertyRef Name="LessonId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="Marks_ibfk_1">
-    <End Role="Homeworks" Type="VirtualClassroomModel.Homework" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="Marks" Type="VirtualClassroomModel.Mark" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Homeworks">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Marks">
-        <PropertyRef Name="HomeworkId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

@@ -5,7 +5,6 @@
     <EntitySet Name="Classes_Subjects" EntityType="VirtualClassroomModel.Store.Classes_Subjects" store:Type="Tables" Schema="swaguche_virtualclassroom" />
     <EntitySet Name="Homeworks" EntityType="VirtualClassroomModel.Store.Homeworks" store:Type="Tables" Schema="swaguche_virtualclassroom" />
     <EntitySet Name="Lessons" EntityType="VirtualClassroomModel.Store.Lessons" store:Type="Tables" Schema="swaguche_virtualclassroom" />
-    <EntitySet Name="Marks" EntityType="VirtualClassroomModel.Store.Marks" store:Type="Tables" Schema="swaguche_virtualclassroom" />
     <EntitySet Name="Students" EntityType="VirtualClassroomModel.Store.Students" store:Type="Tables" Schema="swaguche_virtualclassroom" />
     <EntitySet Name="Subjects" EntityType="VirtualClassroomModel.Store.Subjects" store:Type="Tables" Schema="swaguche_virtualclassroom" />
     <EntitySet Name="Teachers" EntityType="VirtualClassroomModel.Store.Teachers" store:Type="Tables" Schema="swaguche_virtualclassroom" />
@@ -28,10 +27,6 @@
     <AssociationSet Name="Lessons_ibfk_1" Association="VirtualClassroomModel.Store.Lessons_ibfk_1">
       <End Role="Subjects" EntitySet="Subjects" />
       <End Role="Lessons" EntitySet="Lessons" />
-    </AssociationSet>
-    <AssociationSet Name="Marks_ibfk_1" Association="VirtualClassroomModel.Store.Marks_ibfk_1">
-      <End Role="Homeworks" EntitySet="Homeworks" />
-      <End Role="Marks" EntitySet="Marks" />
     </AssociationSet>
     <AssociationSet Name="Students_ibfk_1" Association="VirtualClassroomModel.Store.Students_ibfk_1">
       <End Role="Classes" EntitySet="Classes" />
@@ -67,6 +62,7 @@
     <Property Name="LessonId" Type="int" Nullable="false" />
     <Property Name="Content" Type="blob" Nullable="false" />
     <Property Name="Date" Type="date" Nullable="false" />
+    <Property Name="Mark" Type="float" />
   </EntityType>
   <EntityType Name="Lessons">
     <Key>
@@ -75,17 +71,12 @@
     <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="SubjectId" Type="int" Nullable="false" />
     <Property Name="Name" Type="varchar" Nullable="false" MaxLength="80" />
+    <Property Name="Content" Type="blob" Nullable="false" />
+    <Property Name="ContentFilename" Type="varchar" Nullable="false" MaxLength="100" />
     <Property Name="Date" Type="date" Nullable="false" />
-    <Property Name="HomeworkDueDate" Type="date" />
+    <Property Name="HomeworkDeadline" Type="date" />
     <Property Name="HomeworkContent" Type="blob" />
-  </EntityType>
-  <EntityType Name="Marks">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="Value" Type="int" Nullable="false" />
-    <Property Name="HomeworkId" Type="int" Nullable="false" />
+    <Property Name="HomeworkFilename" Type="varchar" MaxLength="100" />
   </EntityType>
   <EntityType Name="Students">
     <Key>
@@ -186,20 +177,6 @@
       </Principal>
       <Dependent Role="Lessons">
         <PropertyRef Name="SubjectId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="Marks_ibfk_1">
-    <End Role="Homeworks" Type="VirtualClassroomModel.Store.Homeworks" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="Marks" Type="VirtualClassroomModel.Store.Marks" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Homeworks">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Marks">
-        <PropertyRef Name="HomeworkId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

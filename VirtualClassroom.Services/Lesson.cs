@@ -23,8 +23,11 @@ namespace VirtualClassroom.Services
         public int SubjectId { get; set; }
         public string Name { get; set; }
         public System.DateTime Date { get; set; }
-        public Nullable<System.DateTime> HomeworkDueDate { get; set; }
         public byte[] HomeworkContent { get; set; }
+        public byte[] Content { get; set; }
+        public string ContentFilename { get; set; }
+        public Nullable<System.DateTime> HomeworkDeadline { get; set; }
+        public string HomeworkFilename { get; set; }
     
         public virtual ICollection<Homework> Homeworks { get; set; }
     }

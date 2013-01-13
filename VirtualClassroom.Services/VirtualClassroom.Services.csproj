@@ -77,6 +77,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Services\AdminService.svc" />
+    <Content Include="Services\TeacherService.svc" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -102,9 +103,6 @@
     <Compile Include="Lesson.cs">
       <DependentUpon>SchoolModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Mark.cs">
-      <DependentUpon>SchoolModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SchoolModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -125,6 +123,10 @@
       <DependentUpon>AdminService.svc</DependentUpon>
     </Compile>
     <Compile Include="Services\IAdminService.cs" />
+    <Compile Include="Services\ITeacherService.cs" />
+    <Compile Include="Services\TeacherService.svc.cs">
+      <DependentUpon>TeacherService.svc</DependentUpon>
+    </Compile>
     <Compile Include="Student.cs">
       <DependentUpon>SchoolModel.tt</DependentUpon>
     </Compile>

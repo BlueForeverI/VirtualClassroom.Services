@@ -27,4 +27,5 @@ namespace VirtualClassroom.Services
         public virtual ICollection<Student> Students { get; set; }
         public virtual ICollection<Subject> Subjects { get; set; }
     }
+    
 }

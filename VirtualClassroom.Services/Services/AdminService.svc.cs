@@ -10,7 +10,7 @@ namespace VirtualClassroom.Services.Services
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "AdminService" in code, svc and config file together.
     public class AdminService : IAdminService
     {
-        VirtualClassroomEntities entityContext = new VirtualClassroomEntities();
+        private VirtualClassroomEntities entityContext = new VirtualClassroomEntities();
 
         public void AddClass(Class c)
         {
@@ -136,12 +136,10 @@ namespace VirtualClassroom.Services.Services
         public void AddClassesToSubject(Subject subject, List<Class> classes)
         {
             Subject subjectEntity = new Subject() { Id = subject.Id };
-            //entitityContext.AttachTo("Subjects", subjectEntity);
             entityContext.Subjects.Attach(subjectEntity);
             foreach (var c in classes)
             {
                 Class entity = new Class() { Id = c.Id };
-                //entitityContext.AttachTo("Classes", entity);
                 entityContext.Classes.Attach(entity);
                 subjectEntity.Classes.Add(entity);
             }
@@ -190,23 +188,6 @@ namespace VirtualClassroom.Services.Services
 
             return null;
         }
-
-        public Teacher LoginTeacher(string username, string password)
-        {
-            if (entityContext.Teachers.Count(s => s.Username == username) == 0)
-            {
-                return null;
-            }
-
-            Teacher entity = entityContext.Teachers.Where(s => s.Username == username).First();
-            if (BCrypt.Net.BCrypt.Verify(password, entity.PasswordHash))
-            {
-                return entity;
-            }
-
-            return null;
-        }
-
 
         public List<Subject> GetSubjectsByClass(int classId)
         {

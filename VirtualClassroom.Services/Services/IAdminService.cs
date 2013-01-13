@@ -62,8 +62,5 @@ namespace VirtualClassroom.Services.Services
         
         [OperationContract]
         Student LoginStudent(string username, string password);
-
-        [OperationContract]
-        Teacher LoginTeacher(string username, string password);
     }
 }

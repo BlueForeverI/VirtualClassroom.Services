@@ -18,8 +18,6 @@ namespace VirtualClassroom.Services
         public VirtualClassroomEntities()
             : base("name=VirtualClassroomEntities")
         {
-            this.Configuration.ProxyCreationEnabled = false;
-            this.Configuration.LazyLoadingEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -30,7 +28,6 @@ namespace VirtualClassroom.Services
         public DbSet<Class> Classes { get; set; }
         public DbSet<Homework> Homeworks { get; set; }
         public DbSet<Lesson> Lessons { get; set; }
-        public DbSet<Mark> Marks { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<Subject> Subjects { get; set; }
         public DbSet<Teacher> Teachers { get; set; }

@@ -13,6 +13,7 @@
     <EntitySetMapping Name="Homeworks">
       <EntityTypeMapping TypeName="VirtualClassroomModel.Homework">
         <MappingFragment StoreEntitySet="Homeworks">
+          <ScalarProperty Name="Mark" ColumnName="Mark" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="StudentId" ColumnName="StudentId" />
           <ScalarProperty Name="LessonId" ColumnName="LessonId" />
@@ -24,21 +25,15 @@
     <EntitySetMapping Name="Lessons">
       <EntityTypeMapping TypeName="VirtualClassroomModel.Lesson">
         <MappingFragment StoreEntitySet="Lessons">
+          <ScalarProperty Name="HomeworkFilename" ColumnName="HomeworkFilename" />
+          <ScalarProperty Name="HomeworkDeadline" ColumnName="HomeworkDeadline" />
+          <ScalarProperty Name="ContentFilename" ColumnName="ContentFilename" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="SubjectId" ColumnName="SubjectId" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Date" ColumnName="Date" />
-          <ScalarProperty Name="HomeworkDueDate" ColumnName="HomeworkDueDate" />
           <ScalarProperty Name="HomeworkContent" ColumnName="HomeworkContent" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Marks">
-      <EntityTypeMapping TypeName="VirtualClassroomModel.Mark">
-        <MappingFragment StoreEntitySet="Marks">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Value" ColumnName="Value" />
-          <ScalarProperty Name="HomeworkId" ColumnName="HomeworkId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

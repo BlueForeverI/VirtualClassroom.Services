@@ -14,18 +14,12 @@ namespace VirtualClassroom.Services
 {
     public partial class Homework
     {
-        public Homework()
-        {
-            this.Marks = new HashSet<Mark>();
-        }
-    
         public int Id { get; set; }
         public int StudentId { get; set; }
         public int LessonId { get; set; }
         public byte[] Content { get; set; }
         public System.DateTime Date { get; set; }
-    
-        public virtual ICollection<Mark> Marks { get; set; }
+        public Nullable<float> Mark { get; set; }
     }
     
 }
