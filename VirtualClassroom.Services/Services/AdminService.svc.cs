@@ -173,22 +173,6 @@ namespace VirtualClassroom.Services.Services
             return true;
         }
 
-        public Student LoginStudent(string username, string password)
-        {
-            if (entityContext.Students.Count(s => s.Username == username) == 0)
-            {
-                return null;
-            }
-
-            Student entity = entityContext.Students.Where(s => s.Username == username).First();
-            if (BCrypt.Net.BCrypt.Verify(password, entity.PasswordHash))
-            {
-                return entity;
-            }
-
-            return null;
-        }
-
         public List<Subject> GetSubjectsByClass(int classId)
         {
             Class c = (from cl in entityContext.Classes.Include("Subjects") 

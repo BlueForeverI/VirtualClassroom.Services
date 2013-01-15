@@ -59,8 +59,5 @@ namespace VirtualClassroom.Services.Services
 
         [OperationContract]
         List<Subject> GetSubjectsByClass(int classId);
-        
-        [OperationContract]
-        Student LoginStudent(string username, string password);
     }
 }
