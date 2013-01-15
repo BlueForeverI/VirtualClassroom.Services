@@ -18,6 +18,9 @@ namespace VirtualClassroom.Services.Services
         void AddLesson(Lesson lesson);
 
         [OperationContract]
+        void RemoveLessons(List<Lesson> lessons);
+
+        [OperationContract]
         List<Homework> GetHomeworksByTeacher(int teacherId);
 
         [OperationContract]

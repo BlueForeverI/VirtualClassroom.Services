@@ -35,6 +35,22 @@ namespace VirtualClassroom.Services.Services
             entityContext.SaveChanges();
         }
 
+        public void RemoveLessons(List<Lesson> lessons)
+        {
+            int[] ids = (from l in lessons select l.Id).ToArray();
+
+            var entities = (from l in entityContext.Lessons
+                            where ids.Contains(l.Id)
+                            select l).ToList();
+
+            foreach (var entity in entities)
+            {
+                entityContext.Lessons.Remove(entity);
+            }
+
+            entityContext.SaveChanges();
+        }
+
         public List<Homework> GetHomeworksByTeacher(int teacherId)
         {
             List<Homework> homeworks = new List<Homework>();
