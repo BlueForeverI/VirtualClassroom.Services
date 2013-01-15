@@ -18,6 +18,8 @@ namespace VirtualClassroom.Services
         public VirtualClassroomEntities()
             : base("name=VirtualClassroomEntities")
         {
+			this.Configuration.ProxyCreationEnabled = false;
+            this.Configuration.LazyLoadingEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
