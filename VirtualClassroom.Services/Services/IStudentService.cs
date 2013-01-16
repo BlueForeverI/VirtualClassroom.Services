@@ -16,5 +16,8 @@ namespace VirtualClassroom.Services.Services
 
         [OperationContract]
         List<Lesson> GetLessonsByStudent(int studentId);
+
+        [OperationContract]
+        List<Subject> GetSubjectsByStudent(int studentId);
     }
 }

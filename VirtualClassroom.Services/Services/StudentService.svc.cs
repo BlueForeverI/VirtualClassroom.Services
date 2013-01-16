@@ -59,5 +59,30 @@ namespace VirtualClassroom.Services.Services
 
             return lessons;
         }
+
+        public List<Subject> GetSubjectsByStudent(int studentId)
+        {
+            int classId = (from c in entityContext.Classes.Include("Students")
+                           where c.Students.Any(s => s.Id == studentId)
+                           select c.Id).First();
+
+            var entities = (from c in entityContext.Classes.Include("Subjects")
+                            from s in c.Subjects
+                            where c.Id == classId
+                            select s).ToList();
+
+            List<Subject> subjects = new List<Subject>();
+            foreach (var entity in entities)
+            {
+                subjects.Add(new Subject()
+                {
+                    Id = entity.Id, 
+                    Name = entity.Name, 
+                    TeacherId = entity.TeacherId
+                });
+            }
+
+            return subjects;
+        }
     }
 }
