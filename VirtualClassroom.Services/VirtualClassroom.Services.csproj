@@ -98,6 +98,7 @@
     <Compile Include="Class.cs">
       <DependentUpon>SchoolModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="File.cs" />
     <Compile Include="Homework.cs">
       <DependentUpon>SchoolModel.tt</DependentUpon>
     </Compile>

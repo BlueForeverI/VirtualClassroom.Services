@@ -19,5 +19,11 @@ namespace VirtualClassroom.Services.Services
 
         [OperationContract]
         List<Subject> GetSubjectsByStudent(int studentId);
+
+        [OperationContract]
+        File DownloadLessonContent(int lessonId);
+
+        [OperationContract]
+        File DownloadLessonHomework(int lessonId);
     }
 }

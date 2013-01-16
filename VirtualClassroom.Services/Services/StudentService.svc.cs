@@ -46,12 +46,8 @@ namespace VirtualClassroom.Services.Services
                 lessons.Add(new Lesson()
                 {
                     Id = entity.Id,
-                    Content = entity.Content,
-                    ContentFilename = entity.ContentFilename,
                     Date = entity.Date,
-                    HomeworkContent = entity.HomeworkContent,
                     HomeworkDeadline = entity.HomeworkDeadline,
-                    HomeworkFilename = entity.HomeworkFilename,
                     Name = entity.Name,
                     SubjectId = entity.SubjectId
                 });
@@ -83,6 +79,24 @@ namespace VirtualClassroom.Services.Services
             }
 
             return subjects;
+        }
+
+        public File DownloadLessonContent(int lessonId)
+        {
+            Lesson lesson = (from l in entityContext.Lessons
+                             where l.Id == lessonId
+                             select l).First();
+
+            return new File(lesson.ContentFilename, lesson.Content);
+        }
+
+        public File DownloadLessonHomework(int lessonId)
+        {
+            Lesson lesson = (from l in entityContext.Lessons
+                             where l.Id == lessonId
+                             select l).First();
+
+            return new File(lesson.HomeworkFilename, lesson.HomeworkContent);
         }
     }
 }

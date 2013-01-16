@@ -31,5 +31,11 @@ namespace VirtualClassroom.Services.Services
 
         [OperationContract]
         void AddMark(Homework homework, float? mark);
+
+        [OperationContract]
+        File DownloadLessonContent(int lessonId);
+
+        [OperationContract]
+        File DownloadLessonHomework(int lessonId);
     }
 }
