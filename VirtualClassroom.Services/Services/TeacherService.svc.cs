@@ -66,7 +66,6 @@ namespace VirtualClassroom.Services.Services
                 homeworks.Add(new Homework()
                 {
                     Id = homework.Id,
-                    Content = homework.Content,
                     Date = homework.Date,
                     LessonId = homework.LessonId,
                     StudentId = homework.StudentId,
