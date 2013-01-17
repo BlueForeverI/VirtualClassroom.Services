@@ -25,5 +25,11 @@ namespace VirtualClassroom.Services.Services
 
         [OperationContract]
         File DownloadLessonHomework(int lessonId);
+
+        [OperationContract]
+        void AddHomework(Homework homework);
+
+        [OperationContract]
+        List<Homework> GetHomeworksByStudent(int studentId);
     }
 }

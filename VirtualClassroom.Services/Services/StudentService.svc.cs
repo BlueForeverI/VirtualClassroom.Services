@@ -98,5 +98,40 @@ namespace VirtualClassroom.Services.Services
 
             return new File(lesson.HomeworkFilename, lesson.HomeworkContent);
         }
+
+        public void AddHomework(Homework homework)
+        {
+            homework.Date = DateTime.Now;
+            entityContext.Homeworks.Add(homework);
+            entityContext.SaveChanges();
+        }
+
+        public List<Homework> GetHomeworksByStudent(int studentId)
+        {
+            int classId = (from c in entityContext.Classes.Include("Students")
+                           where c.Students.Any(s => s.Id == studentId)
+                           select c.Id).First();
+
+            var entities = (from c in entityContext.Classes.Include("Subjects")
+                            from s in c.Subjects
+                            from l in s.Lessons
+                            from h in l.Homeworks
+                            where c.Id == classId
+                            select h).ToList();
+
+            List<Homework> homeworks = new List<Homework>();
+            foreach (var entity in entities)
+            {
+                homeworks.Add(new Homework()
+                                  {
+                                      Id = entity.Id,
+                                      Date = entity.Date,
+                                      LessonId = entity.LessonId,
+                                      Mark = entity.Mark,
+                                  });
+            }
+
+            return homeworks;
+        }
     }
 }
