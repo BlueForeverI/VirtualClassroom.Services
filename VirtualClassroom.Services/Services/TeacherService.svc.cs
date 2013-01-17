@@ -108,6 +108,32 @@ namespace VirtualClassroom.Services.Services
                     select s).ToList();
         }
 
+        public List<Student> GetStudentsByTeacher(int teacherId)
+        {
+            var entities = (from s in entityContext.Subjects.Include("Classes")
+                            from c in s.Classes
+                            from st in c.Students
+                            where s.TeacherId == teacherId
+                            select st).ToList();
+
+            List<Student> students = new List<Student>();
+            foreach (var entity in entities)
+            {
+                students.Add(new Student()
+                                 {
+                                     Id = entity.Id,
+                                     ClassId = entity.ClassId,
+                                     EGN = entity.EGN,
+                                     FirstName = entity.FirstName,
+                                     MiddleName = entity.MiddleName,
+                                     LastName = entity.LastName,
+                                     Username = entity.Username
+                                 });
+            }
+
+            return students;
+        }
+
         public void AddMark(Homework homework, float? mark)
         {
             Homework entity = (from h in entityContext.Homeworks

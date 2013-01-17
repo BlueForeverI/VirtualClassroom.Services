@@ -30,6 +30,9 @@ namespace VirtualClassroom.Services.Services
         List<Subject> GetSubjectsByTeacher(int teacherId);
 
         [OperationContract]
+        List<Student> GetStudentsByTeacher(int teacherId);
+
+        [OperationContract]
         void AddMark(Homework homework, float? mark);
 
         [OperationContract]
