@@ -135,5 +135,14 @@ namespace VirtualClassroom.Services.Services
 
             return new File(lesson.HomeworkFilename, lesson.HomeworkContent);
         }
+
+        public File DownloadSubmittedHomework(int homeworkId)
+        {
+            var entity = (from h in entityContext.Homeworks
+                          where h.Id == homeworkId
+                          select h).First();
+
+            return new File(entity.Filename, entity.Content);
+        }
     }
 }
