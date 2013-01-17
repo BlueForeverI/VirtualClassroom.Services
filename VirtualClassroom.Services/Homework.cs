@@ -20,6 +20,7 @@ namespace VirtualClassroom.Services
         public byte[] Content { get; set; }
         public System.DateTime Date { get; set; }
         public Nullable<float> Mark { get; set; }
+        public string Filename { get; set; }
     }
     
 }

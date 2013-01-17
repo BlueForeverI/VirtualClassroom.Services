@@ -66,6 +66,7 @@
           <Property Name="StudentId" Type="int" Nullable="false" />
           <Property Name="LessonId" Type="int" Nullable="false" />
           <Property Name="Content" Type="blob" Nullable="false" />
+          <Property Name="Filename" Type="varchar" Nullable="false" MaxLength="240" />
           <Property Name="Date" Type="date" Nullable="false" />
           <Property Name="Mark" Type="float" />
         </EntityType>
@@ -269,6 +270,7 @@
           <Property Name="Content" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
           <Property Name="Date" Type="DateTime" Nullable="false" />
           <Property Type="Single" Name="Mark" />
+          <Property Type="String" Name="Filename" Nullable="false" />
         </EntityType>
         <EntityType Name="Lesson">
           <Key>
@@ -413,6 +415,7 @@
           <EntitySetMapping Name="Homeworks">
             <EntityTypeMapping TypeName="VirtualClassroomModel.Homework">
               <MappingFragment StoreEntitySet="Homeworks">
+                <ScalarProperty Name="Filename" ColumnName="Filename" />
                 <ScalarProperty Name="Mark" ColumnName="Mark" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="StudentId" ColumnName="StudentId" />
