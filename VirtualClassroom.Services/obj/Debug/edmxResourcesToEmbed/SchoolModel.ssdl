@@ -1,10 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="VirtualClassroomModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.1" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
   <EntityContainer Name="VirtualClassroomModelStoreContainer">
+    <EntitySet Name="Admins" EntityType="VirtualClassroomModel.Store.Admins" store:Type="Tables" Schema="swaguche_virtualclassroom" />
     <EntitySet Name="Classes" EntityType="VirtualClassroomModel.Store.Classes" store:Type="Tables" Schema="swaguche_virtualclassroom" />
     <EntitySet Name="Classes_Subjects" EntityType="VirtualClassroomModel.Store.Classes_Subjects" store:Type="Tables" Schema="swaguche_virtualclassroom" />
     <EntitySet Name="Homeworks" EntityType="VirtualClassroomModel.Store.Homeworks" store:Type="Tables" Schema="swaguche_virtualclassroom" />
     <EntitySet Name="Lessons" EntityType="VirtualClassroomModel.Store.Lessons" store:Type="Tables" Schema="swaguche_virtualclassroom" />
+    <EntitySet Name="Marks" EntityType="VirtualClassroomModel.Store.Marks" store:Type="Tables" Schema="swaguche_virtualclassroom" />
     <EntitySet Name="Students" EntityType="VirtualClassroomModel.Store.Students" store:Type="Tables" Schema="swaguche_virtualclassroom" />
     <EntitySet Name="Subjects" EntityType="VirtualClassroomModel.Store.Subjects" store:Type="Tables" Schema="swaguche_virtualclassroom" />
     <EntitySet Name="Teachers" EntityType="VirtualClassroomModel.Store.Teachers" store:Type="Tables" Schema="swaguche_virtualclassroom" />
@@ -28,6 +30,10 @@
       <End Role="Subjects" EntitySet="Subjects" />
       <End Role="Lessons" EntitySet="Lessons" />
     </AssociationSet>
+    <AssociationSet Name="Marks_ibfk_1" Association="VirtualClassroomModel.Store.Marks_ibfk_1">
+      <End Role="Homeworks" EntitySet="Homeworks" />
+      <End Role="Marks" EntitySet="Marks" />
+    </AssociationSet>
     <AssociationSet Name="Students_ibfk_1" Association="VirtualClassroomModel.Store.Students_ibfk_1">
       <End Role="Classes" EntitySet="Classes" />
       <End Role="Students" EntitySet="Students" />
@@ -37,6 +43,14 @@
       <End Role="Subjects" EntitySet="Subjects" />
     </AssociationSet>
   </EntityContainer>
+  <EntityType Name="Admins">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="varchar" Nullable="false" MaxLength="25" />
+    <Property Name="PasswordHash" Type="text" Nullable="false" />
+  </EntityType>
   <EntityType Name="Classes">
     <Key>
       <PropertyRef Name="Id" />
@@ -61,8 +75,8 @@
     <Property Name="StudentId" Type="int" Nullable="false" />
     <Property Name="LessonId" Type="int" Nullable="false" />
     <Property Name="Content" Type="blob" Nullable="false" />
+    <Property Name="Filename" Type="varchar" Nullable="false" MaxLength="240" />
     <Property Name="Date" Type="date" Nullable="false" />
-    <Property Name="Mark" Type="float" />
   </EntityType>
   <EntityType Name="Lessons">
     <Key>
@@ -77,6 +91,17 @@
     <Property Name="HomeworkDeadline" Type="date" />
     <Property Name="HomeworkContent" Type="blob" />
     <Property Name="HomeworkFilename" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Marks">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Date" Type="date" Nullable="false" />
+    <Property Name="HomeworkId" Type="int" Nullable="false" />
+    <Property Name="SubjectName" Type="varchar" Nullable="false" MaxLength="60" />
+    <Property Name="LessonName" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="Value" Type="float" Nullable="false" />
   </EntityType>
   <EntityType Name="Students">
     <Key>
@@ -177,6 +202,20 @@
       </Principal>
       <Dependent Role="Lessons">
         <PropertyRef Name="SubjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Marks_ibfk_1">
+    <End Role="Homeworks" Type="VirtualClassroomModel.Store.Homeworks" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Marks" Type="VirtualClassroomModel.Store.Marks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Homeworks">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Marks">
+        <PropertyRef Name="HomeworkId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

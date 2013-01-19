@@ -21,7 +21,7 @@ namespace VirtualClassroom.Services.Services
         void RemoveLessons(List<Lesson> lessons);
 
         [OperationContract]
-        List<Homework> GetHomeworksByTeacher(int teacherId);
+        List<Homework> GetHomeworksByTeacher(int teacherId, bool unrated = true);
 
         [OperationContract]
         List<Lesson> GetLessonsByTeacher(int teacherId);
@@ -33,7 +33,7 @@ namespace VirtualClassroom.Services.Services
         List<Student> GetStudentsByTeacher(int teacherId);
 
         [OperationContract]
-        void AddMark(Homework homework, float? mark);
+        void AddMark(Mark mark);
 
         [OperationContract]
         File DownloadLessonContent(int lessonId);

@@ -31,6 +31,12 @@
       <End Role="Classes" EntitySet="Classes" />
       <End Role="Subjects" EntitySet="Subjects" />
     </AssociationSet>
+    <EntitySet Name="Admins" EntityType="VirtualClassroomModel.Admin" />
+    <EntitySet Name="Marks" EntityType="VirtualClassroomModel.Mark" />
+    <AssociationSet Name="Marks_ibfk_1" Association="VirtualClassroomModel.Marks_ibfk_1">
+      <End Role="Homework" EntitySet="Homeworks" />
+      <End Role="Mark" EntitySet="Marks" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Class">
     <Key>
@@ -51,7 +57,8 @@
     <Property Name="LessonId" Type="Int32" Nullable="false" />
     <Property Name="Content" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
     <Property Name="Date" Type="DateTime" Nullable="false" />
-    <Property Type="Single" Name="Mark" />
+    <Property Type="String" Name="Filename" Nullable="false" />
+    <NavigationProperty Name="Marks" Relationship="VirtualClassroomModel.Marks_ibfk_1" FromRole="Homework" ToRole="Mark" />
   </EntityType>
   <EntityType Name="Lesson">
     <Key>
@@ -177,5 +184,36 @@
   <Association Name="Classes_Subjects">
     <End Role="Classes" Type="VirtualClassroomModel.Class" Multiplicity="*" />
     <End Role="Subjects" Type="VirtualClassroomModel.Subject" Multiplicity="*" />
+  </Association>
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Username" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PasswordHash" Nullable="false" MaxLength="65535" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Mark">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="DateTime" Name="Date" Nullable="false" />
+    <Property Type="Int32" Name="HomeworkId" Nullable="false" />
+    <Property Type="String" Name="SubjectName" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="LessonName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="Single" Name="Value" Nullable="false" />
+  </EntityType>
+  <Association Name="Marks_ibfk_1">
+    <End Type="VirtualClassroomModel.Homework" Role="Homework" Multiplicity="1" />
+    <End Type="VirtualClassroomModel.Mark" Role="Mark" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Homework">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Mark">
+        <PropertyRef Name="HomeworkId" />
+      </Dependent>
+    </ReferentialConstraint>
   </Association>
 </Schema>

@@ -187,5 +187,39 @@ namespace VirtualClassroom.Services.Services
 
             return c.Subjects.ToList();
         }
+
+        public void RegisterAdmin(Admin admin, string password)
+        {
+            string passwordHash = BCrypt.Net.BCrypt.HashPassword(password);
+            admin.PasswordHash = passwordHash;
+
+            if(IsAdminValid(admin))
+            {
+                entityContext.Admins.Add(admin);
+                entityContext.SaveChanges();
+            }
+        }
+
+        public Admin LoginAdmin(string username, string password)
+        {
+            if(entityContext.Admins.Count(a => a.Username == username) == 0)
+            {
+                return null;
+            }
+
+            Admin entity = entityContext.Admins.Where(a => a.Username == username).First();
+            if (BCrypt.Net.BCrypt.Verify(password, entity.PasswordHash))
+            {
+                return entity;
+            }
+
+            return null;
+        }
+
+        //to refactor
+        private bool IsAdminValid(Admin admin)
+        {
+            return true;
+        }
     }
 }

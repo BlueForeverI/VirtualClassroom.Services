@@ -12,21 +12,11 @@ using System.Collections.Generic;
 
 namespace VirtualClassroom.Services
 {
-    public partial class Homework
+    public partial class Admin
     {
-        public Homework()
-        {
-            this.Marks = new HashSet<Mark>();
-        }
-    
         public int Id { get; set; }
-        public int StudentId { get; set; }
-        public int LessonId { get; set; }
-        public byte[] Content { get; set; }
-        public System.DateTime Date { get; set; }
-        public string Filename { get; set; }
-    
-        public virtual ICollection<Mark> Marks { get; set; }
+        public string Username { get; set; }
+        public string PasswordHash { get; set; }
     }
     
 }

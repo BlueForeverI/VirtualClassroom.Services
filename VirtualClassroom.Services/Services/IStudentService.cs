@@ -31,5 +31,8 @@ namespace VirtualClassroom.Services.Services
 
         [OperationContract]
         List<Homework> GetHomeworksByStudent(int studentId);
+
+        [OperationContract]
+        List<Mark> GetMarksByStudent(int studentId);
     }
 }

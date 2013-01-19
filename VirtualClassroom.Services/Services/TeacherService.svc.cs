@@ -51,15 +51,25 @@ namespace VirtualClassroom.Services.Services
             entityContext.SaveChanges();
         }
 
-        public List<Homework> GetHomeworksByTeacher(int teacherId)
+        public List<Homework> GetHomeworksByTeacher(int teacherId, bool unrated = true)
         {
             List<Homework> homeworks = new List<Homework>();
+            var marks = entityContext.Marks.ToList();
 
             var entities = (from s in entityContext.Subjects.Include("Lessons")
                             from l in s.Lessons
                             from h in l.Homeworks
+                            where s.TeacherId == teacherId && !marks.Any(m => m.HomeworkId == h.Id)
+                            select h).ToList();
+
+            if(unrated == false)
+            {
+                entities = (from s in entityContext.Subjects.Include("Lessons")
+                            from l in s.Lessons
+                            from h in l.Homeworks
                             where s.TeacherId == teacherId
                             select h).ToList();
+            }
 
             foreach (var homework in entities)
             {
@@ -69,7 +79,6 @@ namespace VirtualClassroom.Services.Services
                     Date = homework.Date,
                     LessonId = homework.LessonId,
                     StudentId = homework.StudentId,
-                    Mark = homework.Mark
                 });
             }
 
@@ -133,13 +142,18 @@ namespace VirtualClassroom.Services.Services
             return students;
         }
 
-        public void AddMark(Homework homework, float? mark)
+        public void AddMark(Mark mark)
         {
-            Homework entity = (from h in entityContext.Homeworks
-                               where h.Id == homework.Id
-                               select h).First();
+            mark.Date = DateTime.Now;
+            mark.SubjectName = (from sub in entityContext.Subjects.Include("Lessons")
+                                where sub.Lessons.Any(l => l.Homeworks.Any(h => h.Id == mark.HomeworkId))
+                                select sub.Name).First();
 
-            entity.Mark = mark;
+            mark.LessonName = (from l in entityContext.Lessons.Include("Homworks")
+                               where l.Homeworks.Any(h => h.Id == mark.HomeworkId)
+                               select l.Name).First();
+
+            entityContext.Marks.Add(mark);
             entityContext.SaveChanges();
         }
 

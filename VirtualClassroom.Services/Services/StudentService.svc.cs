@@ -126,12 +126,19 @@ namespace VirtualClassroom.Services.Services
                                   {
                                       Id = entity.Id,
                                       Date = entity.Date,
-                                      LessonId = entity.LessonId,
-                                      Mark = entity.Mark,
+                                      LessonId = entity.LessonId
                                   });
             }
 
             return homeworks;
+        }
+
+        public List<Mark> GetMarksByStudent(int studentId)
+        {
+            return (from h in entityContext.Homeworks.Include("Marks")
+                            from m in h.Marks
+                            where h.StudentId == studentId
+                            select m).ToList();
         }
     }
 }

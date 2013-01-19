@@ -59,5 +59,11 @@ namespace VirtualClassroom.Services.Services
 
         [OperationContract]
         List<Subject> GetSubjectsByClass(int classId);
+
+        [OperationContract]
+        void RegisterAdmin(Admin admin, string password);
+
+        [OperationContract]
+        Admin LoginAdmin(string username, string password);
     }
 }
