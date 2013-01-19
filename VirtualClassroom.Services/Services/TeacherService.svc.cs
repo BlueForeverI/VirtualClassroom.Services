@@ -54,15 +54,19 @@ namespace VirtualClassroom.Services.Services
         public List<Homework> GetHomeworksByTeacher(int teacherId, bool unrated = true)
         {
             List<Homework> homeworks = new List<Homework>();
-            var marks = entityContext.Marks.ToList();
+            var homeworksWithMarks = (from m in entityContext.Marks select m.HomeworkId).ToList();
 
-            var entities = (from s in entityContext.Subjects.Include("Lessons")
+            var entities = new List<Homework>();
+
+            if(unrated == true)
+            {
+                entities = (from s in entityContext.Subjects.Include("Lessons")
                             from l in s.Lessons
                             from h in l.Homeworks
-                            where s.TeacherId == teacherId && !marks.Any(m => m.HomeworkId == h.Id)
+                            where s.TeacherId == teacherId && !homeworksWithMarks.Contains(h.Id)
                             select h).ToList();
-
-            if(unrated == false)
+            }
+            else
             {
                 entities = (from s in entityContext.Subjects.Include("Lessons")
                             from l in s.Lessons
@@ -146,7 +150,9 @@ namespace VirtualClassroom.Services.Services
         {
             mark.Date = DateTime.Now;
             mark.SubjectName = (from sub in entityContext.Subjects.Include("Lessons")
-                                where sub.Lessons.Any(l => l.Homeworks.Any(h => h.Id == mark.HomeworkId))
+                                from l in sub.Lessons
+                                from h in l.Homeworks
+                                where h.Id == mark.HomeworkId
                                 select sub.Name).First();
 
             mark.LessonName = (from l in entityContext.Lessons.Include("Homworks")
