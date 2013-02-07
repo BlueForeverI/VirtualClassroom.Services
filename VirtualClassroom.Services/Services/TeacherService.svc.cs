@@ -30,7 +30,7 @@ namespace VirtualClassroom.Services.Services
 
         public void AddLesson(Lesson lesson)
         {
-            lesson.Date = DateTime.Now;
+            //lesson.Date = DateTime.Now;
             entityContext.Lessons.Add(lesson);
             entityContext.SaveChanges();
         }
