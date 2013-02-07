@@ -300,11 +300,7 @@
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Migrations/f:Configuration.cs" caret="498" fromTop="14" />
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:IAdminService.cs" caret="1957" fromTop="24" />
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="6690" fromTop="37" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Models/f:SchoolModel.Context.cs" caret="0" fromTop="0" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Models/f:SchoolModel.Context.tt" caret="0" fromTop="0" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Models/f:SchoolModel.tt" caret="0" fromTop="0" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Models/f:Admin.cs" caret="517" fromTop="12" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/f:Web.config" caret="2357" fromTop="34" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/f:Web.config" caret="453" fromTop="6" />
     </RecentFiles>
     <RecentEdits>
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="6811" fromTop="28" />
@@ -335,7 +331,6 @@
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/f:Web.config" caret="3039" fromTop="24" />
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/f:Web.config" caret="1107" fromTop="14" />
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/f:Web.config" caret="1663" fromTop="17" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Models/f:SchoolModel.Context.cs" caret="975" fromTop="17" />
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Migrations/f:Configuration.cs" caret="398" fromTop="12" />
     </RecentEdits>
   </RecentFiles>
