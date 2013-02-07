@@ -2,7 +2,7 @@ TOPIC
     about_EntityFramework
 
 SHORT DESCRIPTION
-    Provides information about Entity Framework commands.
+    Provides information about Entity Framework commands...
 
 LONG DESCRIPTION
     This topic describes the Entity Framework commands. Entity Framework is
