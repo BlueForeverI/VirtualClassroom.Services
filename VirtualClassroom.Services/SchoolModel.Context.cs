@@ -24,7 +24,7 @@ namespace VirtualClassroom.Services
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            throw new UnintentionalCodeFirstException();
+            //throw new UnintentionalCodeFirstException();
         }
     
         public DbSet<Class> Classes { get; set; }
