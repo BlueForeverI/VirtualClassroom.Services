@@ -10,7 +10,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace VirtualClassroom.Services
+namespace VirtualClassroom.Services.Models
 {
     public partial class Lesson
     {

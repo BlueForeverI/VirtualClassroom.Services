@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using VirtualClassroom.Services.Models;
 
 namespace VirtualClassroom.Services.Services
 {

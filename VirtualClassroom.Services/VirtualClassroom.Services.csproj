@@ -80,33 +80,28 @@
     <Content Include="_bin_deployableAssemblies\EntityFramework.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Admin.cs">
+    <Compile Include="Models\Admin.cs">
       <DependentUpon>SchoolModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Class.cs">
+    <Compile Include="Models\Class.cs">
       <DependentUpon>SchoolModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="File.cs" />
-    <Compile Include="Homework.cs">
+    <Compile Include="Models\File.cs" />
+    <Compile Include="Models\Homework.cs">
       <DependentUpon>SchoolModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Lesson.cs">
+    <Compile Include="Models\Lesson.cs">
       <DependentUpon>SchoolModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Mark.cs">
+    <Compile Include="Models\Mark.cs">
       <DependentUpon>SchoolModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SchoolModel.Context.cs">
+    <Compile Include="Models\SchoolModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SchoolModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SchoolModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SchoolModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Services\AdminService.svc.cs">
       <DependentUpon>AdminService.svc</DependentUpon>
@@ -120,13 +115,13 @@
     <Compile Include="Services\TeacherService.svc.cs">
       <DependentUpon>TeacherService.svc</DependentUpon>
     </Compile>
-    <Compile Include="Student.cs">
+    <Compile Include="Models\Student.cs">
       <DependentUpon>SchoolModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Subject.cs">
+    <Compile Include="Models\Subject.cs">
       <DependentUpon>SchoolModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Teacher.cs">
+    <Compile Include="Models\Teacher.cs">
       <DependentUpon>SchoolModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -140,11 +135,11 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="SchoolModel.Context.tt">
+    <None Include="Models\SchoolModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>SchoolModel.Context.cs</LastGenOutput>
     </None>
-    <None Include="SchoolModel.tt">
+    <None Include="Models\SchoolModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>SchoolModel.cs</LastGenOutput>
     </None>

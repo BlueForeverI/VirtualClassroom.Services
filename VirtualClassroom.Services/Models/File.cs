@@ -4,7 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Web;
 
-namespace VirtualClassroom.Services
+namespace VirtualClassroom.Services.Models
 {
     [DataContract]
     public class File

@@ -10,22 +10,25 @@
 using System;
 using System.Collections.Generic;
 
-namespace VirtualClassroom.Services
+namespace VirtualClassroom.Services.Models
 {
-    public partial class Subject
+    public partial class Student
     {
-        public Subject()
+        public Student()
         {
-            this.Lessons = new HashSet<Lesson>();
-            this.Classes = new HashSet<Class>();
+            this.Homeworks = new HashSet<Homework>();
         }
     
         public int Id { get; set; }
-        public string Name { get; set; }
-        public int TeacherId { get; set; }
+        public string Username { get; set; }
+        public string FirstName { get; set; }
+        public string MiddleName { get; set; }
+        public string LastName { get; set; }
+        public string EGN { get; set; }
+        public string PasswordHash { get; set; }
+        public int ClassId { get; set; }
     
-        public virtual ICollection<Lesson> Lessons { get; set; }
-        public virtual ICollection<Class> Classes { get; set; }
+        public virtual ICollection<Homework> Homeworks { get; set; }
     }
     
 }

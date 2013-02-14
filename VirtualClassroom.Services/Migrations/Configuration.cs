@@ -4,15 +4,16 @@ namespace VirtualClassroom.Services.Migrations
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
+    using VirtualClassroom.Services.Models;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<VirtualClassroom.Services.VirtualClassroomEntities>
+    internal sealed class Configuration : DbMigrationsConfiguration<VirtualClassroom.Services.Models.VirtualClassroomEntities>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
         }
 
-        protected override void Seed(VirtualClassroom.Services.VirtualClassroomEntities context)
+        protected override void Seed(VirtualClassroom.Services.Models.VirtualClassroomEntities context)
         {
             //  This method will be called  after migrating to the latest version.
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 

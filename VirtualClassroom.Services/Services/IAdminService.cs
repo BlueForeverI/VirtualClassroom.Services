@@ -7,6 +7,7 @@ using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
 using System.Collections.ObjectModel;
+using VirtualClassroom.Services.Models;
 
 namespace VirtualClassroom.Services.Services
 {
