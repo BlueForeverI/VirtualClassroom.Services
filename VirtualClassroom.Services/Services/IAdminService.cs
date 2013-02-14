@@ -8,6 +8,7 @@ using System.ServiceModel.Web;
 using System.Text;
 using System.Collections.ObjectModel;
 using VirtualClassroom.Services.Models;
+using VirtualClassroom.Services.Views;
 
 namespace VirtualClassroom.Services.Services
 {
@@ -30,18 +31,23 @@ namespace VirtualClassroom.Services.Services
         [OperationContract]
         void RemoveStudents(List<Student> students);
 
+        //[OperationContract]
+        //List<Student> GetStudents();
+
         [OperationContract]
-        List<Student> GetStudents();
+        List<StudentView> GetStudentViews();
 
         [OperationContract]
         void AddSubject(Subject subject);
 
-		
         [OperationContract]
         void RemoveSubjects(List<Subject> subjects); 
 
+        //[OperationContract]
+        //List<Subject> GetSubjects();
+
         [OperationContract]
-        List<Subject> GetSubjects();
+        List<SubjectView> GetSubjectViews();
 
         [OperationContract]
         void RegisterTeacher(Teacher teacher, string password);

@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
 using VirtualClassroom.Services.Models;
+using VirtualClassroom.Services.Views;
 
 namespace VirtualClassroom.Services.Services
 {
@@ -63,9 +64,35 @@ namespace VirtualClassroom.Services.Services
             entityContext.SaveChanges();
         }
 
-        public List<Student> GetStudents()
+        //public List<Student> GetStudents()
+        //{
+        //    return entityContext.Students.ToList();
+        //}
+
+        public List<StudentView> GetStudentViews()
         {
-            return entityContext.Students.ToList();
+            return (
+                       from s in entityContext.Students
+                       join c in entityContext.Classes
+                           on s.ClassId equals c.Id
+                       select new 
+                                  {
+                                      Id = s.Id,
+                                      ClassNumber = c.Number,
+                                      ClassLetter = c.Letter,
+                                      EGN = s.EGN,
+                                      FullName = s.FirstName + " " + s.MiddleName + " " + s.LastName,
+                                      Username = s.Username
+                                  })
+                                  .AsEnumerable()
+                                  .Select(x => new StudentView()
+                                                   {
+                                                       Class = string.Format("{0} '{1}'", x.ClassNumber, x.ClassLetter),
+                                                       EGN = x.EGN,
+                                                       FullName = x.FullName,
+                                                       Id = x.Id,
+                                                       Username = x.Username
+                                                   }).ToList();
         }
 
         //to refactor
@@ -99,6 +126,20 @@ namespace VirtualClassroom.Services.Services
             }
 
             entityContext.SaveChanges();
+        }
+
+        public List<SubjectView> GetSubjectViews()
+        {
+            return (
+                       from s in entityContext.Subjects
+                       join t in entityContext.Teachers
+                           on s.TeacherId equals t.Id
+                       select new SubjectView()
+                                  {
+                                      Id = s.Id,
+                                      Name = s.Name,
+                                      TeacherFullName = t.FirstName + " " + t.MiddleName + " " + t.LastName
+                                  }).ToList();
         }
 
         public void RegisterTeacher(Teacher teacher, string password)
@@ -163,10 +204,10 @@ namespace VirtualClassroom.Services.Services
             entityContext.SaveChanges();
         }
 
-        public List<Subject> GetSubjects()
-        {
-            return entityContext.Subjects.ToList();
-        }
+        //public List<Subject> GetSubjects()
+        //{
+        //    return entityContext.Subjects.ToList();
+        //}
 
         //to refactor
         private static bool IsTeacherValid(Teacher teacher)
