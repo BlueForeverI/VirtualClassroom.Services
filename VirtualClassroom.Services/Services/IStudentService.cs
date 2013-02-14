@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
 using VirtualClassroom.Services.Models;
+using VirtualClassroom.Services.Views;
 
 namespace VirtualClassroom.Services.Services
 {
@@ -15,11 +16,14 @@ namespace VirtualClassroom.Services.Services
         [OperationContract]
         Student LoginStudent(string username, string password);
 
-        [OperationContract]
-        List<Lesson> GetLessonsByStudent(int studentId);
+        //[OperationContract]
+        //List<Lesson> GetLessonsByStudent(int studentId);
 
         [OperationContract]
-        List<Subject> GetSubjectsByStudent(int studentId);
+        List<LessonView> GetLessonViewsByStudent(int studentId);
+
+        //[OperationContract]
+        //List<Subject> GetSubjectsByStudent(int studentId);
 
         [OperationContract]
         File DownloadLessonContent(int lessonId);
