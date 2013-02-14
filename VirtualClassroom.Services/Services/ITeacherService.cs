@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
 using VirtualClassroom.Services.Models;
+using VirtualClassroom.Services.Views;
 
 namespace VirtualClassroom.Services.Services
 {
@@ -21,17 +22,23 @@ namespace VirtualClassroom.Services.Services
         [OperationContract]
         void RemoveLessons(List<Lesson> lessons);
 
-        [OperationContract]
-        List<Homework> GetHomeworksByTeacher(int teacherId, bool unrated = true);
+        //[OperationContract]
+        //List<Homework> GetHomeworksByTeacher(int teacherId, bool unrated = true);
 
         [OperationContract]
-        List<Lesson> GetLessonsByTeacher(int teacherId);
+        List<HomeworkView> GetHomeworkViewsByTeacher(int teacherId, bool unrated = true);
+
+        //[OperationContract]
+        //List<Lesson> GetLessonsByTeacher(int teacherId);
+
+        [OperationContract]
+        List<LessonView> GetLessonViewsByTeacher(int teacherId);
 
         [OperationContract]
         List<Subject> GetSubjectsByTeacher(int teacherId);
 
-        [OperationContract]
-        List<Student> GetStudentsByTeacher(int teacherId);
+        //[OperationContract]
+        //List<Student> GetStudentsByTeacher(int teacherId);
 
         [OperationContract]
         void AddMark(Mark mark);

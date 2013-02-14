@@ -124,6 +124,10 @@
     <Compile Include="Models\Teacher.cs">
       <DependentUpon>SchoolModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Views\HomeworkView.cs" />
+    <Compile Include="Views\LessonView.cs" />
+    <Compile Include="Views\StudentView.cs" />
+    <Compile Include="Views\SubjectView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

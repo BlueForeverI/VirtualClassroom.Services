@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
 using VirtualClassroom.Services.Models;
+using VirtualClassroom.Services.Views;
 
 namespace VirtualClassroom.Services.Services
 {
@@ -52,66 +53,129 @@ namespace VirtualClassroom.Services.Services
             entityContext.SaveChanges();
         }
 
-        public List<Homework> GetHomeworksByTeacher(int teacherId, bool unrated = true)
+        //public List<Homework> GetHomeworksByTeacher(int teacherId, bool unrated = true)
+        //{
+        //    List<Homework> homeworks = new List<Homework>();
+        //    var homeworksWithMarks = (from m in entityContext.Marks select m.HomeworkId).ToList();
+
+        //    var entities = new List<Homework>();
+
+        //    if(unrated == true)
+        //    {
+        //        entities = (from s in entityContext.Subjects.Include("Lessons")
+        //                    from l in s.Lessons
+        //                    from h in l.Homeworks
+        //                    where s.TeacherId == teacherId && !homeworksWithMarks.Contains(h.Id)
+        //                    select h).ToList();
+        //    }
+        //    else
+        //    {
+        //        entities = (from s in entityContext.Subjects.Include("Lessons")
+        //                    from l in s.Lessons
+        //                    from h in l.Homeworks
+        //                    where s.TeacherId == teacherId
+        //                    select h).ToList();
+        //    }
+
+        //    foreach (var homework in entities)
+        //    {
+        //        homeworks.Add(new Homework()
+        //        {
+        //            Id = homework.Id,
+        //            Date = homework.Date,
+        //            LessonId = homework.LessonId,
+        //            StudentId = homework.StudentId,
+        //        });
+        //    }
+
+        //    return homeworks;
+        //}
+
+        public List<HomeworkView> GetHomeworkViewsByTeacher(int teacherId, bool unrated)
         {
-            List<Homework> homeworks = new List<Homework>();
             var homeworksWithMarks = (from m in entityContext.Marks select m.HomeworkId).ToList();
+            var entities = new List<HomeworkView>();
 
-            var entities = new List<Homework>();
-
-            if(unrated == true)
+            if(unrated)
             {
-                entities = (from s in entityContext.Subjects.Include("Lessons")
-                            from l in s.Lessons
-                            from h in l.Homeworks
-                            where s.TeacherId == teacherId && !homeworksWithMarks.Contains(h.Id)
-                            select h).ToList();
+                entities = (
+                    from s in entityContext.Subjects
+                    join l in entityContext.Lessons
+                        on s.Id equals l.SubjectId
+                    join h in entityContext.Homeworks
+                        on l.Id equals h.LessonId
+                    join st in entityContext.Students
+                        on h.StudentId equals st.Id
+                    where !homeworksWithMarks.Contains(h.Id)
+                    select new HomeworkView()
+                        {
+                            Id = h.Id,
+                            Lesson = l.Name,
+                            StudentFullName = st.FirstName + " " + st.MiddleName + " " + st.LastName,
+                            Subject = s.Name
+                        }).ToList();
             }
             else
             {
-                entities = (from s in entityContext.Subjects.Include("Lessons")
-                            from l in s.Lessons
-                            from h in l.Homeworks
-                            where s.TeacherId == teacherId
-                            select h).ToList();
+                entities = (
+                    from s in entityContext.Subjects
+                    join l in entityContext.Lessons
+                        on s.Id equals l.SubjectId
+                    join h in entityContext.Homeworks
+                        on l.Id equals h.LessonId
+                    join st in entityContext.Students
+                        on h.StudentId equals st.Id
+                    select new HomeworkView()
+                    {
+                        Id = h.Id,
+                        Lesson = l.Name,
+                        StudentFullName = st.FirstName + " " + st.MiddleName + " " + st.LastName,
+                        Subject = s.Name
+                    }).ToList();
             }
 
-            foreach (var homework in entities)
-            {
-                homeworks.Add(new Homework()
-                {
-                    Id = homework.Id,
-                    Date = homework.Date,
-                    LessonId = homework.LessonId,
-                    StudentId = homework.StudentId,
-                });
-            }
-
-            return homeworks;
+            return entities;
         }
 
-        public List<Lesson> GetLessonsByTeacher(int teacherId)
+        //public List<Lesson> GetLessonsByTeacher(int teacherId)
+        //{
+        //    List<Lesson> lessons = new List<Lesson>();
+
+        //    var entities = (from s in entityContext.Subjects.Include("Lessons")
+        //                    from l in s.Lessons
+        //                    where s.TeacherId == teacherId
+        //                    select l).ToList();
+
+        //    foreach (var entity in entities)
+        //    {
+        //        lessons.Add(new Lesson()
+        //        {
+        //            Id = entity.Id,
+        //            Date = entity.Date,
+        //            HomeworkDeadline = entity.HomeworkDeadline,
+        //            Name = entity.Name,
+        //            SubjectId = entity.SubjectId
+        //        });
+        //    }
+
+        //    return lessons;
+        //}
+
+        public List<LessonView> GetLessonViewsByTeacher(int teacherId)
         {
-            List<Lesson> lessons = new List<Lesson>();
-
-            var entities = (from s in entityContext.Subjects.Include("Lessons")
-                            from l in s.Lessons
-                            where s.TeacherId == teacherId
-                            select l).ToList();
-
-            foreach (var entity in entities)
-            {
-                lessons.Add(new Lesson()
-                {
-                    Id = entity.Id,
-                    Date = entity.Date,
-                    HomeworkDeadline = entity.HomeworkDeadline,
-                    Name = entity.Name,
-                    SubjectId = entity.SubjectId
-                });
-            }
-
-            return lessons;
+            return (
+                       from s in entityContext.Subjects
+                       join l in entityContext.Lessons
+                           on s.Id equals l.SubjectId
+                       where s.TeacherId == teacherId
+                       select new LessonView()
+                                  {
+                                      Id = l.Id,
+                                      Date = l.Date,
+                                      HomeworkDeadline = l.HomeworkDeadline,
+                                      Name = l.Name,
+                                      Subject = s.Name
+                                  }).ToList();
         }
 
         public List<Subject> GetSubjectsByTeacher(int teacherId)
@@ -121,31 +185,31 @@ namespace VirtualClassroom.Services.Services
                     select s).ToList();
         }
 
-        public List<Student> GetStudentsByTeacher(int teacherId)
-        {
-            var entities = (from s in entityContext.Subjects.Include("Classes")
-                            from c in s.Classes
-                            from st in c.Students
-                            where s.TeacherId == teacherId
-                            select st).ToList();
+        //public List<Student> GetStudentsByTeacher(int teacherId)
+        //{
+        //    var entities = (from s in entityContext.Subjects.Include("Classes")
+        //                    from c in s.Classes
+        //                    from st in c.Students
+        //                    where s.TeacherId == teacherId
+        //                    select st).ToList();
 
-            List<Student> students = new List<Student>();
-            foreach (var entity in entities)
-            {
-                students.Add(new Student()
-                                 {
-                                     Id = entity.Id,
-                                     ClassId = entity.ClassId,
-                                     EGN = entity.EGN,
-                                     FirstName = entity.FirstName,
-                                     MiddleName = entity.MiddleName,
-                                     LastName = entity.LastName,
-                                     Username = entity.Username
-                                 });
-            }
+        //    List<Student> students = new List<Student>();
+        //    foreach (var entity in entities)
+        //    {
+        //        students.Add(new Student()
+        //                         {
+        //                             Id = entity.Id,
+        //                             ClassId = entity.ClassId,
+        //                             EGN = entity.EGN,
+        //                             FirstName = entity.FirstName,
+        //                             MiddleName = entity.MiddleName,
+        //                             LastName = entity.LastName,
+        //                             Username = entity.Username
+        //                         });
+        //    }
 
-            return students;
-        }
+        //    return students;
+        //}
 
         public void AddMark(Mark mark)
         {
