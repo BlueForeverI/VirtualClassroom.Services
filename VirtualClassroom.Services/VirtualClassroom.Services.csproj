@@ -126,6 +126,7 @@
     </Compile>
     <Compile Include="Views\HomeworkView.cs" />
     <Compile Include="Views\LessonView.cs" />
+    <Compile Include="Views\MarkView.cs" />
     <Compile Include="Views\StudentView.cs" />
     <Compile Include="Views\SubjectView.cs" />
   </ItemGroup>

@@ -31,9 +31,6 @@ namespace VirtualClassroom.Services.Services
         [OperationContract]
         void RemoveStudents(List<Student> students);
 
-        //[OperationContract]
-        //List<Student> GetStudents();
-
         [OperationContract]
         List<StudentView> GetStudentViews();
 
@@ -42,9 +39,6 @@ namespace VirtualClassroom.Services.Services
 
         [OperationContract]
         void RemoveSubjects(List<Subject> subjects); 
-
-        //[OperationContract]
-        //List<Subject> GetSubjects();
 
         [OperationContract]
         List<SubjectView> GetSubjectViews();

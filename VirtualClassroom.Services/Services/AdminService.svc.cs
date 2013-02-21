@@ -64,11 +64,6 @@ namespace VirtualClassroom.Services.Services
             entityContext.SaveChanges();
         }
 
-        //public List<Student> GetStudents()
-        //{
-        //    return entityContext.Students.ToList();
-        //}
-
         public List<StudentView> GetStudentViews()
         {
             return (
@@ -203,11 +198,6 @@ namespace VirtualClassroom.Services.Services
 
             entityContext.SaveChanges();
         }
-
-        //public List<Subject> GetSubjects()
-        //{
-        //    return entityContext.Subjects.ToList();
-        //}
 
         //to refactor
         private static bool IsTeacherValid(Teacher teacher)

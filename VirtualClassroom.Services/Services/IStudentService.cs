@@ -16,14 +16,8 @@ namespace VirtualClassroom.Services.Services
         [OperationContract]
         Student LoginStudent(string username, string password);
 
-        //[OperationContract]
-        //List<Lesson> GetLessonsByStudent(int studentId);
-
         [OperationContract]
         List<LessonView> GetLessonViewsByStudent(int studentId);
-
-        //[OperationContract]
-        //List<Subject> GetSubjectsByStudent(int studentId);
 
         [OperationContract]
         File DownloadLessonContent(int lessonId);

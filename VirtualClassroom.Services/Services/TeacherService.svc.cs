@@ -53,44 +53,6 @@ namespace VirtualClassroom.Services.Services
             entityContext.SaveChanges();
         }
 
-        //public List<Homework> GetHomeworksByTeacher(int teacherId, bool unrated = true)
-        //{
-        //    List<Homework> homeworks = new List<Homework>();
-        //    var homeworksWithMarks = (from m in entityContext.Marks select m.HomeworkId).ToList();
-
-        //    var entities = new List<Homework>();
-
-        //    if(unrated == true)
-        //    {
-        //        entities = (from s in entityContext.Subjects.Include("Lessons")
-        //                    from l in s.Lessons
-        //                    from h in l.Homeworks
-        //                    where s.TeacherId == teacherId && !homeworksWithMarks.Contains(h.Id)
-        //                    select h).ToList();
-        //    }
-        //    else
-        //    {
-        //        entities = (from s in entityContext.Subjects.Include("Lessons")
-        //                    from l in s.Lessons
-        //                    from h in l.Homeworks
-        //                    where s.TeacherId == teacherId
-        //                    select h).ToList();
-        //    }
-
-        //    foreach (var homework in entities)
-        //    {
-        //        homeworks.Add(new Homework()
-        //        {
-        //            Id = homework.Id,
-        //            Date = homework.Date,
-        //            LessonId = homework.LessonId,
-        //            StudentId = homework.StudentId,
-        //        });
-        //    }
-
-        //    return homeworks;
-        //}
-
         public List<HomeworkView> GetHomeworkViewsByTeacher(int teacherId, bool unrated)
         {
             var homeworksWithMarks = (from m in entityContext.Marks select m.HomeworkId).ToList();
@@ -137,30 +99,6 @@ namespace VirtualClassroom.Services.Services
             return entities;
         }
 
-        //public List<Lesson> GetLessonsByTeacher(int teacherId)
-        //{
-        //    List<Lesson> lessons = new List<Lesson>();
-
-        //    var entities = (from s in entityContext.Subjects.Include("Lessons")
-        //                    from l in s.Lessons
-        //                    where s.TeacherId == teacherId
-        //                    select l).ToList();
-
-        //    foreach (var entity in entities)
-        //    {
-        //        lessons.Add(new Lesson()
-        //        {
-        //            Id = entity.Id,
-        //            Date = entity.Date,
-        //            HomeworkDeadline = entity.HomeworkDeadline,
-        //            Name = entity.Name,
-        //            SubjectId = entity.SubjectId
-        //        });
-        //    }
-
-        //    return lessons;
-        //}
-
         public List<LessonView> GetLessonViewsByTeacher(int teacherId)
         {
             return (
@@ -185,31 +123,40 @@ namespace VirtualClassroom.Services.Services
                     select s).ToList();
         }
 
-        //public List<Student> GetStudentsByTeacher(int teacherId)
-        //{
-        //    var entities = (from s in entityContext.Subjects.Include("Classes")
-        //                    from c in s.Classes
-        //                    from st in c.Students
-        //                    where s.TeacherId == teacherId
-        //                    select st).ToList();
+        public List<MarkView> GetMarkViewsByTeacher(int teacherId)
+        {
+            var markViews = (from m in entityContext.Marks
+                             join h in entityContext.Homeworks on m.HomeworkId equals h.Id
+                             join st in entityContext.Students on h.StudentId equals st.Id
+                             join l in entityContext.Lessons on h.LessonId equals l.Id
+                             join sub in entityContext.Subjects on l.SubjectId equals sub.Id
+                             join c in entityContext.Classes on st.ClassId equals c.Id
+                             join t in entityContext.Teachers on sub.TeacherId equals teacherId
+                             select  new 
+                             {
+                                Id = m.Id,
+                                Student = st.FirstName + " " + st.MiddleName + " " + st.LastName,
+                                ClassNumber = c.Number,
+                                ClassLetter = c.Letter,
+                                Subject = sub.Name,
+                                Lesson = l.Name,
+                                Date = m.Date,
+                                Value = m.Value
+                             })
+                .AsEnumerable().Distinct()
+                .Select(m => new MarkView()
+                {
+                    Class = string.Format("{0} '{1}'", m.ClassNumber, m.ClassLetter),
+                    Id = m.Id,
+                    Date = m.Date,
+                    Lesson = m.Lesson,
+                    Student = m.Student,
+                    Subject = m.Subject,
+                    Value = m.Value
+                }).ToList();
 
-        //    List<Student> students = new List<Student>();
-        //    foreach (var entity in entities)
-        //    {
-        //        students.Add(new Student()
-        //                         {
-        //                             Id = entity.Id,
-        //                             ClassId = entity.ClassId,
-        //                             EGN = entity.EGN,
-        //                             FirstName = entity.FirstName,
-        //                             MiddleName = entity.MiddleName,
-        //                             LastName = entity.LastName,
-        //                             Username = entity.Username
-        //                         });
-        //    }
-
-        //    return students;
-        //}
+            return markViews;
+        }
 
         public void AddMark(Mark mark)
         {

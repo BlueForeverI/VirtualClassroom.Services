@@ -30,34 +30,6 @@ namespace VirtualClassroom.Services.Services
             return null;
         }
 
-        //public List<Lesson> GetLessonsByStudent(int studentId)
-        //{
-        //    int classId = (from c in entityContext.Classes.Include("Students")
-        //                   where c.Students.Any(s => s.Id == studentId)
-        //                   select c.Id).First();
-
-        //    var entities = (from c in entityContext.Classes.Include("Subjects")
-        //                    from s in c.Subjects
-        //                    from l in s.Lessons
-        //                    where c.Id == classId
-        //                    select l).ToList();
-
-        //    List<Lesson> lessons = new List<Lesson>();
-        //    foreach (var entity in entities)
-        //    {
-        //        lessons.Add(new Lesson()
-        //        {
-        //            Id = entity.Id,
-        //            Date = entity.Date,
-        //            HomeworkDeadline = entity.HomeworkDeadline,
-        //            Name = entity.Name,
-        //            SubjectId = entity.SubjectId
-        //        });
-        //    }
-
-        //    return lessons;
-        //}
-
         public List<LessonView> GetLessonViewsByStudent(int studentId)
         {
             int classId = (from c in entityContext.Classes.Include("Students")
@@ -79,31 +51,6 @@ namespace VirtualClassroom.Services.Services
                                       Subject = s.Name
                                   }).ToList();
         }
-
-        //public List<Subject> GetSubjectsByStudent(int studentId)
-        //{
-        //    int classId = (from c in entityContext.Classes.Include("Students")
-        //                   where c.Students.Any(s => s.Id == studentId)
-        //                   select c.Id).First();
-
-        //    var entities = (from c in entityContext.Classes.Include("Subjects")
-        //                    from s in c.Subjects
-        //                    where c.Id == classId
-        //                    select s).ToList();
-
-        //    List<Subject> subjects = new List<Subject>();
-        //    foreach (var entity in entities)
-        //    {
-        //        subjects.Add(new Subject()
-        //        {
-        //            Id = entity.Id, 
-        //            Name = entity.Name, 
-        //            TeacherId = entity.TeacherId
-        //        });
-        //    }
-
-        //    return subjects;
-        //}
 
         public File DownloadLessonContent(int lessonId)
         {
