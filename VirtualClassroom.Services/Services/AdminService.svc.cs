@@ -172,13 +172,18 @@ namespace VirtualClassroom.Services.Services
 
         public void AddClassesToSubject(Subject subject, List<Class> classes)
         {
-            Subject subjectEntity = new Subject() { Id = subject.Id };
-            entityContext.Subjects.Attach(subjectEntity);
+            var subjectEntity = entityContext.Subjects.Include("Classes")
+                .Where(s => s.Id == subject.Id).FirstOrDefault();
+
             foreach (var c in classes)
             {
                 Class entity = new Class() { Id = c.Id };
-                entityContext.Classes.Attach(entity);
-                subjectEntity.Classes.Add(entity);
+
+                if (!subjectEntity.Classes.Any(cl => cl.Id == entity.Id))
+                {
+                    entityContext.Classes.Attach(entity);
+                    subjectEntity.Classes.Add(entity);
+                }
             }
 
             entityContext.SaveChanges();
@@ -186,14 +191,18 @@ namespace VirtualClassroom.Services.Services
 
         public void AddSubjectsToClass(Class c, List<Subject> subjects)
         {
-            Class classEntity = new Class(){Id = c.Id};
-            entityContext.Classes.Attach(classEntity);
+            var classEntity = entityContext.Classes.Include("Subjects")
+                .Where(cl => cl.Id == c.Id).FirstOrDefault();
 
             foreach (var subject in subjects)
             {
                 Subject entity = new Subject(){Id = subject.Id};
-                entityContext.Subjects.Attach(entity);
-                classEntity.Subjects.Add(entity);
+
+                if (!classEntity.Subjects.Any(s => s.Id == entity.Id))
+                {
+                    entityContext.Subjects.Attach(entity);
+                    classEntity.Subjects.Add(entity);
+                }
             }
 
             entityContext.SaveChanges();
