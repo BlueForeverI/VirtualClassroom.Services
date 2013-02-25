@@ -23,7 +23,7 @@ namespace VirtualClassroom.Services.Services
         void RemoveLessons(List<Lesson> lessons);
 
         [OperationContract]
-        List<HomeworkView> GetHomeworkViewsByTeacher(int teacherId, bool unrated = true);
+        List<HomeworkView> GetHomeworkViewsByTeacher(int teacherId);
 
         [OperationContract]
         List<LessonView> GetLessonViewsByTeacher(int teacherId);

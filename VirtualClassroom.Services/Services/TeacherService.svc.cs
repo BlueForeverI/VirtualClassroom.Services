@@ -53,49 +53,27 @@ namespace VirtualClassroom.Services.Services
             entityContext.SaveChanges();
         }
 
-        public List<HomeworkView> GetHomeworkViewsByTeacher(int teacherId, bool unrated)
+        public List<HomeworkView> GetHomeworkViewsByTeacher(int teacherId)
         {
             var homeworksWithMarks = (from m in entityContext.Marks select m.HomeworkId).ToList();
-            var entities = new List<HomeworkView>();
-
-            if(unrated)
-            {
-                entities = (
-                    from s in entityContext.Subjects 
-                    join l in entityContext.Lessons
-                        on s.Id equals l.SubjectId
-                    join h in entityContext.Homeworks
-                        on l.Id equals h.LessonId
-                    join st in entityContext.Students
-                        on h.StudentId equals st.Id
-                    where !homeworksWithMarks.Contains(h.Id) && s.TeacherId == teacherId
-                    select new HomeworkView()
-                        {
-                            Id = h.Id,
-                            Lesson = l.Name,
-                            StudentFullName = st.FirstName + " " + st.MiddleName + " " + st.LastName,
-                            Subject = s.Name
-                        }).ToList();
-            }
-            else
-            {
-                entities = (
-                    from s in entityContext.Subjects
-                    join l in entityContext.Lessons
-                        on s.Id equals l.SubjectId
-                    join h in entityContext.Homeworks
-                        on l.Id equals h.LessonId
-                    join st in entityContext.Students
-                        on h.StudentId equals st.Id
-                    where s.TeacherId == teacherId
-                    select new HomeworkView()
-                    {
-                        Id = h.Id,
-                        Lesson = l.Name,
-                        StudentFullName = st.FirstName + " " + st.MiddleName + " " + st.LastName,
-                        Subject = s.Name
-                    }).ToList();
-            }
+            var entities =  (
+                from s in entityContext.Subjects
+                join l in entityContext.Lessons
+                    on s.Id equals l.SubjectId
+                join h in entityContext.Homeworks
+                    on l.Id equals h.LessonId
+                join st in entityContext.Students
+                    on h.StudentId equals st.Id
+                where s.TeacherId == teacherId
+                select new HomeworkView()
+                {
+                    Id = h.Id,
+                    Lesson = l.Name,
+                    StudentFullName = st.FirstName + " " + st.MiddleName + " " + st.LastName,
+                    Subject = s.Name,
+                    HasMark = homeworksWithMarks.Contains(h.Id)
+                }).ToList();
+            
 
             return entities;
         }
