@@ -12,5 +12,7 @@ namespace VirtualClassroom.Services.Views
         public string Subject { get; set; }
         public DateTime Date { get; set; }
         public DateTime? HomeworkDeadline { get; set; }
+        public bool HasHomework { get; set; }
+        public bool SentHomework { get; set; }
     }
 }
