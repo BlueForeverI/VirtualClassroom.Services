@@ -91,7 +91,7 @@ namespace VirtualClassroom.Services.Services
                             from s in c.Subjects
                             from l in s.Lessons
                             from h in l.Homeworks
-                            where c.Id == classId
+                            where c.Id == classId && h.StudentId == studentId
                             select h).ToList();
         }
 
