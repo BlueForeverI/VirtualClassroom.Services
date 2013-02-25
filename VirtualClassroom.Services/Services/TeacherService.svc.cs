@@ -61,14 +61,14 @@ namespace VirtualClassroom.Services.Services
             if(unrated)
             {
                 entities = (
-                    from s in entityContext.Subjects
+                    from s in entityContext.Subjects 
                     join l in entityContext.Lessons
                         on s.Id equals l.SubjectId
                     join h in entityContext.Homeworks
                         on l.Id equals h.LessonId
                     join st in entityContext.Students
                         on h.StudentId equals st.Id
-                    where !homeworksWithMarks.Contains(h.Id)
+                    where !homeworksWithMarks.Contains(h.Id) && s.TeacherId == teacherId
                     select new HomeworkView()
                         {
                             Id = h.Id,
@@ -87,6 +87,7 @@ namespace VirtualClassroom.Services.Services
                         on l.Id equals h.LessonId
                     join st in entityContext.Students
                         on h.StudentId equals st.Id
+                    where s.TeacherId == teacherId
                     select new HomeworkView()
                     {
                         Id = h.Id,

@@ -36,6 +36,8 @@ namespace VirtualClassroom.Services.Services
                            where c.Students.Any(s => s.Id == studentId)
                            select c.Id).First();
 
+            var addedHomeworks = this.GetHomeworksByStudent(studentId).Select(h => h.LessonId);
+
             return (
                        from c in entityContext.Classes.Include("Subjects")
                        from s in c.Subjects
@@ -47,6 +49,8 @@ namespace VirtualClassroom.Services.Services
                                       Id = l.Id,
                                       Date = l.Date,
                                       HomeworkDeadline = l.HomeworkDeadline,
+                                      HasHomework = (l.HomeworkDeadline == null) ? false : true,
+                                      SentHomework = (addedHomeworks.Contains(l.Id)) ? true : false,
                                       Name = l.Name,
                                       Subject = s.Name
                                   }).ToList();
@@ -83,25 +87,12 @@ namespace VirtualClassroom.Services.Services
                            where c.Students.Any(s => s.Id == studentId)
                            select c.Id).First();
 
-            var entities = (from c in entityContext.Classes.Include("Subjects")
+            return (from c in entityContext.Classes.Include("Subjects")
                             from s in c.Subjects
                             from l in s.Lessons
                             from h in l.Homeworks
                             where c.Id == classId
                             select h).ToList();
-
-            List<Homework> homeworks = new List<Homework>();
-            foreach (var entity in entities)
-            {
-                homeworks.Add(new Homework()
-                                  {
-                                      Id = entity.Id,
-                                      Date = entity.Date,
-                                      LessonId = entity.LessonId
-                                  });
-            }
-
-            return homeworks;
         }
 
         public List<Mark> GetMarksByStudent(int studentId)
