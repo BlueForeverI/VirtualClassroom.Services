@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using System.Threading;
 using VirtualClassroom.Services.Models;
 using VirtualClassroom.Services.Views;
 
@@ -55,7 +56,7 @@ namespace VirtualClassroom.Services.Services
             }
             else
             {
-                throw new FaultException("Invalid student");
+                throw new FaultException("The student is invalid or already exists");
             }
         }
 
@@ -162,6 +163,10 @@ namespace VirtualClassroom.Services.Services
             {
                 entityContext.Teachers.Add(teacher);
                 entityContext.SaveChanges();
+            }
+            else
+            {
+                throw new FaultException("The teacher is invalid or already exists");
             }
         }
 
