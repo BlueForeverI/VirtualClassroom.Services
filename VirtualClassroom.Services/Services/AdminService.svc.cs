@@ -16,8 +16,15 @@ namespace VirtualClassroom.Services.Services
 
         public void AddClass(Class c)
         {
-            entityContext.Classes.Add(c);
-            entityContext.SaveChanges();
+            if (!entityContext.Classes.Any(cl => cl.Number == c.Number && cl.Letter == c.Letter))
+            {
+                entityContext.Classes.Add(c);
+                entityContext.SaveChanges();
+            }
+            else
+            {
+                throw new FaultException("The class already exists");
+            }
         }
 
         public void RemoveClasses(List<Class> classes)
@@ -45,6 +52,10 @@ namespace VirtualClassroom.Services.Services
             {
                 entityContext.Students.Add(student);
                 entityContext.SaveChanges();
+            }
+            else
+            {
+                throw new FaultException("Invalid student");
             }
         }
 
@@ -90,10 +101,15 @@ namespace VirtualClassroom.Services.Services
                                                    }).ToList();
         }
 
-        //to refactor
-        private static bool IsStudentValid(Student student)
+        private bool IsStudentValid(Student student)
         {
-            return true;
+            if (!entityContext.Students.Any(s => s.Username == student.Username
+                || s.EGN == student.EGN))
+            {
+                return true;
+            }
+
+            return false;
         }
 
         public List<Class> GetClasses()
@@ -208,25 +224,23 @@ namespace VirtualClassroom.Services.Services
             entityContext.SaveChanges();
         }
 
-        //to refactor
-        private static bool IsTeacherValid(Teacher teacher)
+        private bool IsTeacherValid(Teacher teacher)
         {
-            return true;
+            if (!entityContext.Teachers.Any(t => t.Username == teacher.Username))
+            {
+                return true;
+            }
+
+            return false;
         }
 
         public List<Subject> GetSubjectsByClass(int classId)
         {
-            Class c = (from cl in entityContext.Classes.Include("Subjects") 
+            var sub = (from cl in entityContext.Classes.Include("Subjects") 
                        where cl.Id == classId 
-                       select cl).First();
+                       select cl.Subjects).First().ToList();
 
-            //avoid circular reference and infinite loop
-            foreach (var subject in c.Subjects)
-            {
-                subject.Classes = null;
-            }
-
-            return c.Subjects.ToList();
+            return sub;
         }
 
         public void RegisterAdmin(Admin admin, string password)
@@ -257,10 +271,14 @@ namespace VirtualClassroom.Services.Services
             return null;
         }
 
-        //to refactor
         private bool IsAdminValid(Admin admin)
         {
-            return true;
+            if(!entityContext.Admins.Any(a => a.Username == admin.Username))
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }
