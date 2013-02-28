@@ -13,7 +13,7 @@ namespace VirtualClassroom.Services.Services
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "AdminService" in code, svc and config file together.
 
-    [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerSession)]
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerSession, ConcurrencyMode = ConcurrencyMode.Single)]
     public class AdminService : IAdminService
     {
         private VirtualClassroomEntities entityContext = new VirtualClassroomEntities();
