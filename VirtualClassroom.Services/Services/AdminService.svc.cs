@@ -58,10 +58,11 @@ namespace VirtualClassroom.Services.Services
             entityContext.SaveChanges();
         }
 
-        public void RegisterStudent(Student student, string password)
+        public void RegisterStudent(Student student, string passwordCrypt, string secret)
         {
             CheckAuthentication();
 
+            string password = Crypto.DecryptStringAES(passwordCrypt, secret);
             string passwordHash = BCrypt.Net.BCrypt.HashPassword(password);
             student.PasswordHash = passwordHash;
 
@@ -183,10 +184,11 @@ namespace VirtualClassroom.Services.Services
                                   }).ToList();
         }
 
-        public void RegisterTeacher(Teacher teacher, string password)
+        public void RegisterTeacher(Teacher teacher, string passwordCrypt, string secret)
         {
             CheckAuthentication();
 
+            string password = Crypto.DecryptStringAES(passwordCrypt, secret);
             string passwordHash = BCrypt.Net.BCrypt.HashPassword(password);
             teacher.PasswordHash = passwordHash;
 
@@ -289,8 +291,9 @@ namespace VirtualClassroom.Services.Services
             return sub;
         }
 
-        public void RegisterAdmin(Admin admin, string password)
+        public void RegisterAdmin(Admin admin, string passwordCrypt, string secret)
         {
+            string password = Crypto.DecryptStringAES(passwordCrypt, secret);
             string passwordHash = BCrypt.Net.BCrypt.HashPassword(password);
             admin.PasswordHash = passwordHash;
 
@@ -299,10 +302,25 @@ namespace VirtualClassroom.Services.Services
                 entityContext.Admins.Add(admin);
                 entityContext.SaveChanges();
             }
+            else
+            {
+                throw new FaultException("The admin is invalid or already exists");
+            }
         }
 
-        public Admin LoginAdmin(string username, string password)
+        public Admin LoginAdmin(string usernameCrypt, string passwordCrypt, string secret)
         {
+            if(string.IsNullOrWhiteSpace(usernameCrypt) || string.IsNullOrEmpty(usernameCrypt)
+                || string.IsNullOrWhiteSpace(passwordCrypt) || string.IsNullOrEmpty(passwordCrypt)
+                || string.IsNullOrWhiteSpace(secret) || string.IsNullOrEmpty(secret))
+            {
+                return null;
+            }
+        
+
+            string username = Crypto.DecryptStringAES(usernameCrypt, secret);
+            string password = Crypto.DecryptStringAES(passwordCrypt, secret);
+
             if(entityContext.Admins.Count(a => a.Username == username) == 0)
             {
                 return null;

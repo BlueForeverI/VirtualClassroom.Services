@@ -23,8 +23,18 @@ namespace VirtualClassroom.Services.Services
             }
         }
 
-        public Teacher LoginTeacher(string username, string password)
+        public Teacher LoginTeacher(string usernameCrypt, string passwordCrypt, string secret)
         {
+            if (string.IsNullOrWhiteSpace(usernameCrypt) || string.IsNullOrEmpty(usernameCrypt)
+                || string.IsNullOrWhiteSpace(passwordCrypt) || string.IsNullOrEmpty(passwordCrypt)
+                || string.IsNullOrWhiteSpace(secret) || string.IsNullOrEmpty(secret))
+            {
+                return null;
+            }
+
+            string username = Crypto.DecryptStringAES(usernameCrypt, secret);
+            string password = Crypto.DecryptStringAES(passwordCrypt, secret);
+
             if (entityContext.Teachers.Count(s => s.Username == username) == 0)
             {
                 return null;

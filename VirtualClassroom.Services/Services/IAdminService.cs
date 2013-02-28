@@ -24,7 +24,7 @@ namespace VirtualClassroom.Services.Services
         List<Class> GetClasses();
 
         [OperationContract]
-        void RegisterStudent(Student student, string password);
+        void RegisterStudent(Student student, string passwordCrypt, string secret);
 
         [OperationContract]
         void RemoveStudents(List<Student> students);
@@ -42,7 +42,7 @@ namespace VirtualClassroom.Services.Services
         List<SubjectView> GetSubjectViews();
 
         [OperationContract]
-        void RegisterTeacher(Teacher teacher, string password);
+        void RegisterTeacher(Teacher teacher, string passwordCrypt, string secret);
 
         [OperationContract]
         void RemoveTeachers(List<Teacher> teachers);
@@ -60,9 +60,9 @@ namespace VirtualClassroom.Services.Services
         List<Subject> GetSubjectsByClass(int classId);
 
         [OperationContract]
-        void RegisterAdmin(Admin admin, string password);
+        void RegisterAdmin(Admin admin, string passwordCrypt, string secret);
 
         [OperationContract]
-        Admin LoginAdmin(string username, string password);
+        Admin LoginAdmin(string usernameCrypt, string passwordCrypt, string secret);
     }
 }

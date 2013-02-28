@@ -13,7 +13,7 @@ namespace VirtualClassroom.Services.Services
     public interface ITeacherService
     {
         [OperationContract]
-        Teacher LoginTeacher(string username, string password);
+        Teacher LoginTeacher(string usernameCrypt, string passwordCrypt, string secret);
 
         [OperationContract]
         void AddLesson(Lesson lesson);

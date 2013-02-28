@@ -6,6 +6,7 @@ using System.ServiceModel;
 using System.Text;
 using VirtualClassroom.Services.Models;
 using VirtualClassroom.Services.Views;
+using System.Security.Cryptography;
 
 namespace VirtualClassroom.Services.Services
 {
@@ -23,8 +24,18 @@ namespace VirtualClassroom.Services.Services
             }
         }
 
-        public Student LoginStudent(string username, string password)
+        public Student LoginStudent(string usernameCrypt, string passwordCrypt, string secret)
         {
+            if (string.IsNullOrWhiteSpace(usernameCrypt) || string.IsNullOrEmpty(usernameCrypt)
+                || string.IsNullOrWhiteSpace(passwordCrypt) || string.IsNullOrEmpty(passwordCrypt)
+                || string.IsNullOrWhiteSpace(secret) || string.IsNullOrEmpty(secret))
+            {
+                return null;
+            }
+
+            string username = Crypto.DecryptStringAES(usernameCrypt, secret);
+            string password = Crypto.DecryptStringAES(passwordCrypt, secret);
+
             if (entityContext.Students.Count(s => s.Username == username) == 0)
             {
                 return null;

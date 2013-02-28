@@ -13,7 +13,7 @@ namespace VirtualClassroom.Services.Services
     public interface IStudentService
     {
         [OperationContract]
-        Student LoginStudent(string username, string password);
+        Student LoginStudent(string usernameCrypt, string passwordCrypt, string secret);
 
         [OperationContract]
         List<LessonView> GetLessonViewsByStudent(int studentId);
