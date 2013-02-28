@@ -9,10 +9,19 @@ using VirtualClassroom.Services.Views;
 
 namespace VirtualClassroom.Services.Services
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "StudentService" in code, svc and config file together.
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerSession, ConcurrencyMode = ConcurrencyMode.Single)]
     public class StudentService : IStudentService
     {
         VirtualClassroomEntities entityContext = new VirtualClassroomEntities();
+        private bool isLogged = false;
+
+        private void CheckAuthentication()
+        {
+            if (isLogged == false)
+            {
+                throw new FaultException("Not logged in!");
+            }
+        }
 
         public Student LoginStudent(string username, string password)
         {
@@ -24,6 +33,7 @@ namespace VirtualClassroom.Services.Services
             Student entity = entityContext.Students.Where(s => s.Username == username).First();
             if (BCrypt.Net.BCrypt.Verify(password, entity.PasswordHash))
             {
+                isLogged = true;
                 return entity;
             }
 
@@ -32,6 +42,8 @@ namespace VirtualClassroom.Services.Services
 
         public List<LessonView> GetLessonViewsByStudent(int studentId)
         {
+            CheckAuthentication();
+
             int classId = (from c in entityContext.Classes.Include("Students")
                            where c.Students.Any(s => s.Id == studentId)
                            select c.Id).First();
@@ -58,6 +70,8 @@ namespace VirtualClassroom.Services.Services
 
         public File DownloadLessonContent(int lessonId)
         {
+            CheckAuthentication();
+
             Lesson lesson = (from l in entityContext.Lessons
                              where l.Id == lessonId
                              select l).First();
@@ -67,6 +81,8 @@ namespace VirtualClassroom.Services.Services
 
         public File DownloadLessonHomework(int lessonId)
         {
+            CheckAuthentication();
+
             Lesson lesson = (from l in entityContext.Lessons
                              where l.Id == lessonId
                              select l).First();
@@ -76,6 +92,8 @@ namespace VirtualClassroom.Services.Services
 
         public void AddHomework(Homework homework)
         {
+            CheckAuthentication();
+
             homework.Date = DateTime.Now;
             entityContext.Homeworks.Add(homework);
             entityContext.SaveChanges();
@@ -83,6 +101,8 @@ namespace VirtualClassroom.Services.Services
 
         public List<Homework> GetHomeworksByStudent(int studentId)
         {
+            CheckAuthentication();
+
             int classId = (from c in entityContext.Classes.Include("Students")
                            where c.Students.Any(s => s.Id == studentId)
                            select c.Id).First();
@@ -97,6 +117,8 @@ namespace VirtualClassroom.Services.Services
 
         public List<Mark> GetMarksByStudent(int studentId)
         {
+            CheckAuthentication();
+
             return (from h in entityContext.Homeworks.Include("Marks")
                             from m in h.Marks
                             where h.StudentId == studentId

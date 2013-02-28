@@ -12,8 +12,8 @@
       <Item value="entitityContext" priority="13" />
       <Item value="static" priority="1" />
       <Item value="AdminService`0" priority="2" />
-      <Item value="private" priority="2" />
-      <Item value="false" priority="16" />
+      <Item value="private" priority="3" />
+      <Item value="false" priority="17" />
       <Item value="protected" priority="4" />
       <Item value="override" priority="0" />
       <Item value="Configuration" priority="0" />
@@ -22,7 +22,7 @@
       <Item value="teachers" priority="5" />
       <Item value="new" priority="30" />
       <Item value="List&lt;Teacher&gt;" priority="0" />
-      <Item value="true" priority="6" />
+      <Item value="true" priority="8" />
       <Item value="return" priority="23" />
       <Item value="this" priority="12" />
       <Item value="modelBuilder" priority="10" />
@@ -124,7 +124,7 @@
       <Item value="a" priority="2" />
       <Item value="username" priority="1" />
       <Item value="marks" priority="2" />
-      <Item value="bool" priority="5" />
+      <Item value="bool" priority="6" />
       <Item value="unrated" priority="1" />
       <Item value="join" priority="13" />
       <Item value="on" priority="17" />
@@ -162,9 +162,9 @@
       <Item value="student" priority="1" />
       <Item value="AbandonedMutexException" priority="0" />
       <Item value="FaultException`0" priority="0" />
-      <Item value="isLogged" priority="1" />
+      <Item value="isLogged" priority="3" />
       <Item value="FaultException" priority="0" />
-      <Item value="CheckAuthentication`0" priority="16" />
+      <Item value="CheckAuthentication`0" priority="20" />
       <Item value="ServiceBehavior" priority="0" />
       <Item value="InstanceContext`0" priority="0" />
       <Item value="InstanceContextMode`0" priority="0" />
@@ -440,7 +440,6 @@
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Migrations/f:Configuration.cs" caret="523" fromTop="15" />
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Models/f:File.cs" caret="124" fromTop="4" />
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Views/f:StudentView.cs" caret="395" fromTop="15" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:IStudentService.cs" caret="603" fromTop="15" />
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Models/f:Class.cs" caret="0" fromTop="0" />
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Views/f:MarkView.cs" caret="408" fromTop="14" />
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Models/f:SchoolModel.Context.cs" caret="430" fromTop="12" />
@@ -448,46 +447,47 @@
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Models/f:Homework.cs" caret="1005" fromTop="13" />
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Views/f:LessonView.cs" caret="489" fromTop="15" />
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Models/f:Lesson.cs" caret="658" fromTop="18" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:StudentService.svc.cs" caret="3845" fromTop="93" />
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Views/f:HomeworkView.cs" caret="395" fromTop="13" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:ITeacherService.cs" caret="855" fromTop="25" />
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Views/f:SubjectView.cs" caret="314" fromTop="13" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:TeacherService.svc.cs" caret="794" fromTop="13" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:IAdminService.cs" caret="567" fromTop="14" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/f:Web.config" caret="2335" fromTop="23" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="1000" fromTop="16" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:TeacherService.svc.cs" caret="7638" fromTop="198" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:StudentService.svc.cs" caret="768" fromTop="0" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/f:Web.config" caret="1556" fromTop="27" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="350" fromTop="0" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:IAdminService.cs" caret="356" fromTop="12" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:IStudentService.cs" caret="285" fromTop="10" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:ITeacherService.cs" caret="285" fromTop="10" />
     </RecentFiles>
     <RecentEdits>
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="299" fromTop="9" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/f:Web.config" caret="1812" fromTop="27" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:TeacherService.svc.cs" caret="794" fromTop="13" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="10012" fromTop="6" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/f:Web.config" caret="2567" fromTop="26" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:IAdminService.cs" caret="567" fromTop="15" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:IAdminService.cs" caret="785" fromTop="9" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:IAdminService.cs" caret="1975" fromTop="24" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="804" fromTop="13" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="1086" fromTop="25" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="1545" fromTop="16" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="2089" fromTop="19" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="2647" fromTop="19" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="3175" fromTop="10" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="4911" fromTop="18" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="5110" fromTop="17" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="5324" fromTop="16" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="5852" fromTop="16" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="6523" fromTop="14" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="7081" fromTop="20" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="7601" fromTop="20" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="7795" fromTop="15" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="8477" fromTop="21" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="9403" fromTop="16" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="9709" fromTop="11" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="4597" fromTop="9" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/f:Web.config" caret="1198" fromTop="6" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/f:Web.config" caret="1539" fromTop="12" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="618" fromTop="3" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/f:Web.config" caret="2335" fromTop="23" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/f:Web.config" caret="1556" fromTop="7" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:StudentService.svc.cs" caret="1226" fromTop="22" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:StudentService.svc.cs" caret="588" fromTop="12" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:StudentService.svc.cs" caret="779" fromTop="18" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:StudentService.svc.cs" caret="1433" fromTop="18" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:StudentService.svc.cs" caret="2781" fromTop="16" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:StudentService.svc.cs" caret="3103" fromTop="15" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:StudentService.svc.cs" caret="3137" fromTop="15" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:StudentService.svc.cs" caret="3498" fromTop="18" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:StudentService.svc.cs" caret="3765" fromTop="21" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:StudentService.svc.cs" caret="4443" fromTop="22" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:TeacherService.svc.cs" caret="285" fromTop="3" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:StudentService.svc.cs" caret="285" fromTop="10" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="350" fromTop="3" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:IAdminService.cs" caret="356" fromTop="12" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:TeacherService.svc.cs" caret="554" fromTop="8" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:TeacherService.svc.cs" caret="789" fromTop="17" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:TeacherService.svc.cs" caret="1234" fromTop="20" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:TeacherService.svc.cs" caret="1415" fromTop="26" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:TeacherService.svc.cs" caret="1667" fromTop="21" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:TeacherService.svc.cs" caret="2216" fromTop="21" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:TeacherService.svc.cs" caret="3281" fromTop="21" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:TeacherService.svc.cs" caret="4079" fromTop="16" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:TeacherService.svc.cs" caret="4356" fromTop="16" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:TeacherService.svc.cs" caret="6121" fromTop="20" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:TeacherService.svc.cs" caret="6912" fromTop="18" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:TeacherService.svc.cs" caret="7268" fromTop="20" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:TeacherService.svc.cs" caret="7638" fromTop="22" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:IStudentService.cs" caret="285" fromTop="10" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:ITeacherService.cs" caret="285" fromTop="10" />
     </RecentEdits>
   </RecentFiles>
   <NAntValidationSettings>

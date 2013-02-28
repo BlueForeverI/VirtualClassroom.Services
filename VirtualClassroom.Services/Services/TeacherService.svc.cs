@@ -9,10 +9,19 @@ using VirtualClassroom.Services.Views;
 
 namespace VirtualClassroom.Services.Services
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "TeacherService" in code, svc and config file together.
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerSession, ConcurrencyMode = ConcurrencyMode.Single)]
     public class TeacherService : ITeacherService
     {
         private VirtualClassroomEntities entityContext = new VirtualClassroomEntities();
+        private bool isLogged = false;
+
+        private void CheckAuthentication()
+        {
+            if (isLogged == false)
+            {
+                throw new FaultException("Not logged in!");
+            }
+        }
 
         public Teacher LoginTeacher(string username, string password)
         {
@@ -24,6 +33,7 @@ namespace VirtualClassroom.Services.Services
             Teacher entity = entityContext.Teachers.Where(s => s.Username == username).First();
             if (BCrypt.Net.BCrypt.Verify(password, entity.PasswordHash))
             {
+                isLogged = true;
                 return entity;
             }
 
@@ -32,6 +42,8 @@ namespace VirtualClassroom.Services.Services
 
         public void AddLesson(Lesson lesson)
         {
+            CheckAuthentication();
+
             lesson.Date = DateTime.Now;
             entityContext.Lessons.Add(lesson);
             entityContext.SaveChanges();
@@ -39,6 +51,8 @@ namespace VirtualClassroom.Services.Services
 
         public void RemoveLessons(List<Lesson> lessons)
         {
+            CheckAuthentication();
+
             int[] ids = (from l in lessons select l.Id).ToArray();
 
             var entities = (from l in entityContext.Lessons
@@ -55,6 +69,8 @@ namespace VirtualClassroom.Services.Services
 
         public List<HomeworkView> GetHomeworkViewsByTeacher(int teacherId)
         {
+            CheckAuthentication();
+
             var homeworksWithMarks = (from m in entityContext.Marks select m.HomeworkId).ToList();
             var entities =  (
                 from s in entityContext.Subjects
@@ -80,6 +96,8 @@ namespace VirtualClassroom.Services.Services
 
         public List<LessonView> GetLessonViewsByTeacher(int teacherId)
         {
+            CheckAuthentication();
+
             return (
                        from s in entityContext.Subjects
                        join l in entityContext.Lessons
@@ -97,6 +115,8 @@ namespace VirtualClassroom.Services.Services
 
         public List<Subject> GetSubjectsByTeacher(int teacherId)
         {
+            CheckAuthentication();
+
             return (from s in entityContext.Subjects
                     where s.TeacherId == teacherId
                     select s).ToList();
@@ -104,6 +124,8 @@ namespace VirtualClassroom.Services.Services
 
         public List<MarkView> GetMarkViewsByTeacher(int teacherId)
         {
+            CheckAuthentication();
+
             var markViews = (from m in entityContext.Marks
                              join h in entityContext.Homeworks on m.HomeworkId equals h.Id
                              join st in entityContext.Students on h.StudentId equals st.Id
@@ -139,6 +161,8 @@ namespace VirtualClassroom.Services.Services
 
         public void AddMark(Mark mark)
         {
+            CheckAuthentication();
+
             mark.Date = DateTime.Now;
             mark.SubjectName = (from sub in entityContext.Subjects.Include("Lessons")
                                 from l in sub.Lessons
@@ -156,6 +180,8 @@ namespace VirtualClassroom.Services.Services
 
         public File DownloadLessonContent(int lessonId)
         {
+            CheckAuthentication();
+
             Lesson lesson = (from l in entityContext.Lessons
                              where l.Id == lessonId
                              select l).First();
@@ -165,6 +191,8 @@ namespace VirtualClassroom.Services.Services
 
         public File DownloadLessonHomework(int lessonId)
         {
+            CheckAuthentication();
+
             Lesson lesson = (from l in entityContext.Lessons
                              where l.Id == lessonId
                              select l).First();
@@ -174,6 +202,8 @@ namespace VirtualClassroom.Services.Services
 
         public File DownloadSubmittedHomework(int homeworkId)
         {
+            CheckAuthentication();
+
             var entity = (from h in entityContext.Homeworks
                           where h.Id == homeworkId
                           select h).First();
