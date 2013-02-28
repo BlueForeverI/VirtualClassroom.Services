@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
+using System.ServiceModel.Description;
 using System.Text;
 using System.Threading;
 using VirtualClassroom.Services.Models;
@@ -11,12 +12,25 @@ using VirtualClassroom.Services.Views;
 namespace VirtualClassroom.Services.Services
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "AdminService" in code, svc and config file together.
+
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerSession)]
     public class AdminService : IAdminService
     {
         private VirtualClassroomEntities entityContext = new VirtualClassroomEntities();
+        private bool isLogged = false;
+
+        private void CheckAuthentication()
+        {
+            if(isLogged == false)
+            {
+                throw new FaultException("Not logged in!");
+            }
+        }
 
         public void AddClass(Class c)
         {
+            CheckAuthentication();
+
             if (!entityContext.Classes.Any(cl => cl.Number == c.Number && cl.Letter == c.Letter))
             {
                 entityContext.Classes.Add(c);
@@ -30,6 +44,8 @@ namespace VirtualClassroom.Services.Services
 
         public void RemoveClasses(List<Class> classes)
         {
+            CheckAuthentication();
+
             int[] ids = (from c in classes select c.Id).ToArray();
 
             var entities = (from c in entityContext.Classes
@@ -46,6 +62,8 @@ namespace VirtualClassroom.Services.Services
 
         public void RegisterStudent(Student student, string password)
         {
+            CheckAuthentication();
+
             string passwordHash = BCrypt.Net.BCrypt.HashPassword(password);
             student.PasswordHash = passwordHash;
 
@@ -62,6 +80,8 @@ namespace VirtualClassroom.Services.Services
 
         public void RemoveStudents(List<Student> students)
         {
+            CheckAuthentication();
+
             int[] ids = (from s in students select s.Id).ToArray();
 
             var entities = (from s in entityContext.Students
@@ -78,6 +98,8 @@ namespace VirtualClassroom.Services.Services
 
         public List<StudentView> GetStudentViews()
         {
+            CheckAuthentication();
+
             return (
                        from s in entityContext.Students
                        join c in entityContext.Classes
@@ -115,17 +137,24 @@ namespace VirtualClassroom.Services.Services
 
         public List<Class> GetClasses()
         {
+            CheckAuthentication();
+
+            CheckAuthentication();
             return entityContext.Classes.ToList();
         }
 
         public void AddSubject(Subject subject)
         {
+            CheckAuthentication();
+
             entityContext.Subjects.Add(subject);
             entityContext.SaveChanges();
         }
 
         public void RemoveSubjects(List<Subject> subjects)
         {
+            CheckAuthentication();
+
             int[] ids = (from s in subjects select s.Id).ToArray();
 
             var entities = (from s in entityContext.Subjects
@@ -142,6 +171,8 @@ namespace VirtualClassroom.Services.Services
 
         public List<SubjectView> GetSubjectViews()
         {
+            CheckAuthentication();
+
             return (
                        from s in entityContext.Subjects
                        join t in entityContext.Teachers
@@ -156,6 +187,8 @@ namespace VirtualClassroom.Services.Services
 
         public void RegisterTeacher(Teacher teacher, string password)
         {
+            CheckAuthentication();
+
             string passwordHash = BCrypt.Net.BCrypt.HashPassword(password);
             teacher.PasswordHash = passwordHash;
 
@@ -172,6 +205,8 @@ namespace VirtualClassroom.Services.Services
 
         public void RemoveTeachers(List<Teacher> teachers)
         {
+            CheckAuthentication();
+
             int[] ids = (from t in teachers select t.Id).ToArray();
 
             var entities = (from t in entityContext.Teachers
@@ -188,11 +223,15 @@ namespace VirtualClassroom.Services.Services
 
         public List<Teacher> GetTeachers()
         {
+            CheckAuthentication();
+
             return entityContext.Teachers.ToList();
         }
 
         public void AddClassesToSubject(Subject subject, List<Class> classes)
         {
+            CheckAuthentication();
+
             var subjectEntity = entityContext.Subjects.Include("Classes")
                 .Where(s => s.Id == subject.Id).FirstOrDefault();
 
@@ -212,6 +251,8 @@ namespace VirtualClassroom.Services.Services
 
         public void AddSubjectsToClass(Class c, List<Subject> subjects)
         {
+            CheckAuthentication();
+
             var classEntity = entityContext.Classes.Include("Subjects")
                 .Where(cl => cl.Id == c.Id).FirstOrDefault();
 
@@ -241,6 +282,8 @@ namespace VirtualClassroom.Services.Services
 
         public List<Subject> GetSubjectsByClass(int classId)
         {
+            CheckAuthentication();
+
             var sub = (from cl in entityContext.Classes.Include("Subjects") 
                        where cl.Id == classId 
                        select cl.Subjects).First().ToList();
@@ -270,6 +313,7 @@ namespace VirtualClassroom.Services.Services
             Admin entity = entityContext.Admins.Where(a => a.Username == username).First();
             if (BCrypt.Net.BCrypt.Verify(password, entity.PasswordHash))
             {
+                isLogged = true;
                 return entity;
             }
 
