@@ -21,7 +21,7 @@ namespace VirtualClassroom.Services.Services
         {
             if(isLogged == false)
             {
-                throw new FaultException("Not logged in!");
+                throw new FaultException("Не сте влезли в системата");
             }
         }
 
@@ -36,7 +36,7 @@ namespace VirtualClassroom.Services.Services
             }
             else
             {
-                throw new FaultException("The class already exists");
+                throw new FaultException("Класът вече съществува");
             }
         }
 
@@ -73,7 +73,7 @@ namespace VirtualClassroom.Services.Services
             }
             else
             {
-                throw new FaultException("The student is invalid or already exists");
+                throw new FaultException("Студентът не е валиден или вече съществува");
             }
         }
 
@@ -199,7 +199,7 @@ namespace VirtualClassroom.Services.Services
             }
             else
             {
-                throw new FaultException("The teacher is invalid or already exists");
+                throw new FaultException("Учителят не е валиден или вече съществува");
             }
         }
 
@@ -304,7 +304,7 @@ namespace VirtualClassroom.Services.Services
             }
             else
             {
-                throw new FaultException("The admin is invalid or already exists");
+                throw new FaultException("Администраторът не е валиден или вече съществува");
             }
         }
 

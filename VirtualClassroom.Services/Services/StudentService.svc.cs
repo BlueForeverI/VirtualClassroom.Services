@@ -20,7 +20,7 @@ namespace VirtualClassroom.Services.Services
         {
             if (isLogged == false)
             {
-                throw new FaultException("Not logged in!");
+                throw new FaultException("Не сте влезли в системата");
             }
         }
 
