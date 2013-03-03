@@ -12,6 +12,9 @@ using System.Collections.Generic;
 
 namespace VirtualClassroom.Services.Models
 {
+    /// <summary>
+    /// Holds information about homeworks sent from the students
+    /// </summary>
     public partial class Homework
     {
         public Homework()
@@ -23,7 +26,7 @@ namespace VirtualClassroom.Services.Models
         public int StudentId { get; set; }
         public int LessonId { get; set; }
         public byte[] Content { get; set; }
-        public System.DateTime Date { get; set; }
+        public DateTime Date { get; set; }
         public string Filename { get; set; }
     
         public virtual ICollection<Mark> Marks { get; set; }

@@ -9,12 +9,20 @@ using VirtualClassroom.Services.Views;
 
 namespace VirtualClassroom.Services.Services
 {
+    /// <summary>
+    /// Implementation of the ITeacherService
+    /// </summary>
+    
+    //enable sessions
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerSession, ConcurrencyMode = ConcurrencyMode.Single)]
     public class TeacherService : ITeacherService
     {
         private VirtualClassroomEntities entityContext = new VirtualClassroomEntities();
-        private bool isLogged = false;
+        private bool isLogged = false;          //stores login information
 
+        /// <summary>
+        /// Checks if the client is authenticated
+        /// </summary>
         private void CheckAuthentication()
         {
             if (isLogged == false)
@@ -23,6 +31,13 @@ namespace VirtualClassroom.Services.Services
             }
         }
 
+        /// <summary>
+        /// Logs a teacher into the system
+        /// </summary>
+        /// <param name="usernameCrypt">Encrypted username</param>
+        /// <param name="passwordCrypt">Encrypted password</param>
+        /// <param name="secret">The key to decrypt with</param>
+        /// <returns>Teacher information (if successfull login)</returns>
         public Teacher LoginTeacher(string usernameCrypt, string passwordCrypt, string secret)
         {
             if (string.IsNullOrWhiteSpace(usernameCrypt) || string.IsNullOrEmpty(usernameCrypt)
@@ -32,6 +47,7 @@ namespace VirtualClassroom.Services.Services
                 return null;
             }
 
+            //decrypt login details
             string username = Crypto.DecryptStringAES(usernameCrypt, secret);
             string password = Crypto.DecryptStringAES(passwordCrypt, secret);
 
@@ -43,6 +59,7 @@ namespace VirtualClassroom.Services.Services
             Teacher entity = entityContext.Teachers.Where(s => s.Username == username).First();
             if (BCrypt.Net.BCrypt.Verify(password, entity.PasswordHash))
             {
+                //password is valid
                 isLogged = true;
                 return entity;
             }
@@ -50,6 +67,10 @@ namespace VirtualClassroom.Services.Services
             return null;
         }
 
+        /// <summary>
+        /// Adds a lesson to the database
+        /// </summary>
+        /// <param name="lesson">The lesson to add</param>
         public void AddLesson(Lesson lesson)
         {
             CheckAuthentication();
@@ -59,6 +80,10 @@ namespace VirtualClassroom.Services.Services
             entityContext.SaveChanges();
         }
 
+        /// <summary>
+        /// Removes a list of lesson from the database
+        /// </summary>
+        /// <param name="lessons">The lessons to remove</param>
         public void RemoveLessons(List<Lesson> lessons)
         {
             CheckAuthentication();
@@ -77,6 +102,11 @@ namespace VirtualClassroom.Services.Services
             entityContext.SaveChanges();
         }
 
+        /// <summary>
+        /// Gets all homeworks added to the teacher's lessons
+        /// </summary>
+        /// <param name="teacherId">The teacher's id</param>
+        /// <returns>The homeworks</returns>
         public List<HomeworkView> GetHomeworkViewsByTeacher(int teacherId)
         {
             CheckAuthentication();
@@ -104,6 +134,11 @@ namespace VirtualClassroom.Services.Services
             return entities;
         }
 
+        /// <summary>
+        /// Gets all lessons submitted by the teacher
+        /// </summary>
+        /// <param name="teacherId">The teacher's id</param>
+        /// <returns>The lessons</returns>
         public List<LessonView> GetLessonViewsByTeacher(int teacherId)
         {
             CheckAuthentication();
@@ -123,6 +158,11 @@ namespace VirtualClassroom.Services.Services
                                   }).ToList();
         }
 
+        /// <summary>
+        /// Gets the subject that the teacher teaches
+        /// </summary>
+        /// <param name="teacherId">the teacher's id</param>
+        /// <returns>The subjects</returns>
         public List<Subject> GetSubjectsByTeacher(int teacherId)
         {
             CheckAuthentication();
@@ -132,6 +172,11 @@ namespace VirtualClassroom.Services.Services
                     select s).ToList();
         }
 
+        /// <summary>
+        /// Get all marks that the teacher has given
+        /// </summary>
+        /// <param name="teacherId">The teacher's id</param>
+        /// <returns>The marks</returns>
         public List<MarkView> GetMarkViewsByTeacher(int teacherId)
         {
             CheckAuthentication();
@@ -169,6 +214,10 @@ namespace VirtualClassroom.Services.Services
             return markViews;
         }
 
+        /// <summary>
+        /// Adds a mark to the database
+        /// </summary>
+        /// <param name="mark">Mark information</param>
         public void AddMark(Mark mark)
         {
             CheckAuthentication();
@@ -188,6 +237,11 @@ namespace VirtualClassroom.Services.Services
             entityContext.SaveChanges();
         }
 
+        /// <summary>
+        /// Downloads a lesson' content
+        /// </summary>
+        /// <param name="lessonId">Lesson id</param>
+        /// <returns>Lesson's raw content and file name, encapsulated in a File structure</returns>
         public File DownloadLessonContent(int lessonId)
         {
             CheckAuthentication();
@@ -199,6 +253,11 @@ namespace VirtualClassroom.Services.Services
             return new File(lesson.ContentFilename, lesson.Content);
         }
 
+        /// <summary>
+        /// Downloads a lesson's homework
+        /// </summary>
+        /// <param name="lessonId">Lesson's id</param>
+        /// <returns>Lesson's raw homework content and filename, encapsulated in a File structure</returns>
         public File DownloadLessonHomework(int lessonId)
         {
             CheckAuthentication();
@@ -210,6 +269,11 @@ namespace VirtualClassroom.Services.Services
             return new File(lesson.HomeworkFilename, lesson.HomeworkContent);
         }
 
+        /// <summary>
+        /// Downloads a homework, submitted by a student
+        /// </summary>
+        /// <param name="homeworkId">Homework's id</param>
+        /// <returns>Homework's raw content and file name, encapsulated in a File structure</returns>
         public File DownloadSubmittedHomework(int homeworkId)
         {
             CheckAuthentication();

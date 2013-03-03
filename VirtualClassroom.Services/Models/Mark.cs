@@ -12,10 +12,13 @@ using System.Collections.Generic;
 
 namespace VirtualClassroom.Services.Models
 {
+    /// <summary>
+    /// Represents a typical mark given to students for homeworks/tests
+    /// </summary>
     public partial class Mark
     {
         public int Id { get; set; }
-        public System.DateTime Date { get; set; }
+        public DateTime Date { get; set; }
         public int HomeworkId { get; set; }
         public string SubjectName { get; set; }
         public string LessonName { get; set; }

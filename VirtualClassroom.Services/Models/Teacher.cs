@@ -12,6 +12,9 @@ using System.Collections.Generic;
 
 namespace VirtualClassroom.Services.Models
 {
+    /// <summary>
+    /// Holds information about a teacher from the system
+    /// </summary>
     public partial class Teacher
     {
         public Teacher()

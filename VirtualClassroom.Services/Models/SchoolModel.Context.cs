@@ -4,18 +4,23 @@ using System.Data.Entity.Infrastructure;
 
 namespace VirtualClassroom.Services.Models
 {
+    /// <summary>
+    /// Code-first database model
+    /// </summary>
     public partial class VirtualClassroomEntities : DbContext
     {
         public VirtualClassroomEntities()
             : base("name=VirtualClassroomEntities")
         {
+            //disable lazy loading and proxy creation to avoid
+            //circular reference
             this.Configuration.ProxyCreationEnabled = false;
             this.Configuration.LazyLoadingEnabled = false;
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            //throw new UnintentionalCodeFirstException();
+
         }
 
         public DbSet<Class> Classes { get; set; }

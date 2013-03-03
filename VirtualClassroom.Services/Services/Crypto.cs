@@ -9,10 +9,12 @@ using System.Web;
 
 namespace VirtualClassroom.Services.Services
 {
-    [DataContract]
+    /// <summary>
+    /// Helper class that encrypts/decrypts a given string using the AES algorythm
+    /// </summary>
     public class Crypto
     {
-        private static byte[] _salt = Encoding.ASCII.GetBytes("o6806642kbM7c5");
+        private static byte[] salt = Encoding.ASCII.GetBytes("o6806642kbM7c5");
         private static Random random = new Random((int)DateTime.Now.Ticks);
 
         /// <summary>
@@ -34,7 +36,7 @@ namespace VirtualClassroom.Services.Services
             try
             {
                 // generate the key from the shared secret and the salt
-                Rfc2898DeriveBytes key = new Rfc2898DeriveBytes(sharedSecret, _salt);
+                Rfc2898DeriveBytes key = new Rfc2898DeriveBytes(sharedSecret, salt);
 
                 // Create a RijndaelManaged object
                 aesAlg = new RijndaelManaged();
@@ -95,7 +97,7 @@ namespace VirtualClassroom.Services.Services
             try
             {
                 // generate the key from the shared secret and the salt
-                Rfc2898DeriveBytes key = new Rfc2898DeriveBytes(sharedSecret, _salt);
+                Rfc2898DeriveBytes key = new Rfc2898DeriveBytes(sharedSecret, salt);
 
                 // Create the streams used for decryption.                
                 byte[] bytes = Convert.FromBase64String(cipherText);
@@ -129,6 +131,11 @@ namespace VirtualClassroom.Services.Services
             return plaintext;
         }
 
+        /// <summary>
+        /// Generate a random secret key
+        /// </summary>
+        /// <param name="length">Key length</param>
+        /// <returns>Generated key</returns>
         public static string GenerateRandomSecret(int length)
         {
             StringBuilder builder = new StringBuilder();
@@ -142,6 +149,11 @@ namespace VirtualClassroom.Services.Services
             return builder.ToString();
         }
 
+        /// <summary>
+        /// Reads a byte array from a stream
+        /// </summary>
+        /// <param name="s">The stream to read from</param>
+        /// <returns>The resulting byte array</returns>
         private static byte[] ReadByteArray(Stream s)
         {
             byte[] rawLength = new byte[sizeof(int)];

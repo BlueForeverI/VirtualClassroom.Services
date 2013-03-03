@@ -5,6 +5,9 @@ using System.Web;
 
 namespace VirtualClassroom.Services.Views
 {
+    /// <summary>
+    /// Holds the required information to display about a lesson
+    /// </summary>
     public class LessonView
     {
         public int Id { get; set; }

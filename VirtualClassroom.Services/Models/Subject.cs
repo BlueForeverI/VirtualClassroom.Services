@@ -12,6 +12,9 @@ using System.Collections.Generic;
 
 namespace VirtualClassroom.Services.Models
 {
+    /// <summary>
+    /// Represents a typical school subject
+    /// </summary>
     public partial class Subject
     {
         public Subject()

@@ -9,6 +9,11 @@ using VirtualClassroom.Services.Views;
 
 namespace VirtualClassroom.Services.Services
 {
+    /// <summary>
+    /// Interface contract for the teacher service
+    /// </summary>
+    
+    //using reliable sessions
     [ServiceContract(SessionMode = SessionMode.Required)]
     public interface ITeacherService
     {

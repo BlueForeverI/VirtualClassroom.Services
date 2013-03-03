@@ -12,6 +12,9 @@ using System.Collections.Generic;
 
 namespace VirtualClassroom.Services.Models
 {
+    /// <summary>
+    /// Holds information about the administrators of the system
+    /// </summary>
     public partial class Admin
     {
         public int Id { get; set; }

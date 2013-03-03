@@ -5,6 +5,9 @@ using System.Web;
 
 namespace VirtualClassroom.Services.Views
 {
+    /// <summary>
+    /// Holds the required information to display about a homework
+    /// </summary>
     public class HomeworkView
     {
         public int Id { get; set; }

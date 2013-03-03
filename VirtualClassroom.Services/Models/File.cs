@@ -6,6 +6,9 @@ using System.Web;
 
 namespace VirtualClassroom.Services.Models
 {
+    /// <summary>
+    /// A simple File structure to hold information about lesson and homework contents
+    /// </summary>
     [DataContract]
     public class File
     {
