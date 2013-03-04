@@ -129,8 +129,11 @@ namespace VirtualClassroom.Services.Services
         {
             CheckAuthentication();
 
+            string username = Crypto.DecryptStringAES(student.Username, secret);
             string password = Crypto.DecryptStringAES(passwordCrypt, secret);
             string passwordHash = BCrypt.Net.BCrypt.HashPassword(password);
+
+            student.Username = username;
             student.PasswordHash = passwordHash;
 
             if (IsStudentValid(student))
@@ -205,13 +208,18 @@ namespace VirtualClassroom.Services.Services
         /// <returns>Whether the information is valid</returns>
         private bool IsStudentValid(Student student)
         {
-            if (!entityContext.Students.Any(s => s.Username == student.Username
+            if (entityContext.Students.Any(s => s.Username == student.Username
                 || s.EGN == student.EGN))
             {
-                return true;
+                return false;
             }
 
-            return false;
+            if(entityContext.Students.Any(s => s.EGN == student.EGN))
+            {
+                return false;
+            }
+
+            return true;
         }
 
         #endregion
@@ -329,8 +337,11 @@ namespace VirtualClassroom.Services.Services
         {
             CheckAuthentication();
 
+            string username = Crypto.DecryptStringAES(teacher.Username, secret);
             string password = Crypto.DecryptStringAES(passwordCrypt, secret);
             string passwordHash = BCrypt.Net.BCrypt.HashPassword(password);
+
+            teacher.Username = username;
             teacher.PasswordHash = passwordHash;
 
             if (IsTeacherValid(teacher))
