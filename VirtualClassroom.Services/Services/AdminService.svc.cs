@@ -103,11 +103,9 @@ namespace VirtualClassroom.Services.Services
 
             foreach (var c in classes)
             {
-                Class entity = new Class() { Id = c.Id };
-
-                if (!subjectEntity.Classes.Any(cl => cl.Id == entity.Id))
+                if (!subjectEntity.Classes.Any(cl => cl.Id == c.Id))
                 {
-                    entityContext.Classes.Attach(entity);
+                    Class entity = entityContext.Classes.Where(cl => cl.Id == c.Id).FirstOrDefault();
                     subjectEntity.Classes.Add(entity);
                 }
             }
@@ -295,11 +293,9 @@ namespace VirtualClassroom.Services.Services
 
             foreach (var subject in subjects)
             {
-                Subject entity = new Subject() { Id = subject.Id };
-
-                if (!classEntity.Subjects.Any(s => s.Id == entity.Id))
+                if (!classEntity.Subjects.Any(s => s.Id == subject.Id))
                 {
-                    entityContext.Subjects.Attach(entity);
+                    Subject entity = entityContext.Subjects.Where(s => s.Id == subject.Id).FirstOrDefault();
                     classEntity.Subjects.Add(entity);
                 }
             }
