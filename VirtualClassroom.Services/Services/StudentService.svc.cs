@@ -136,14 +136,19 @@ namespace VirtualClassroom.Services.Services
         /// <summary>
         /// Downloads a homework that has been sent by the student
         /// </summary>
-        /// <param name="homeworkId">The id of the homework</param>
-        /// <returns>THe homework, encapsulated in a File structure</returns>
-        public File DownloadSentHomework(int homeworkId)
+        /// <param name="studentId">The id of the student</param>
+        /// <param name="lessonId">The id of the lesson</param>
+        /// <returns>The homework, encapsulated in a File structure</returns>
+        public File DownloadSentHomework(int studentId, int lessonId)
         {
-            var homework = entityContext.Homeworks.Where(h => h.Id == homeworkId)
-                .FirstOrDefault();
+            var addedHomeworks = this.GetHomeworksByStudent(studentId);
+            if(addedHomeworks.Any(h => h.LessonId == lessonId))
+            {
+                var homework = addedHomeworks.Where(h => h.LessonId == lessonId).FirstOrDefault();
+                return new File(homework.Filename, homework.Content);
+            }
 
-            return new File(homework.Filename, homework.Content);
+            throw new FaultException("Такова домашно не съществува");
         }
 
         /// <summary>
