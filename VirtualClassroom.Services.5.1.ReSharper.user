@@ -42,7 +42,7 @@
       <Item value="null" priority="4" />
       <Item value="path" priority="0" />
       <Item value="p" priority="0" />
-      <Item value="OperationContract" priority="23" />
+      <Item value="OperationContract" priority="24" />
       <Item value="void" priority="6" />
       <Item value="Class`0" priority="3" />
       <Item value="classes" priority="2" />
@@ -561,16 +561,15 @@
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:Crypto.cs" caret="353" fromTop="0" />
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:IAdminService.cs" caret="2406" fromTop="26" />
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:ITeacherService.cs" caret="413" fromTop="15" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:IStudentService.cs" caret="413" fromTop="3" />
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/f:Web.config" caret="2102" fromTop="39" />
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="7565" fromTop="17" />
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Views/f:LessonView.cs" caret="68" fromTop="2" />
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Views/f:HomeworkView.cs" caret="501" fromTop="16" />
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:TeacherService.svc.cs" caret="3936" fromTop="2" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:StudentService.svc.cs" caret="5704" fromTop="13" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:StudentService.svc.cs" caret="5706" fromTop="13" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:IStudentService.cs" caret="898" fromTop="17" />
     </RecentFiles>
     <RecentEdits>
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:TeacherService.svc.cs" caret="400" fromTop="8" />
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:StudentService.svc.cs" caret="774" fromTop="15" />
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:TeacherService.svc.cs" caret="949" fromTop="17" />
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:TeacherService.svc.cs" caret="843" fromTop="17" />
@@ -600,6 +599,7 @@
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:TeacherService.svc.cs" caret="4876" fromTop="23" />
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:StudentService.svc.cs" caret="5944" fromTop="16" />
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:StudentService.svc.cs" caret="5679" fromTop="15" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:IStudentService.cs" caret="898" fromTop="17" />
     </RecentEdits>
   </RecentFiles>
   <NAntValidationSettings>

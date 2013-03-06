@@ -27,6 +27,9 @@ namespace VirtualClassroom.Services.Services
         File DownloadLessonContent(int lessonId);
 
         [OperationContract]
+        File DownloadSentHomework(int homeworkId);
+
+        [OperationContract]
         File DownloadLessonHomework(int lessonId);
 
         [OperationContract]
