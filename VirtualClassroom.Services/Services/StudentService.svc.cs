@@ -134,6 +134,19 @@ namespace VirtualClassroom.Services.Services
         }
 
         /// <summary>
+        /// Downloads a homework that has been sent by the student
+        /// </summary>
+        /// <param name="homeworkId">The id of the homework</param>
+        /// <returns>THe homework, encapsulated in a File structure</returns>
+        public File DownloadSentHomework(int homeworkId)
+        {
+            var homework = entityContext.Homeworks.Where(h => h.Id == homeworkId)
+                .FirstOrDefault();
+
+            return new File(homework.Filename, homework.Content);
+        }
+
+        /// <summary>
         /// Adds a homework to the database
         /// </summary>
         /// <param name="homework">The homework information to add</param>

@@ -14,6 +14,7 @@ namespace VirtualClassroom.Services.Views
         public string Subject { get; set; }
         public string Lesson { get; set; }
         public string StudentFullName { get; set; }
+        public DateTime Date { get; set; }
         public bool HasMark { get; set; }
     }
 }

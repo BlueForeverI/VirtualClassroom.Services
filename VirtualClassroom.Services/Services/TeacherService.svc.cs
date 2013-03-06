@@ -127,7 +127,8 @@ namespace VirtualClassroom.Services.Services
                     Lesson = l.Name,
                     StudentFullName = st.FirstName + " " + st.MiddleName + " " + st.LastName,
                     Subject = s.Name,
-                    HasMark = homeworksWithMarks.Contains(h.Id)
+                    HasMark = homeworksWithMarks.Contains(h.Id),
+                    Date = h.Date
                 }).ToList();
             
 
