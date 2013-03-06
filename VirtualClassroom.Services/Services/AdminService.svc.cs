@@ -20,7 +20,7 @@ namespace VirtualClassroom.Services.Services
     public class AdminService : IAdminService
     {
         private VirtualClassroomEntities entityContext = new VirtualClassroomEntities();
-        private bool isLogged = false;          //stores login information
+        private bool isLogged = false;          //stores login state
 
         /// <summary>
         /// Checks if the client is authenticated
@@ -143,6 +143,39 @@ namespace VirtualClassroom.Services.Services
             {
                 throw new FaultException("Студентът не е валиден или вече съществува");
             }
+        }
+
+        /// <summary>
+        /// Edits student information
+        /// </summary>
+        /// <param name="studentId">The student to edit</param>
+        /// <param name="student">New information about the student</param>
+        /// <param name="secret">Key to decrypt username and password</param>
+        public void EditStudent(int studentId, Student student, string secret)
+        {
+            string username = Crypto.DecryptStringAES(student.Username, secret);
+            string password = Crypto.DecryptStringAES(student.PasswordHash, secret);
+
+            var entity = entityContext.Students.Where(s => s.Id == studentId).FirstOrDefault();
+            entity.ClassId = student.ClassId;
+            entity.EGN = student.EGN;
+            entity.FirstName = student.FirstName;
+            entity.MiddleName = student.MiddleName;
+            entity.LastName = student.LastName;
+            entity.Username = username;
+            entity.PasswordHash = BCrypt.Net.BCrypt.HashPassword(password);
+
+            entityContext.SaveChanges();
+        }
+
+        /// <summary>
+        /// Gets a student by specified id
+        /// </summary>
+        /// <param name="studentId">The id to search</param>
+        /// <returns>The found student</returns>
+        public Student GetStudentById(int studentId)
+        {
+            return entityContext.Students.Where(s => s.Id == studentId).FirstOrDefault();
         }
 
         /// <summary>
@@ -398,6 +431,38 @@ namespace VirtualClassroom.Services.Services
 
             return false;
         }
+
+        /// <summary>
+        /// Edits teacher information
+        /// </summary>
+        /// <param name="teacherId">The teacher to edit</param>
+        /// <param name="teacher">Teacher information</param>
+        /// <param name="secret">Key to decrypt username and password</param>
+        public void EditTeacher(int teacherId, Teacher teacher, string secret)
+        {
+            string username = Crypto.DecryptStringAES(teacher.Username, secret);
+            string password = Crypto.DecryptStringAES(teacher.PasswordHash, secret);
+
+            var entity = entityContext.Teachers.Where(t => t.Id == teacherId).FirstOrDefault();
+            entity.Username = username;
+            entity.FirstName = teacher.FirstName;
+            entity.MiddleName = teacher.MiddleName;
+            entity.LastName = teacher.LastName;
+            entity.PasswordHash = BCrypt.Net.BCrypt.HashPassword(password);
+
+            entityContext.SaveChanges();
+        }
+
+        /// <summary>
+        /// Gets a teacher by given id
+        /// </summary>
+        /// <param name="teacherId">The teacher id to search</param>
+        /// <returns>The found teacher</returns>
+        public Teacher GetTeacherById(int teacherId)
+        {
+            return entityContext.Teachers.Where(t => t.Id == teacherId).FirstOrDefault();
+        }
+
         #endregion
 
         #region Admin Management

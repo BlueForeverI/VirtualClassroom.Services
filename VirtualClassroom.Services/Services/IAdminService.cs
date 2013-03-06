@@ -46,6 +46,12 @@ namespace VirtualClassroom.Services.Services
         [OperationContract]
         List<StudentView> GetStudentViews();
 
+        [OperationContract]
+        void EditStudent(int studentId, Student student, string secret);
+
+        [OperationContract]
+        Student GetStudentById(int studentId);
+
         #endregion
 
         #region Subject Management
@@ -77,6 +83,12 @@ namespace VirtualClassroom.Services.Services
 
         [OperationContract]
         List<Teacher> GetTeachers();
+
+        [OperationContract]
+        void EditTeacher(int teacherId, Teacher teacher, string secret);
+
+        [OperationContract]
+        Teacher GetTeacherById(int teacherId);
 
         #endregion
 

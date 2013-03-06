@@ -18,7 +18,7 @@ namespace VirtualClassroom.Services.Services
     public class TeacherService : ITeacherService
     {
         private VirtualClassroomEntities entityContext = new VirtualClassroomEntities();
-        private bool isLogged = false;          //stores login information
+        private bool isLogged = false;          //stores login state
 
         /// <summary>
         /// Checks if the client is authenticated
