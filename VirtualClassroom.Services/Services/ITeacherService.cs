@@ -49,5 +49,11 @@ namespace VirtualClassroom.Services.Services
 
         [OperationContract]
         File DownloadSubmittedHomework(int homeworkId);
+
+        [OperationContract]
+        void AddTest(Test test);
+
+        [OperationContract]
+        List<Test> GetTestsByTeacher(int teacherId);
     }
 }

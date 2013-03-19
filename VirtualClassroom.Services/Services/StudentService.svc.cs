@@ -199,5 +199,37 @@ namespace VirtualClassroom.Services.Services
                             where h.StudentId == studentId
                             select m).ToList();
         }
+
+        /// <summary>
+        /// Evaluates a test that the student has submitted
+        /// </summary>
+        /// <param name="test">The test to evaluate</param>
+        /// <param name="studentId">The student</param>
+        /// <returns>The score of the student</returns>
+        public int EvaluateTest(Test test, int studentId)
+        {
+            var answers = new List<Answer>();
+            foreach(var question in test.Questions)
+            {
+                foreach(var answer in question.Answers)
+                {
+                    answers.Add(answer);
+                }
+            }
+
+            int maxScore = answers.Count(a => a.IsCorrect);
+            int score = test.Questions.Count(q => q.SelectedAnswer.IsCorrect);
+
+            TestScore testScore = new TestScore();
+            testScore.StudentId = studentId;
+            testScore.TestId = test.Id;
+            testScore.MaxScore = maxScore;
+            testScore.Score = score;
+
+            entityContext.TestScores.Add(testScore);
+            entityContext.SaveChanges();
+
+            return score;
+        }
     }
 }

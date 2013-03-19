@@ -40,5 +40,8 @@ namespace VirtualClassroom.Services.Services
 
         [OperationContract]
         List<Mark> GetMarksByStudent(int studentId);
+
+        [OperationContract]
+        int EvaluateTest(Test test, int studentId);
     }
 }

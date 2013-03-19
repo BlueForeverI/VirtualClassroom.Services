@@ -285,5 +285,40 @@ namespace VirtualClassroom.Services.Services
 
             return new File(entity.Filename, entity.Content);
         }
+
+        /// <summary>
+        /// Adds a test with questions
+        /// </summary>
+        /// <param name="test">The test to add</param>
+        public void AddTest(Test test)
+        {
+            CheckAuthentication();
+
+            entityContext.Tests.Add(test);
+            entityContext.SaveChanges();
+        }
+
+        /// <summary>
+        /// Gets all the tests that the teacher has submitted
+        /// </summary>
+        /// <param name="teacherId">The teacher to search</param>
+        /// <returns>All tests by this teacher</returns>
+        public List<Test> GetTestsByTeacher(int teacherId)
+        {
+            CheckAuthentication();
+
+            var subjects = this.GetSubjectsByTeacher(teacherId);
+
+            var tests = new List<Test>();
+            foreach (var subject in subjects)
+            {
+                foreach (var test in subject.Tests)
+                {
+                    tests.Add(test);
+                }
+            }
+
+            return tests;
+        }
     }
 }
