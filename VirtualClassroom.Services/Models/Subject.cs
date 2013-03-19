@@ -21,6 +21,7 @@ namespace VirtualClassroom.Services.Models
         {
             this.Lessons = new HashSet<Lesson>();
             this.Classes = new HashSet<Class>();
+            this.Tests = new HashSet<Test>();
         }
     
         public int Id { get; set; }
@@ -29,6 +30,7 @@ namespace VirtualClassroom.Services.Models
     
         public virtual ICollection<Lesson> Lessons { get; set; }
         public virtual ICollection<Class> Classes { get; set; }
+        public virtual ICollection<Test> Tests { get; set; }
     }
     
 }
