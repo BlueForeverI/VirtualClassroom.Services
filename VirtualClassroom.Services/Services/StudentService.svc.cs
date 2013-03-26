@@ -218,7 +218,7 @@ namespace VirtualClassroom.Services.Services
             }
 
             int maxScore = answers.Count(a => a.IsCorrect);
-            int score = test.Questions.Count(q => q.SelectedAnswer.IsCorrect);
+            int score = answers.Count(a => a.IsCorrect && a.IsSelected);
 
             TestScore testScore = new TestScore();
             testScore.StudentId = studentId;

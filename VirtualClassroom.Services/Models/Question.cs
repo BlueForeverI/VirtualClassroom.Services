@@ -18,7 +18,6 @@ namespace VirtualClassroom.Services.Models
         public int Id { get; set; }
         public string Text { get; set; }
         public int TestId { get; set; }
-        public Answer SelectedAnswer { get; set; }
 
         public virtual ICollection<Answer> Answers { get; set; }
     }

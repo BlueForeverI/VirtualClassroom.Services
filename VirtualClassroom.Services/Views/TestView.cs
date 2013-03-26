@@ -3,18 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace VirtualClassroom.Services.Models
+namespace VirtualClassroom.Services.Views
 {
     /// <summary>
-    /// Represents a test for a subject
+    /// Holds the required information to display about a subject
     /// </summary>
-    public partial class Test
+    public class TestView
     {
         public int Id { get; set; }
         public string Title { get; set; }
-        public int SubjectId { get; set; }
+        public string Subject { get; set; }
         public DateTime Date { get; set; }
-
-        public virtual ICollection<Question> Questions { get; set; }
     }
 }

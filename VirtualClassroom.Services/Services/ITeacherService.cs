@@ -54,6 +54,9 @@ namespace VirtualClassroom.Services.Services
         void AddTest(Test test);
 
         [OperationContract]
-        List<Test> GetTestsByTeacher(int teacherId);
+        List<TestView> GetTestsByTeacher(int teacherId);
+
+        [OperationContract]
+        Test GetTest(int id);
     }
 }

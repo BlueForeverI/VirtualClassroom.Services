@@ -294,6 +294,7 @@ namespace VirtualClassroom.Services.Services
         {
             CheckAuthentication();
 
+            test.Date = DateTime.Now;
             entityContext.Tests.Add(test);
             entityContext.SaveChanges();
         }
@@ -303,22 +304,36 @@ namespace VirtualClassroom.Services.Services
         /// </summary>
         /// <param name="teacherId">The teacher to search</param>
         /// <returns>All tests by this teacher</returns>
-        public List<Test> GetTestsByTeacher(int teacherId)
+        public List<TestView> GetTestsByTeacher(int teacherId)
         {
             CheckAuthentication();
 
             var subjects = this.GetSubjectsByTeacher(teacherId);
 
-            var tests = new List<Test>();
-            foreach (var subject in subjects)
-            {
-                foreach (var test in subject.Tests)
-                {
-                    tests.Add(test);
-                }
-            }
+            var tests = (from s in subjects
+                         join t in entityContext.Tests on s.Id equals t.SubjectId
+                         select new TestView()
+                                    {
+                                        Date = t.Date,
+                                        Id = t.Id,
+                                        Subject = s.Name,
+                                        Title = t.Title
+                                    }).ToList();
 
             return tests;
+        }
+
+        /// <summary>
+        /// Gets a test by specified ID
+        /// </summary>
+        /// <param name="id">ID of the test</param>
+        /// <returns>The test with all its questions</returns>
+        public Test GetTest(int id)
+        {
+            return entityContext.Tests
+                .Include("Questions")
+                .Where(t => t.Id == id)
+                .FirstOrDefault();
         }
     }
 }

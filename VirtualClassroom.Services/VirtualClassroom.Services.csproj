@@ -149,6 +149,7 @@
     <Compile Include="Views\MarkView.cs" />
     <Compile Include="Views\StudentView.cs" />
     <Compile Include="Views\SubjectView.cs" />
+    <Compile Include="Views\TestView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
