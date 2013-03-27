@@ -14,5 +14,7 @@ namespace VirtualClassroom.Services.Views
         public string Title { get; set; }
         public string Subject { get; set; }
         public DateTime Date { get; set; }
+        public int MaxScore { get; set; }
+        public int Score { get; set; }
     }
 }

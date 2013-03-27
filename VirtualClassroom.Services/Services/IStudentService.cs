@@ -43,5 +43,11 @@ namespace VirtualClassroom.Services.Services
 
         [OperationContract]
         int EvaluateTest(Test test, int studentId);
+
+        [OperationContract]
+        List<TestView> GetTestViewsByStudent(int studentId);
+
+        [OperationContract]
+        Test GetTest(int testId);
     }
 }

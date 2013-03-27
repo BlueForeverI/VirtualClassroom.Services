@@ -294,6 +294,13 @@ namespace VirtualClassroom.Services.Services
         {
             CheckAuthentication();
 
+            int maxScore = 0;
+            foreach (var question in test.Questions)
+            {
+                maxScore += question.Answers.Count(a => a.IsCorrect);
+            }
+
+            test.MaxScore = maxScore;
             test.Date = DateTime.Now;
             entityContext.Tests.Add(test);
             entityContext.SaveChanges();
@@ -334,6 +341,26 @@ namespace VirtualClassroom.Services.Services
                 .Include("Questions")
                 .Where(t => t.Id == id)
                 .FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Removes a list of tests from the system
+        /// </summary>
+        /// <param name="tests">The tests to remove</param>
+        public void RemoveTests(List<Test> tests)
+        {
+            int[] ids = tests.Select(t => t.Id).ToArray();
+
+            var entities = (from t in entityContext.Tests
+                            where ids.Contains(t.Id)
+                            select t).ToList();
+
+            foreach (var entity in entities)
+            {
+                entityContext.Tests.Remove(entity);
+            }
+
+            entityContext.SaveChanges();
         }
     }
 }

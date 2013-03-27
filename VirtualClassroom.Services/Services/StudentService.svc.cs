@@ -217,19 +217,59 @@ namespace VirtualClassroom.Services.Services
                 }
             }
 
-            int maxScore = answers.Count(a => a.IsCorrect);
             int score = answers.Count(a => a.IsCorrect && a.IsSelected);
 
             TestScore testScore = new TestScore();
             testScore.StudentId = studentId;
             testScore.TestId = test.Id;
-            testScore.MaxScore = maxScore;
             testScore.Score = score;
 
             entityContext.TestScores.Add(testScore);
             entityContext.SaveChanges();
 
             return score;
+        }
+
+        /// <summary>
+        /// Find all tests for a given student
+        /// </summary>
+        /// <param name="studentId">The student</param>
+        /// <returns>List of all tests for the student</returns>
+        public List<TestView> GetTestViewsByStudent(int studentId)
+        {
+            int classId = (from c in entityContext.Classes.Include("Students")
+                           where c.Students.Any(s => s.Id == studentId)
+                           select c.Id).First();
+
+            var tests = (from c in entityContext.Classes.Include("Subjects")
+                         from s in c.Subjects
+                         join t in entityContext.Tests on s.Id equals t.SubjectId
+                         join ts in entityContext.TestScores on t.Id equals ts.TestId
+                         where c.Id == classId
+                         select new TestView()
+                                    {
+                                        Id = t.Id,
+                                        Date = t.Date,
+                                        MaxScore = t.MaxScore,
+                                        Score = ts.Score,
+                                        Subject = s.Name,
+                                        Title = t.Title
+                                    }).ToList();
+
+            return tests;
+        }
+
+        /// <summary>
+        /// Gets a test by given ID
+        /// </summary>
+        /// <param name="testId">The test to search for</param>
+        /// <returns>The test with all of its questions</returns>
+        public Test GetTest(int testId)
+        {
+            return entityContext.Tests
+                .Include("Questions")
+                .Where(t => t.Id == testId)
+                .FirstOrDefault();
         }
     }
 }

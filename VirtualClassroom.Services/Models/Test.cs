@@ -14,6 +14,7 @@ namespace VirtualClassroom.Services.Models
         public string Title { get; set; }
         public int SubjectId { get; set; }
         public DateTime Date { get; set; }
+        public int MaxScore { get; set; }
 
         public virtual ICollection<Question> Questions { get; set; }
     }

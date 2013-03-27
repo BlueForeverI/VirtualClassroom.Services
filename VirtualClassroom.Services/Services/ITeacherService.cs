@@ -58,5 +58,8 @@ namespace VirtualClassroom.Services.Services
 
         [OperationContract]
         Test GetTest(int id);
+
+        [OperationContract]
+        void RemoveTests(List<Test> tests);
     }
 }

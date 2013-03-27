@@ -15,6 +15,5 @@ namespace VirtualClassroom.Services.Models
         public int TestId { get; set; }
         public int StudentId { get; set; }
         public int Score { get; set; }
-        public int MaxScore { get; set; }
     }
 }
