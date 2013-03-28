@@ -337,10 +337,15 @@ namespace VirtualClassroom.Services.Services
         /// <returns>The test with all its questions</returns>
         public Test GetTest(int id)
         {
-            return entityContext.Tests
-                .Include("Questions")
-                .Where(t => t.Id == id)
-                .FirstOrDefault();
+            CheckAuthentication();
+
+            var test = entityContext.Tests.Where(t => t.Id == id).FirstOrDefault();
+
+            test.Questions = (from q in entityContext.Questions.Include("Answers")
+                              where q.TestId == id
+                              select q).ToList();
+
+            return test;
         }
 
         /// <summary>

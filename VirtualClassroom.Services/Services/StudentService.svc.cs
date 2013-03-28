@@ -275,10 +275,13 @@ namespace VirtualClassroom.Services.Services
         {
             CheckAuthentication();
 
-            return entityContext.Tests
-                .Include("Questions")
-                .Where(t => t.Id == testId)
-                .FirstOrDefault();
+            var test = entityContext.Tests.Where(t => t.Id == testId).FirstOrDefault();
+
+            test.Questions = (from q in entityContext.Questions.Include("Answers")
+                              where q.TestId == testId
+                              select q).ToList();
+
+            return test;
         }
     }
 }
