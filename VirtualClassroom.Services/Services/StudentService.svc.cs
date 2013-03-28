@@ -208,6 +208,8 @@ namespace VirtualClassroom.Services.Services
         /// <returns>The score of the student</returns>
         public int EvaluateTest(Test test, int studentId)
         {
+            CheckAuthentication();
+
             var answers = new List<Answer>();
             foreach(var question in test.Questions)
             {
@@ -237,6 +239,8 @@ namespace VirtualClassroom.Services.Services
         /// <returns>List of all tests for the student</returns>
         public List<TestView> GetTestViewsByStudent(int studentId)
         {
+            CheckAuthentication();
+
             int classId = (from c in entityContext.Classes.Include("Students")
                            where c.Students.Any(s => s.Id == studentId)
                            select c.Id).First();
@@ -244,16 +248,19 @@ namespace VirtualClassroom.Services.Services
             var tests = (from c in entityContext.Classes.Include("Subjects")
                          from s in c.Subjects
                          join t in entityContext.Tests on s.Id equals t.SubjectId
-                         join ts in entityContext.TestScores on t.Id equals ts.TestId
                          where c.Id == classId
                          select new TestView()
                                     {
                                         Id = t.Id,
                                         Date = t.Date,
                                         MaxScore = t.MaxScore,
-                                        Score = ts.Score,
                                         Subject = s.Name,
-                                        Title = t.Title
+                                        Title = t.Title,
+                                        Score = (entityContext.TestScores.Any(ts => ts.TestId == t.Id))
+                                        ? entityContext.TestScores
+                                            .Where(ts => ts.TestId == t.Id && ts.StudentId == studentId)
+                                            .FirstOrDefault().Score
+                                        : 0
                                     }).ToList();
 
             return tests;
@@ -266,6 +273,8 @@ namespace VirtualClassroom.Services.Services
         /// <returns>The test with all of its questions</returns>
         public Test GetTest(int testId)
         {
+            CheckAuthentication();
+
             return entityContext.Tests
                 .Include("Questions")
                 .Where(t => t.Id == testId)
