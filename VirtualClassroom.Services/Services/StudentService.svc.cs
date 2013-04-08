@@ -210,16 +210,17 @@ namespace VirtualClassroom.Services.Services
         {
             CheckAuthentication();
 
-            var answers = new List<Answer>();
-            foreach(var question in test.Questions)
+            int score = 0; 
+            foreach(var q in test.Questions)
             {
-                foreach(var answer in question.Answers)
+                if(!(q.Answers.Any(a => a.IsSelected && !a.IsCorrect)))
                 {
-                    answers.Add(answer);
+                    if(q.Answers.Any(a => a.IsSelected && a.IsCorrect))
+                    {
+                        score++;
+                    }
                 }
             }
-
-            int score = answers.Count(a => a.IsCorrect && a.IsSelected);
 
             TestScore testScore = new TestScore();
             testScore.StudentId = studentId;
