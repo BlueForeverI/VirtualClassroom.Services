@@ -55,6 +55,25 @@ namespace VirtualClassroom.Services.Services
         }
 
         /// <summary>
+        /// Add a list of classes (used for importing)
+        /// </summary>
+        /// <param name="classes">Classes to add</param>
+        public void AddClasses(List<Class> classes)
+        {
+            CheckAuthentication();
+
+            foreach (var c in classes)
+            {
+                if (!entityContext.Classes.Any(cl => cl.Number == c.Number && cl.Letter == c.Letter))
+                {
+                    entityContext.Classes.Add(c);
+                } 
+            }
+
+            entityContext.SaveChanges();
+        }
+
+        /// <summary>
         /// Removes a list of classes from the database
         /// </summary>
         /// <param name="classes"></param>
@@ -143,6 +162,41 @@ namespace VirtualClassroom.Services.Services
             {
                 throw new FaultException("Студентът не е валиден или вече съществува");
             }
+        }
+
+        /// <summary>
+        /// Add a list of students (used for importing)
+        /// </summary>
+        /// <param name="students">Students to add</param>
+        /// <param name="secret">Key to decrypt information</param>
+        public void RegisterStudents(List<Student> students, string secret)
+        {
+            CheckAuthentication();
+
+            foreach (var s in students)
+            {
+                string username = Crypto.DecryptStringAES(s.Username, secret);
+                string password = Crypto.DecryptStringAES(s.PasswordHash, secret);
+                string passwordHash = BCrypt.Net.BCrypt.HashPassword(password);
+
+                Student student = new Student()
+                                      {
+                                          ClassId = s.ClassId,
+                                          EGN = s.EGN,
+                                          FirstName = s.FirstName,
+                                          MiddleName = s.MiddleName,
+                                          LastName = s.LastName,
+                                          Username = username,
+                                          PasswordHash = passwordHash
+                                      };
+
+                if(IsStudentValid(student))
+                {
+                    entityContext.Students.Add(student);
+                }
+            }
+
+            entityContext.SaveChanges();
         }
 
         /// <summary>
@@ -382,6 +436,39 @@ namespace VirtualClassroom.Services.Services
             {
                 throw new FaultException("Учителят не е валиден или вече съществува");
             }
+        }
+
+        /// <summary>
+        /// Add a list of teachers (used for importing
+        /// </summary>
+        /// <param name="teachers">The teachers to add</param>
+        /// <param name="secret">Key to decrypt with</param>
+        public void RegisterTeachers(List<Teacher> teachers, string secret)
+        {
+            CheckAuthentication();
+
+            foreach (var t in teachers)
+            {
+                string username = Crypto.DecryptStringAES(t.Username, secret);
+                string password = Crypto.DecryptStringAES(t.PasswordHash, secret);
+                string passwordHash = BCrypt.Net.BCrypt.HashPassword(password);
+
+                Teacher teacher = new Teacher()
+                                      {
+                                          FirstName = t.FirstName,
+                                          MiddleName = t.MiddleName,
+                                          LastName = t.LastName,
+                                          PasswordHash = passwordHash,
+                                          Username = username
+                                      };
+
+                if(IsTeacherValid(teacher))
+                {
+                    entityContext.Teachers.Add(teacher);
+                }
+            }
+
+            entityContext.SaveChanges();
         }
 
         /// <summary>
