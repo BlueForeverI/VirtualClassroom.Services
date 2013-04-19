@@ -222,12 +222,24 @@ namespace VirtualClassroom.Services.Services
                 }
             }
 
-            TestScore testScore = new TestScore();
-            testScore.StudentId = studentId;
-            testScore.TestId = test.Id;
-            testScore.Score = score;
+            if (entityContext.TestScores
+                .Any(ts => ts.TestId == test.Id && ts.StudentId == studentId))
+            {
+                var existing = entityContext.TestScores
+                    .Where(ts => ts.TestId == test.Id && ts.StudentId == studentId).FirstOrDefault();
 
-            entityContext.TestScores.Add(testScore);
+                existing.Score = score;
+            }
+            else
+            {
+                TestScore testScore = new TestScore();
+                testScore.StudentId = studentId;
+                testScore.TestId = test.Id;
+                testScore.Score = score;
+
+                entityContext.TestScores.Add(testScore);
+            }
+
             entityContext.SaveChanges();
 
             return score;
@@ -249,7 +261,11 @@ namespace VirtualClassroom.Services.Services
             var tests = (from c in entityContext.Classes.Include("Subjects")
                          from s in c.Subjects
                          join t in entityContext.Tests on s.Id equals t.SubjectId
-                         where c.Id == classId
+                         join scores in entityContext.TestScores
+                             on new { StudentId = studentId, TestId = t.Id }
+                             equals new { scores.StudentId, scores.TestId } into sc
+                         from ts in sc.DefaultIfEmpty()
+                         where c.Id == classId 
                          select new TestView()
                                     {
                                         Id = t.Id,
@@ -257,11 +273,7 @@ namespace VirtualClassroom.Services.Services
                                         MaxScore = t.MaxScore,
                                         Subject = s.Name,
                                         Title = t.Title,
-                                        Score = (entityContext.TestScores.Any(ts => ts.TestId == t.Id))
-                                        ? entityContext.TestScores
-                                            .Where(ts => ts.TestId == t.Id && ts.StudentId == studentId)
-                                            .FirstOrDefault().Score
-                                        : 0
+                                        Score = (ts == null) ? 0 : ts.Score
                                     }).ToList();
 
             return tests;

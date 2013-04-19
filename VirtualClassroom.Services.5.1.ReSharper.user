@@ -10,32 +10,32 @@
   <CompletionStatisticsManager>
     <ItemStatistics item="Default">
       <Item value="public" priority="16" />
-      <Item value="int" priority="19" />
+      <Item value="int" priority="20" />
       <Item value="DbSet`0" priority="1" />
-      <Item value="TestScore`0" priority="3" />
+      <Item value="TestScore`0" priority="4" />
       <Item value="OperationContract" priority="10" />
       <Item value="void" priority="4" />
       <Item value="Test`0" priority="13" />
       <Item value="List" priority="8" />
-      <Item value="entityContext" priority="30" />
+      <Item value="entityContext" priority="34" />
       <Item value="CheckAuthentication`0" priority="7" />
-      <Item value="var" priority="13" />
+      <Item value="var" priority="15" />
       <Item value="this" priority="5" />
       <Item value="teacherId" priority="1" />
       <Item value="return" priority="6" />
       <Item value="from" priority="10" />
       <Item value="subjects" priority="5" />
-      <Item value="join" priority="6" />
-      <Item value="on" priority="5" />
+      <Item value="join" priority="7" />
+      <Item value="on" priority="6" />
       <Item value="s" priority="14" />
-      <Item value="equals" priority="5" />
-      <Item value="t" priority="23" />
+      <Item value="equals" priority="7" />
+      <Item value="t" priority="24" />
       <Item value="select" priority="7" />
-      <Item value="new" priority="9" />
+      <Item value="new" priority="11" />
       <Item value="foreach" priority="11" />
       <Item value="in" priority="5" />
       <Item value="tests" priority="3" />
-      <Item value="test" priority="16" />
+      <Item value="test" priority="19" />
       <Item value="q" priority="7" />
       <Item value="answers" priority="1" />
       <Item value="a" priority="6" />
@@ -46,15 +46,15 @@
       <Item value="answer" priority="3" />
       <Item value="testScore" priority="5" />
       <Item value="TestScore" priority="0" />
-      <Item value="studentId" priority="1" />
+      <Item value="studentId" priority="4" />
       <Item value="maxScore" priority="1" />
-      <Item value="score" priority="4" />
+      <Item value="score" priority="5" />
       <Item value="HashSet" priority="0" />
       <Item value="Question`0" priority="0" />
       <Item value="File`0" priority="0" />
       <Item value="true" priority="0" />
       <Item value="bool" priority="0" />
-      <Item value="if" priority="5" />
+      <Item value="if" priority="7" />
       <Item value="DateTime`0" priority="2" />
       <Item value="private" priority="0" />
       <Item value="string" priority="4" />
@@ -70,8 +70,8 @@
       <Item value="Contains`1" priority="0" />
       <Item value="entity" priority="1" />
       <Item value="c" priority="0" />
-      <Item value="ts" priority="5" />
-      <Item value="classId" priority="0" />
+      <Item value="ts" priority="13" />
+      <Item value="classId" priority="1" />
       <Item value="MaxScore" priority="0" />
       <Item value="Score" priority="1" />
       <Item value="testId" priority="2" />
@@ -102,15 +102,21 @@
       <Item value="Teacher" priority="0" />
       <Item value="IsTeacherValid`0" priority="0" />
       <Item value="teacher" priority="1" />
+      <Item value="EnvironmentVariableTarget`0" priority="0" />
+      <Item value="ValueType`0" priority="1" />
+      <Item value="existing" priority="0" />
+      <Item value="Equals`0" priority="0" />
+      <Item value="into" priority="0" />
+      <Item value="ts1" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:VirtualClassroom.Services.Models.VirtualClassroomEntities">
       <Item value="Tests" priority="10" />
       <Item value="SaveChanges`0" priority="5" />
-      <Item value="TestScores" priority="5" />
+      <Item value="TestScores" priority="10" />
       <Item value="Subjects" priority="0" />
       <Item value="Classes" priority="1" />
       <Item value="Students" priority="1" />
-      <Item value="Answers" priority="0" />
+      <Item value="Answers" priority="1" />
       <Item value="Questions" priority="0" />
       <Item value="Teachers" priority="0" />
     </ItemStatistics>
@@ -120,14 +126,15 @@
       <Item value="Remove`0" priority="0" />
       <Item value="ToList`1" priority="1" />
       <Item value="Any`1" priority="1" />
-      <Item value="Where`1" priority="1" />
+      <Item value="Where`1" priority="3" />
+      <Item value="AsNoTracking`0" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:VirtualClassroom.Services.Services.TeacherService">
       <Item value="GetSubjectsByTeacher`0" priority="0" />
       <Item value="AddTest`0" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:VirtualClassroom.Services.Models.Subject">
-      <Item value="Id" priority="3" />
+      <Item value="Id" priority="4" />
       <Item value="TeacherId" priority="0" />
       <Item value="Tests" priority="0" />
       <Item value="Name" priority="1" />
@@ -139,7 +146,7 @@
     </ItemStatistics>
     <ItemStatistics item="Qualified:VirtualClassroom.Services.Models.Test">
       <Item value="Questions" priority="13" />
-      <Item value="Id" priority="10" />
+      <Item value="Id" priority="15" />
       <Item value="Date" priority="2" />
       <Item value="SubjectId" priority="1" />
       <Item value="Title" priority="1" />
@@ -158,16 +165,18 @@
     <ItemStatistics item="Qualified:System.Collections.Generic.IEnumerable`1">
       <Item value="ToList`1" priority="1" />
       <Item value="ToArray`1" priority="0" />
+      <Item value="DefaultIfEmpty`1" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:VirtualClassroom.Services.Models.Answer">
       <Item value="IsCorrect" priority="6" />
       <Item value="IsSelected" priority="3" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:VirtualClassroom.Services.Models.TestScore">
-      <Item value="StudentId" priority="1" />
-      <Item value="TestId" priority="4" />
+      <Item value="StudentId" priority="6" />
+      <Item value="TestId" priority="7" />
       <Item value="MaxScore" priority="0" />
-      <Item value="Score" priority="2" />
+      <Item value="Score" priority="5" />
+      <Item value="Id" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:VirtualClassroom.Services.Migrations.tables">
       <Item value="CreateTable`1" priority="0" />
@@ -181,8 +190,10 @@
       <Item value="ToList`1" priority="1" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Linq.IQueryable`1">
-      <Item value="FirstOrDefault`1" priority="2" />
+      <Item value="FirstOrDefault`1" priority="4" />
       <Item value="ToList`1" priority="3" />
+      <Item value="LastOrDefault`1" priority="0" />
+      <Item value="First`1" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:VirtualClassroom.Services.Models.Class">
       <Item value="Subjects" priority="0" />
@@ -222,35 +233,26 @@
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Views/f:SubjectView.cs" caret="141" fromTop="7" />
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:ITeacherService.cs" caret="1772" fromTop="23" />
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Models/f:Test.cs" caret="216" fromTop="9" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Views/f:TestView.cs" caret="534" fromTop="18" />
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Models/f:TestScore.cs" caret="155" fromTop="7" />
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:IStudentService.cs" caret="1490" fromTop="17" />
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Models/f:Subject.cs" caret="1176" fromTop="20" />
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:TeacherService.svc.cs" caret="13213" fromTop="0" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:StudentService.svc.cs" caret="8558" fromTop="6" />
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:IAdminService.cs" caret="2159" fromTop="18" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Views/f:TestView.cs" caret="507" fromTop="17" />
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="14373" fromTop="35" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:StudentService.svc.cs" caret="9957" fromTop="99" />
     </RecentFiles>
     <RecentEdits>
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:TeacherService.svc.cs" caret="11666" fromTop="22" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:IStudentService.cs" caret="1490" fromTop="17" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:StudentService.svc.cs" caret="585" fromTop="14" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Models/f:Subject.cs" caret="1176" fromTop="20" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:StudentService.svc.cs" caret="9784" fromTop="8" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:StudentService.svc.cs" caret="9994" fromTop="7" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:StudentService.svc.cs" caret="10811" fromTop="18" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:StudentService.svc.cs" caret="10766" fromTop="17" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:StudentService.svc.cs" caret="9557" fromTop="12" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:StudentService.svc.cs" caret="11479" fromTop="27" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:StudentService.svc.cs" caret="11519" fromTop="24" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:StudentService.svc.cs" caret="11185" fromTop="19" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:StudentService.svc.cs" caret="11207" fromTop="18" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:StudentService.svc.cs" caret="11875" fromTop="27" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:StudentService.svc.cs" caret="11915" fromTop="24" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:StudentService.svc.cs" caret="11581" fromTop="19" />
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:TeacherService.svc.cs" caret="13344" fromTop="23" />
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:TeacherService.svc.cs" caret="13265" fromTop="17" />
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:StudentService.svc.cs" caret="8586" fromTop="18" />
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:StudentService.svc.cs" caret="8586" fromTop="20" />
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:StudentService.svc.cs" caret="8556" fromTop="4" />
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:StudentService.svc.cs" caret="8586" fromTop="4" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:StudentService.svc.cs" caret="8927" fromTop="14" />
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:IAdminService.cs" caret="760" fromTop="9" />
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:IAdminService.cs" caret="1289" fromTop="16" />
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:IAdminService.cs" caret="2411" fromTop="13" />
@@ -262,6 +264,15 @@
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="5563" fromTop="10" />
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="16818" fromTop="27" />
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="15708" fromTop="18" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:StudentService.svc.cs" caret="9982" fromTop="9" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:StudentService.svc.cs" caret="9587" fromTop="26" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:StudentService.svc.cs" caret="9512" fromTop="25" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:StudentService.svc.cs" caret="8586" fromTop="12" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:StudentService.svc.cs" caret="8927" fromTop="22" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:StudentService.svc.cs" caret="11207" fromTop="26" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:StudentService.svc.cs" caret="10688" fromTop="18" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Views/f:TestView.cs" caret="507" fromTop="17" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:StudentService.svc.cs" caret="11207" fromTop="20" />
     </RecentEdits>
   </RecentFiles>
   <NAntValidationSettings>
