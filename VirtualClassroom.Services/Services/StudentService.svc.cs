@@ -155,13 +155,21 @@ namespace VirtualClassroom.Services.Services
         /// Adds a homework to the database
         /// </summary>
         /// <param name="homework">The homework information to add</param>
-        public void AddHomework(Homework homework)
+        public bool AddHomework(Homework homework)
         {
             CheckAuthentication();
+
+            var lesson = entityContext.Lessons
+                .Where(l => l.Id == homework.LessonId).FirstOrDefault();
+            if(lesson.HomeworkDeadline < DateTime.Now)
+            {
+                return false;
+            }
 
             homework.Date = DateTime.Now;
             entityContext.Homeworks.Add(homework);
             entityContext.SaveChanges();
+            return true;
         }
 
         /// <summary>

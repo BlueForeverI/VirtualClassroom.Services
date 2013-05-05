@@ -33,7 +33,7 @@ namespace VirtualClassroom.Services.Services
         File DownloadLessonHomework(int lessonId);
 
         [OperationContract]
-        void AddHomework(Homework homework);
+        bool AddHomework(Homework homework);
 
         [OperationContract]
         List<Homework> GetHomeworksByStudent(int studentId);
