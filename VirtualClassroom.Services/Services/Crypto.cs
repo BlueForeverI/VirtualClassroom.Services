@@ -132,18 +132,23 @@ namespace VirtualClassroom.Services.Services
         }
 
         /// <summary>
-        /// Generate a random secret key
+        /// Produces a random secret key
         /// </summary>
-        /// <param name="length">Key length</param>
         /// <returns>Generated key</returns>
-        public static string GenerateRandomSecret(int length)
+        public static string GenerateRandomSecret()
         {
+            int length = 50;
+            string symbols =
+                "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()_=+";
+
+            Random r = new Random();
             StringBuilder builder = new StringBuilder();
-            char ch;
+
             for (int i = 0; i < length; i++)
             {
-                ch = Convert.ToChar(Convert.ToInt32(Math.Floor(26 * random.NextDouble() + 65)));
-                builder.Append(ch);
+                int index = r.Next(0, symbols.Length - 1);
+                char symbol = symbols[index];
+                builder.Append(symbol);
             }
 
             return builder.ToString();
