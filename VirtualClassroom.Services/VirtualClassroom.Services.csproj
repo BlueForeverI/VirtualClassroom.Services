@@ -125,7 +125,7 @@
     <Compile Include="Services\AdminService.svc.cs">
       <DependentUpon>AdminService.svc</DependentUpon>
     </Compile>
-    <Compile Include="Services\Crypto.cs" />
+    <Compile Include="Utils\Crypto.cs" />
     <Compile Include="Services\IAdminService.cs" />
     <Compile Include="Services\IStudentService.cs" />
     <Compile Include="Services\ITeacherService.cs" />
@@ -144,6 +144,7 @@
     <Compile Include="Models\Teacher.cs">
       <DependentUpon>SchoolModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Utils\EgnValidator.cs" />
     <Compile Include="Views\HomeworkView.cs" />
     <Compile Include="Views\LessonView.cs" />
     <Compile Include="Views\MarkView.cs" />

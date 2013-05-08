@@ -7,7 +7,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Web;
 
-namespace VirtualClassroom.Services.Services
+namespace VirtualClassroom.Services
 {
     /// <summary>
     /// Helper class that encrypts/decrypts a given string using the AES algorythm

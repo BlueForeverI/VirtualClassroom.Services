@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Description;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using VirtualClassroom.Services.Models;
 using VirtualClassroom.Services.Views;
@@ -151,10 +152,11 @@ namespace VirtualClassroom.Services.Services
             string passwordHash = BCrypt.Net.BCrypt.HashPassword(password);
 
             student.Username = username;
-            student.PasswordHash = passwordHash;
+            student.PasswordHash = password;
 
             if (IsStudentValid(student))
             {
+                student.PasswordHash = passwordHash;
                 entityContext.Students.Add(student);
                 entityContext.SaveChanges();
                 return true;
@@ -172,6 +174,9 @@ namespace VirtualClassroom.Services.Services
         {
             CheckAuthentication();
 
+            // the RegisterStudent method is not used here
+            // because it checks for authentication and call SaveContext() 
+            // for every item
             foreach (var s in students)
             {
                 string username = Crypto.DecryptStringAES(s.Username, secret);
@@ -186,11 +191,12 @@ namespace VirtualClassroom.Services.Services
                                           MiddleName = s.MiddleName,
                                           LastName = s.LastName,
                                           Username = username,
-                                          PasswordHash = passwordHash
+                                          PasswordHash = password
                                       };
 
                 if(IsStudentValid(student))
                 {
+                    student.PasswordHash = passwordHash;
                     entityContext.Students.Add(student);
                 }
             }
@@ -289,9 +295,94 @@ namespace VirtualClassroom.Services.Services
         /// Validates student information
         /// </summary>
         /// <param name="student">Student information</param>
-        /// <returns>Whether the information is valid</returns>
+        /// <returns>Whether the student information is valid</returns>
         private bool IsStudentValid(Student student)
         {
+            const int MAX_NAME_LENGTH = 32;
+            const int MIN_PASS_LENGTH = 4;
+            const int MAX_PASS_LENGTH = 32;
+
+            if (string.IsNullOrEmpty(student.Username)
+                || string.IsNullOrWhiteSpace(student.Username))
+            {
+                return false;
+            }
+
+            if (!Regex.IsMatch(student.Username, "^[a-zA-Z]+[a-zA-Z0-9_\\.]*$"))
+            {
+                return false;
+            }
+
+            if (student.Username.Length > MAX_NAME_LENGTH)
+            {
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(student.FirstName)
+                || string.IsNullOrWhiteSpace(student.FirstName))
+            {
+                return false;
+            }
+
+            if (!Regex.IsMatch(student.FirstName, "\\A[а-яА-Я]+(-)?[а-яА-Я]+\\Z"))
+            {
+                return false;
+            }
+
+            if (student.FirstName.Length > MAX_NAME_LENGTH)
+            {
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(student.MiddleName)
+                || string.IsNullOrWhiteSpace(student.MiddleName))
+            {
+                return false;
+            }
+
+            if (!Regex.IsMatch(student.MiddleName, "\\A[а-яА-Я]+(-)?[а-яА-Я]+\\Z"))
+            {
+                return false;
+            }
+
+            if (student.MiddleName.Length > MAX_NAME_LENGTH)
+            {
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(student.LastName)
+                || string.IsNullOrWhiteSpace(student.LastName))
+            {
+                return false;
+            }
+
+            if (!Regex.IsMatch(student.LastName, "\\A[а-яА-Я]+(-)?[а-яА-Я]+\\Z"))
+            {
+                return false;
+            }
+
+            if (student.LastName.Length > MAX_NAME_LENGTH)
+            {
+                return false;
+            }
+
+            if (EgnValidator.IsEgnValid(student.EGN))
+            {
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(student.PasswordHash)
+                || string.IsNullOrWhiteSpace(student.PasswordHash))
+            {
+                return false;
+            }
+
+            if (student.PasswordHash.Length < MIN_PASS_LENGTH
+                || student.PasswordHash.Length > MAX_PASS_LENGTH)
+            {
+                return false;
+            }
+
             if (entityContext.Students.Any(s => s.Username == student.Username
                 || s.EGN == student.EGN))
             {
@@ -424,10 +515,11 @@ namespace VirtualClassroom.Services.Services
             string passwordHash = BCrypt.Net.BCrypt.HashPassword(password);
 
             teacher.Username = username;
-            teacher.PasswordHash = passwordHash;
+            teacher.PasswordHash = password;
 
             if (IsTeacherValid(teacher))
             {
+                teacher.PasswordHash = passwordHash;
                 entityContext.Teachers.Add(teacher);
                 entityContext.SaveChanges();
                 return true;
@@ -445,6 +537,9 @@ namespace VirtualClassroom.Services.Services
         {
             CheckAuthentication();
 
+            // the RegisterTeachers method is not used here
+            // because it checks for authentication and call SaveContext() 
+            // for every item
             foreach (var t in teachers)
             {
                 string username = Crypto.DecryptStringAES(t.Username, secret);
@@ -456,12 +551,13 @@ namespace VirtualClassroom.Services.Services
                                           FirstName = t.FirstName,
                                           MiddleName = t.MiddleName,
                                           LastName = t.LastName,
-                                          PasswordHash = passwordHash,
+                                          PasswordHash = password,
                                           Username = username
                                       };
 
                 if(IsTeacherValid(teacher))
                 {
+                    teacher.PasswordHash = passwordHash;
                     entityContext.Teachers.Add(teacher);
                 }
             }
@@ -509,6 +605,86 @@ namespace VirtualClassroom.Services.Services
         /// <returns>Whether the information is valid</returns>
         private bool IsTeacherValid(Teacher teacher)
         {
+            const int MAX_NAME_LENGTH = 32;
+            const int MIN_PASS_LENGTH = 4;
+            const int MAX_PASS_LENGTH = 32;
+
+            if (string.IsNullOrEmpty(teacher.Username)
+                || string.IsNullOrWhiteSpace(teacher.Username))
+            {
+                return false;
+            }
+
+            if (!Regex.IsMatch(teacher.Username, "^[a-zA-Z]+[a-zA-Z0-9_\\.]*$"))
+            {
+                return false;
+            }
+
+            if (teacher.Username.Length > MAX_NAME_LENGTH)
+            {
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(teacher.FirstName)
+                || string.IsNullOrWhiteSpace(teacher.FirstName))
+            {
+                return false;
+            }
+
+            if (!Regex.IsMatch(teacher.FirstName, "\\A[а-яА-Я]+(-)?[а-яА-Я]+\\Z"))
+            {
+                return false;
+            }
+
+            if (teacher.FirstName.Length > MAX_NAME_LENGTH)
+            {
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(teacher.MiddleName)
+                || string.IsNullOrWhiteSpace(teacher.MiddleName))
+            {
+                return false;
+            }
+
+            if (!Regex.IsMatch(teacher.MiddleName, "\\A[а-яА-Я]+(-)?[а-яА-Я]+\\Z"))
+            {
+                return false;
+            }
+
+            if (teacher.MiddleName.Length > MAX_NAME_LENGTH)
+            {
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(teacher.LastName)
+                || string.IsNullOrWhiteSpace(teacher.LastName))
+            {
+                return false;
+            }
+
+            if (!Regex.IsMatch(teacher.LastName, "\\A[а-яА-Я]+(-)?[а-яА-Я]+\\Z"))
+            {
+                return false;
+            }
+
+            if (teacher.LastName.Length > MAX_NAME_LENGTH)
+            {
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(teacher.PasswordHash)
+                || string.IsNullOrWhiteSpace(teacher.PasswordHash))
+            {
+                return false;
+            }
+
+            if (teacher.PasswordHash.Length < MIN_PASS_LENGTH
+                || teacher.PasswordHash.Length > MAX_PASS_LENGTH)
+            {
+                return false;
+            }
+
             if (!entityContext.Teachers.Any(t => t.Username == teacher.Username))
             {
                 return true;
@@ -621,12 +797,30 @@ namespace VirtualClassroom.Services.Services
         /// <returns>Whether the information is valid</returns>
         private bool IsAdminValid(Admin admin)
         {
-            if(!entityContext.Admins.Any(a => a.Username == admin.Username))
+            const int MAX_ADMIN_USERNAME_LENGTH = 32;
+
+            if (string.IsNullOrEmpty(admin.Username)
+                || string.IsNullOrWhiteSpace(admin.Username))
             {
-                return true;
+                return false;
             }
 
-            return false;
+            if(admin.Username.Length > MAX_ADMIN_USERNAME_LENGTH)
+            {
+                return false;
+            }
+
+            if (!Regex.IsMatch(admin.Username, "^[a-zA-Z]+[a-zA-Z0-9_\\.]*$"))
+            {
+                return false;
+            }
+
+            if(entityContext.Admins.Any(a => a.Username == admin.Username))
+            {
+                return false;
+            }
+
+            return true;
         }
 
         #endregion

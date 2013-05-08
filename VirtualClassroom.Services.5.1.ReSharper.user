@@ -10,7 +10,7 @@
   <CompletionStatisticsManager>
     <ItemStatistics item="Default">
       <Item value="public" priority="16" />
-      <Item value="int" priority="20" />
+      <Item value="int" priority="21" />
       <Item value="DbSet`0" priority="1" />
       <Item value="TestScore`0" priority="4" />
       <Item value="OperationContract" priority="10" />
@@ -22,7 +22,7 @@
       <Item value="var" priority="16" />
       <Item value="this" priority="5" />
       <Item value="teacherId" priority="1" />
-      <Item value="return" priority="16" />
+      <Item value="return" priority="21" />
       <Item value="from" priority="10" />
       <Item value="subjects" priority="5" />
       <Item value="join" priority="7" />
@@ -52,9 +52,9 @@
       <Item value="HashSet" priority="0" />
       <Item value="Question`0" priority="0" />
       <Item value="File`0" priority="0" />
-      <Item value="true" priority="5" />
+      <Item value="true" priority="6" />
       <Item value="bool" priority="0" />
-      <Item value="if" priority="8" />
+      <Item value="if" priority="9" />
       <Item value="DateTime`0" priority="3" />
       <Item value="private" priority="0" />
       <Item value="string" priority="4" />
@@ -91,17 +91,17 @@
       <Item value="BCrypt" priority="0" />
       <Item value="Net" priority="0" />
       <Item value="BCrypt`0" priority="0" />
-      <Item value="password" priority="0" />
+      <Item value="password" priority="4" />
       <Item value="Username" priority="1" />
       <Item value="username" priority="1" />
       <Item value="PasswordHash" priority="1" />
-      <Item value="passwordHash" priority="1" />
+      <Item value="passwordHash" priority="6" />
       <Item value="IsStudentValid`0" priority="0" />
-      <Item value="student" priority="1" />
+      <Item value="student" priority="7" />
       <Item value="teachers" priority="0" />
       <Item value="Teacher" priority="0" />
       <Item value="IsTeacherValid`0" priority="0" />
-      <Item value="teacher" priority="1" />
+      <Item value="teacher" priority="3" />
       <Item value="EnvironmentVariableTarget`0" priority="0" />
       <Item value="ValueType`0" priority="1" />
       <Item value="existing" priority="0" />
@@ -111,7 +111,11 @@
       <Item value="l" priority="0" />
       <Item value="homework" priority="0" />
       <Item value="lesson" priority="0" />
-      <Item value="false" priority="4" />
+      <Item value="false" priority="9" />
+      <Item value="Services" priority="0" />
+      <Item value="admin" priority="4" />
+      <Item value="const" priority="0" />
+      <Item value="MAX_ADMIN_USERNAME_LENGTH" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:VirtualClassroom.Services.Models.VirtualClassroomEntities">
       <Item value="Tests" priority="10" />
@@ -210,8 +214,8 @@
       <Item value="FirstName" priority="0" />
       <Item value="MiddleName" priority="0" />
       <Item value="LastName" priority="0" />
-      <Item value="Username" priority="0" />
-      <Item value="PasswordHash" priority="0" />
+      <Item value="Username" priority="2" />
+      <Item value="PasswordHash" priority="2" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:@VirtualClassroom.Services.Services.Crypto">
       <Item value="DecryptStringAES`0" priority="1" />
@@ -223,6 +227,7 @@
       <Item value="FirstName" priority="0" />
       <Item value="MiddleName" priority="0" />
       <Item value="LastName" priority="0" />
+      <Item value="PasswordHash" priority="1" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:VirtualClassroom.Services.Models.Lesson">
       <Item value="Id" priority="0" />
@@ -230,6 +235,12 @@
     </ItemStatistics>
     <ItemStatistics item="Qualified:VirtualClassroom.Services.Models.Homework">
       <Item value="LessonId" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:VirtualClassroom.Services.Models.Admin">
+      <Item value="Username" priority="3" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.String">
+      <Item value="Length" priority="0" />
     </ItemStatistics>
   </CompletionStatisticsManager>
   <RecentFiles>
@@ -251,41 +262,42 @@
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Views/f:TestView.cs" caret="507" fromTop="17" />
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:StudentService.svc.cs" caret="6687" fromTop="17" />
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:IStudentService.cs" caret="1025" fromTop="34" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:Crypto.cs" caret="5819" fromTop="25" />
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:IAdminService.cs" caret="2852" fromTop="11" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="19658" fromTop="28" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Utils/f:Crypto.cs" caret="556" fromTop="18" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Utils/f:EgnValidator.cs" caret="127" fromTop="5" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="23467" fromTop="15" />
     </RecentFiles>
     <RecentEdits>
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="16799" fromTop="27" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="15689" fromTop="18" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:StudentService.svc.cs" caret="10249" fromTop="9" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:StudentService.svc.cs" caret="9854" fromTop="26" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:StudentService.svc.cs" caret="9779" fromTop="25" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:StudentService.svc.cs" caret="8853" fromTop="12" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:StudentService.svc.cs" caret="9194" fromTop="22" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:StudentService.svc.cs" caret="11474" fromTop="26" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:StudentService.svc.cs" caret="10955" fromTop="18" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Views/f:TestView.cs" caret="507" fromTop="17" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:StudentService.svc.cs" caret="11474" fromTop="20" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:StudentService.svc.cs" caret="6926" fromTop="25" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:IStudentService.cs" caret="1039" fromTop="20" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:StudentService.svc.cs" caret="6686" fromTop="17" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:Crypto.cs" caret="6520" fromTop="18" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:Crypto.cs" caret="6038" fromTop="5" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:Crypto.cs" caret="5854" fromTop="5" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="1301" fromTop="8" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="1649" fromTop="19" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:IAdminService.cs" caret="663" fromTop="15" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="5289" fromTop="19" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:IAdminService.cs" caret="1116" fromTop="14" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="11051" fromTop="12" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="15455" fromTop="29" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:IAdminService.cs" caret="2238" fromTop="18" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="4544" fromTop="15" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="14710" fromTop="19" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="19991" fromTop="13" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:IAdminService.cs" caret="2852" fromTop="11" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="20532" fromTop="28" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="11857" fromTop="23" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="11981" fromTop="25" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="12169" fromTop="22" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="12317" fromTop="24" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="12442" fromTop="23" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="12626" fromTop="23" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="12772" fromTop="22" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="12895" fromTop="18" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="13013" fromTop="17" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="13205" fromTop="23" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="13398" fromTop="23" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="10858" fromTop="16" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="18112" fromTop="20" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="18691" fromTop="18" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="19487" fromTop="23" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="19717" fromTop="29" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="21443" fromTop="20" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="21588" fromTop="25" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="21711" fromTop="27" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="21897" fromTop="21" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="22044" fromTop="26" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="22168" fromTop="19" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="22356" fromTop="25" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="22504" fromTop="27" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="22629" fromTop="20" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="22813" fromTop="26" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="22959" fromTop="25" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="23082" fromTop="24" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="23274" fromTop="21" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="23467" fromTop="18" />
     </RecentEdits>
   </RecentFiles>
   <NAntValidationSettings>
