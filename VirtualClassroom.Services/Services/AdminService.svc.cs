@@ -39,7 +39,7 @@ namespace VirtualClassroom.Services.Services
         /// Adds a class to the database
         /// </summary>
         /// <param name="c">The class to add</param>
-        public void AddClass(Class c)
+        public bool AddClass(Class c)
         {
             CheckAuthentication();
 
@@ -47,11 +47,10 @@ namespace VirtualClassroom.Services.Services
             {
                 entityContext.Classes.Add(c);
                 entityContext.SaveChanges();
+                return true;
             }
-            else
-            {
-                throw new FaultException("Класът вече съществува");
-            }
+
+            return false;
         }
 
         /// <summary>
@@ -142,7 +141,8 @@ namespace VirtualClassroom.Services.Services
         /// <param name="student">Student information</param>
         /// <param name="passwordCrypt">Encrypted password</param>
         /// <param name="secret">The key to decrypt with</param>
-        public void RegisterStudent(Student student, string passwordCrypt, string secret)
+        /// /// <returns>True if the student is registered successfully, false otherwise</returns>
+        public bool RegisterStudent(Student student, string passwordCrypt, string secret)
         {
             CheckAuthentication();
 
@@ -157,11 +157,10 @@ namespace VirtualClassroom.Services.Services
             {
                 entityContext.Students.Add(student);
                 entityContext.SaveChanges();
+                return true;
             }
-            else
-            {
-                throw new FaultException("Студентът не е валиден или вече съществува");
-            }
+
+            return false;
         }
 
         /// <summary>
@@ -311,7 +310,6 @@ namespace VirtualClassroom.Services.Services
 
         #region Subject Management
 
-
         /// <summary>
         /// Adds a subject to the database
         /// </summary>
@@ -416,7 +414,8 @@ namespace VirtualClassroom.Services.Services
         /// <param name="teacher">Teacher information</param>
         /// <param name="passwordCrypt">Encrypted password</param>
         /// <param name="secret">The skey to decrypt with</param>
-        public void RegisterTeacher(Teacher teacher, string passwordCrypt, string secret)
+        /// <returns>True if the teacher is registered successfully, false otherwise</returns>
+        public bool RegisterTeacher(Teacher teacher, string passwordCrypt, string secret)
         {
             CheckAuthentication();
 
@@ -431,11 +430,10 @@ namespace VirtualClassroom.Services.Services
             {
                 entityContext.Teachers.Add(teacher);
                 entityContext.SaveChanges();
+                return true;
             }
-            else
-            {
-                throw new FaultException("Учителят не е валиден или вече съществува");
-            }
+
+            return false;
         }
 
         /// <summary>
@@ -560,7 +558,7 @@ namespace VirtualClassroom.Services.Services
         /// <param name="admin">Admin information</param>
         /// <param name="passwordCrypt">Encrypted password</param>
         /// <param name="secret">The key to decrypt with</param>
-        public void RegisterAdmin(Admin admin, string passwordCrypt, string secret)
+        public bool RegisterAdmin(Admin admin, string passwordCrypt, string secret)
         {
             CheckAuthentication();
 
@@ -572,11 +570,10 @@ namespace VirtualClassroom.Services.Services
             {
                 entityContext.Admins.Add(admin);
                 entityContext.SaveChanges();
+                return true;
             }
-            else
-            {
-                throw new FaultException("Администраторът не е валиден или вече съществува");
-            }
+
+            return false;
         }
 
         /// <summary>

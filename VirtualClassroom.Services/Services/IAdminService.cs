@@ -22,7 +22,7 @@ namespace VirtualClassroom.Services.Services
         #region Class Management
 
         [OperationContract]
-        void AddClass(Class c);
+        bool AddClass(Class c);
 
         [OperationContract]
         void AddClasses(List<Class> classes);
@@ -41,7 +41,7 @@ namespace VirtualClassroom.Services.Services
         #region Student Management
 
         [OperationContract]
-        void RegisterStudent(Student student, string passwordCrypt, string secret);
+        bool RegisterStudent(Student student, string passwordCrypt, string secret);
 
         [OperationContract]
         void RegisterStudents(List<Student> students, string secret);
@@ -82,7 +82,7 @@ namespace VirtualClassroom.Services.Services
         #region Teacher Management
         
         [OperationContract]
-        void RegisterTeacher(Teacher teacher, string passwordCrypt, string secret);
+        bool RegisterTeacher(Teacher teacher, string passwordCrypt, string secret);
 
         [OperationContract]
         void RegisterTeachers(List<Teacher> teachers, string secret);
@@ -104,7 +104,7 @@ namespace VirtualClassroom.Services.Services
         #region Admin Management
 
         [OperationContract]
-        void RegisterAdmin(Admin admin, string passwordCrypt, string secret);
+        bool RegisterAdmin(Admin admin, string passwordCrypt, string secret);
 
         [OperationContract]
         Admin LoginAdmin(string usernameCrypt, string passwordCrypt, string secret);
