@@ -223,10 +223,7 @@ namespace VirtualClassroom.Services.Services
             {
                 if(!(q.Answers.Any(a => a.IsSelected && !a.IsCorrect)))
                 {
-                    if(q.Answers.Any(a => a.IsSelected && a.IsCorrect))
-                    {
-                        score++;
-                    }
+                    score += q.Answers.Count(a => a.IsSelected && a.IsCorrect);
                 }
             }
 
@@ -234,7 +231,8 @@ namespace VirtualClassroom.Services.Services
                 .Any(ts => ts.TestId == test.Id && ts.StudentId == studentId))
             {
                 var existing = entityContext.TestScores
-                    .Where(ts => ts.TestId == test.Id && ts.StudentId == studentId).FirstOrDefault();
+                    .Where(ts => ts.TestId == test.Id && ts.StudentId == studentId)
+                    .FirstOrDefault();
 
                 existing.Score = score;
             }

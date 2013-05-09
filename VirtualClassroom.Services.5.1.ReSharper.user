@@ -36,9 +36,9 @@
       <Item value="in" priority="5" />
       <Item value="tests" priority="3" />
       <Item value="test" priority="19" />
-      <Item value="q" priority="7" />
+      <Item value="q" priority="8" />
       <Item value="answers" priority="1" />
-      <Item value="a" priority="6" />
+      <Item value="a" priority="9" />
       <Item value="AccessViolationException`0" priority="0" />
       <Item value="Queryable`0" priority="1" />
       <Item value="Answer`0" priority="0" />
@@ -48,7 +48,7 @@
       <Item value="TestScore" priority="0" />
       <Item value="studentId" priority="4" />
       <Item value="maxScore" priority="1" />
-      <Item value="score" priority="5" />
+      <Item value="score" priority="6" />
       <Item value="HashSet" priority="0" />
       <Item value="Question`0" priority="0" />
       <Item value="File`0" priority="0" />
@@ -164,9 +164,10 @@
     <ItemStatistics item="Qualified:System.Collections.Generic.ICollection`1">
       <Item value="Any`1" priority="2" />
       <Item value="Count" priority="1" />
+      <Item value="Count`1" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:VirtualClassroom.Services.Models.Question">
-      <Item value="Answers" priority="4" />
+      <Item value="Answers" priority="5" />
       <Item value="SelectedAnswer" priority="0" />
       <Item value="Id" priority="0" />
       <Item value="TestId" priority="0" />
@@ -177,8 +178,8 @@
       <Item value="DefaultIfEmpty`1" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:VirtualClassroom.Services.Models.Answer">
-      <Item value="IsCorrect" priority="6" />
-      <Item value="IsSelected" priority="3" />
+      <Item value="IsCorrect" priority="8" />
+      <Item value="IsSelected" priority="4" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:VirtualClassroom.Services.Models.TestScore">
       <Item value="StudentId" priority="6" />
@@ -260,16 +261,14 @@
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Models/f:Subject.cs" caret="1176" fromTop="20" />
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:TeacherService.svc.cs" caret="13213" fromTop="0" />
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Views/f:TestView.cs" caret="507" fromTop="17" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:StudentService.svc.cs" caret="6687" fromTop="17" />
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:IStudentService.cs" caret="1025" fromTop="34" />
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:IAdminService.cs" caret="2852" fromTop="11" />
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Utils/f:Crypto.cs" caret="556" fromTop="18" />
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Utils/f:EgnValidator.cs" caret="127" fromTop="5" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="23467" fromTop="15" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="17116" fromTop="36" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:StudentService.svc.cs" caret="8776" fromTop="36" />
     </RecentFiles>
     <RecentEdits>
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="11857" fromTop="23" />
-      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="11981" fromTop="25" />
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="12169" fromTop="22" />
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="12317" fromTop="24" />
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="12442" fromTop="23" />
@@ -298,6 +297,8 @@
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="23082" fromTop="24" />
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="23274" fromTop="21" />
       <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:AdminService.svc.cs" caret="23467" fromTop="18" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:StudentService.svc.cs" caret="9425" fromTop="15" />
+      <File id="3B5329F9-9BBD-44B8-801E-656065C604CA/d:Services/f:StudentService.svc.cs" caret="9086" fromTop="15" />
     </RecentEdits>
   </RecentFiles>
   <NAntValidationSettings>
