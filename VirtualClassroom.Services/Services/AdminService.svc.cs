@@ -175,7 +175,7 @@ namespace VirtualClassroom.Services.Services
             CheckAuthentication();
 
             // the RegisterStudent method is not used here
-            // because it checks for authentication and call SaveContext() 
+            // because it checks for authentication and calls SaveContext() 
             // for every item
             foreach (var s in students)
             {
@@ -210,21 +210,30 @@ namespace VirtualClassroom.Services.Services
         /// <param name="studentId">The student to edit</param>
         /// <param name="student">New information about the student</param>
         /// <param name="secret">Key to decrypt username and password</param>
-        public void EditStudent(int studentId, Student student, string secret)
+        public bool EditStudent(int studentId, Student student, string secret)
         {
             string username = Crypto.DecryptStringAES(student.Username, secret);
             string password = Crypto.DecryptStringAES(student.PasswordHash, secret);
 
-            var entity = entityContext.Students.Where(s => s.Id == studentId).FirstOrDefault();
-            entity.ClassId = student.ClassId;
-            entity.EGN = student.EGN;
-            entity.FirstName = student.FirstName;
-            entity.MiddleName = student.MiddleName;
-            entity.LastName = student.LastName;
-            entity.Username = username;
-            entity.PasswordHash = BCrypt.Net.BCrypt.HashPassword(password);
+            student.Username = username;
+            student.PasswordHash = password;
 
-            entityContext.SaveChanges();
+            if (IsStudentValid((student)))
+            {
+                var entity = entityContext.Students.Where(s => s.Id == studentId).FirstOrDefault();
+                entity.ClassId = student.ClassId;
+                entity.EGN = student.EGN;
+                entity.FirstName = student.FirstName;
+                entity.MiddleName = student.MiddleName;
+                entity.LastName = student.LastName;
+                entity.Username = username;
+                entity.PasswordHash = BCrypt.Net.BCrypt.HashPassword(password);
+
+                entityContext.SaveChanges();
+                return true;
+            }
+
+            return false;
         }
 
         /// <summary>
@@ -366,7 +375,7 @@ namespace VirtualClassroom.Services.Services
                 return false;
             }
 
-            if (EgnValidator.IsEgnValid(student.EGN))
+            if (!EgnValidator.IsEgnValid(student.EGN))
             {
                 return false;
             }
@@ -538,7 +547,7 @@ namespace VirtualClassroom.Services.Services
             CheckAuthentication();
 
             // the RegisterTeachers method is not used here
-            // because it checks for authentication and call SaveContext() 
+            // because it checks for authentication and calls SaveContext() 
             // for every item
             foreach (var t in teachers)
             {
@@ -699,19 +708,28 @@ namespace VirtualClassroom.Services.Services
         /// <param name="teacherId">The teacher to edit</param>
         /// <param name="teacher">Teacher information</param>
         /// <param name="secret">Key to decrypt username and password</param>
-        public void EditTeacher(int teacherId, Teacher teacher, string secret)
+        public bool EditTeacher(int teacherId, Teacher teacher, string secret)
         {
             string username = Crypto.DecryptStringAES(teacher.Username, secret);
             string password = Crypto.DecryptStringAES(teacher.PasswordHash, secret);
 
-            var entity = entityContext.Teachers.Where(t => t.Id == teacherId).FirstOrDefault();
-            entity.Username = username;
-            entity.FirstName = teacher.FirstName;
-            entity.MiddleName = teacher.MiddleName;
-            entity.LastName = teacher.LastName;
-            entity.PasswordHash = BCrypt.Net.BCrypt.HashPassword(password);
+            teacher.Username = username;
+            teacher.PasswordHash = password;
 
-            entityContext.SaveChanges();
+            if (IsTeacherValid(teacher))
+            {
+                var entity = entityContext.Teachers.Where(t => t.Id == teacherId).FirstOrDefault();
+                entity.Username = username;
+                entity.FirstName = teacher.FirstName;
+                entity.MiddleName = teacher.MiddleName;
+                entity.LastName = teacher.LastName;
+                entity.PasswordHash = BCrypt.Net.BCrypt.HashPassword(password);
+
+                entityContext.SaveChanges();
+                return true;
+            }
+
+            return false;
         }
 
         /// <summary>

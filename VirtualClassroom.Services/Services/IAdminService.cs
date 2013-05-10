@@ -53,7 +53,7 @@ namespace VirtualClassroom.Services.Services
         List<StudentView> GetStudentViews();
 
         [OperationContract]
-        void EditStudent(int studentId, Student student, string secret);
+        bool EditStudent(int studentId, Student student, string secret);
 
         [OperationContract]
         Student GetStudentById(int studentId);
@@ -94,7 +94,7 @@ namespace VirtualClassroom.Services.Services
         List<Teacher> GetTeachers();
 
         [OperationContract]
-        void EditTeacher(int teacherId, Teacher teacher, string secret);
+        bool EditTeacher(int teacherId, Teacher teacher, string secret);
 
         [OperationContract]
         Teacher GetTeacherById(int teacherId);
