@@ -210,6 +210,7 @@ namespace VirtualClassroom.Services.Services
         /// <param name="studentId">The student to edit</param>
         /// <param name="student">New information about the student</param>
         /// <param name="secret">Key to decrypt username and password</param>
+        /// <returns>True on success, false otherwise</returns>
         public bool EditStudent(int studentId, Student student, string secret)
         {
             string username = Crypto.DecryptStringAES(student.Username, secret);
@@ -218,7 +219,7 @@ namespace VirtualClassroom.Services.Services
             student.Username = username;
             student.PasswordHash = password;
 
-            if (IsStudentValid((student)))
+            if (IsStudentValid(student, true))
             {
                 var entity = entityContext.Students.Where(s => s.Id == studentId).FirstOrDefault();
                 entity.ClassId = student.ClassId;
@@ -304,8 +305,9 @@ namespace VirtualClassroom.Services.Services
         /// Validates student information
         /// </summary>
         /// <param name="student">Student information</param>
+        /// <param name="isExisting">True if we validating an existing student</param>
         /// <returns>Whether the student information is valid</returns>
-        private bool IsStudentValid(Student student)
+        private bool IsStudentValid(Student student, bool isExisting = false)
         {
             const int MAX_NAME_LENGTH = 32;
             const int MIN_PASS_LENGTH = 4;
@@ -392,15 +394,19 @@ namespace VirtualClassroom.Services.Services
                 return false;
             }
 
-            if (entityContext.Students.Any(s => s.Username == student.Username
-                || s.EGN == student.EGN))
+            // we are editing the student - his username and EGN already exist
+            if (!isExisting)
             {
-                return false;
-            }
+                if (entityContext.Students.Any(s => s.Username == student.Username
+                                                    || s.EGN == student.EGN))
+                {
+                    return false;
+                }
 
-            if(entityContext.Students.Any(s => s.EGN == student.EGN))
-            {
-                return false;
+                if (entityContext.Students.Any(s => s.EGN == student.EGN))
+                {
+                    return false;
+                }
             }
 
             return true;
@@ -611,8 +617,9 @@ namespace VirtualClassroom.Services.Services
         /// Validates teacher information
         /// </summary>
         /// <param name="teacher">Teacher information</param>
+        /// <param name="isExisting">Whether we are validating an existign student</param>
         /// <returns>Whether the information is valid</returns>
-        private bool IsTeacherValid(Teacher teacher)
+        private bool IsTeacherValid(Teacher teacher, bool isExisting = false)
         {
             const int MAX_NAME_LENGTH = 32;
             const int MIN_PASS_LENGTH = 4;
@@ -694,12 +701,12 @@ namespace VirtualClassroom.Services.Services
                 return false;
             }
 
-            if (!entityContext.Teachers.Any(t => t.Username == teacher.Username))
+            if (entityContext.Teachers.Any(t => t.Username == teacher.Username) && !isExisting)
             {
-                return true;
+                return false;
             }
 
-            return false;
+            return true;
         }
 
         /// <summary>
@@ -716,7 +723,7 @@ namespace VirtualClassroom.Services.Services
             teacher.Username = username;
             teacher.PasswordHash = password;
 
-            if (IsTeacherValid(teacher))
+            if (IsTeacherValid(teacher, true))
             {
                 var entity = entityContext.Teachers.Where(t => t.Id == teacherId).FirstOrDefault();
                 entity.Username = username;
