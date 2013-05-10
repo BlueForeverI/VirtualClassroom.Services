@@ -287,7 +287,9 @@ namespace VirtualClassroom.Services.Services
                            ClassNumber = c.Number,
                            ClassLetter = c.Letter,
                            EGN = s.EGN,
-                           FullName = s.FirstName + " " + s.MiddleName + " " + s.LastName,
+                           FirstName = s.FirstName,
+                           MiddleName = s.MiddleName,
+                           LastName = s.LastName,
                            Username = s.Username
                        })
                                   .AsEnumerable()
@@ -295,7 +297,9 @@ namespace VirtualClassroom.Services.Services
                                   {
                                       Class = string.Format("{0} '{1}'", x.ClassNumber, x.ClassLetter),
                                       EGN = x.EGN,
-                                      FullName = x.FullName,
+                                      FirstName = x.FirstName,
+                                      MiddleName = x.MiddleName,
+                                      LastName = x.LastName,
                                       Id = x.Id,
                                       Username = x.Username
                                   }).ToList();
